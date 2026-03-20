@@ -1,0 +1,124 @@
+import React, { useEffect, useState } from 'react'
+import AdminSidebars from './AdminSidebars'
+import axios from 'axios'
+import { Link } from "react-router-dom";
+
+function ManageOrders() {
+  const [orders, setOrders] = useState([])
+  const [showModal, setShowModal] = useState(false)
+  const [selectedProducts, setSelectedProducts] = useState([])
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:3001/manageOrders")
+      .then(orders => setOrders(orders.data))
+      .catch(err => console.log(err))
+  }, [])
+
+  const viewProducts = (products) => {
+    setSelectedProducts(products)
+    setShowModal(true)
+  }
+
+  const deleteOrders = async (id) => {
+    axios.delete(`http://127.0.0.1:3001/deleteOrders/${id}`)
+    alert("Orders Deleted")
+    window.location.reload();
+  }
+
+  return (
+    <>
+      <AdminSidebars />
+
+      <div className="admin-all-content-space">
+        <div className="manage-table">
+          <h3>Manage Order Details</h3>
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Sl.No</th>
+                <th>User Email</th>
+                <th>Product Details</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {
+                orders.map((order, index) => {
+                  return <tr key={order._id}>
+                    <td>{index+1 }</td>
+                    <td>{order.userEmail}</td>
+                    <td className='click' onClick={() => viewProducts(order.products)}>Click to View Products</td>
+                    <td>{order.totalAmount}</td>
+                    <td>{order.orderStatus}</td>
+                    <td className='action-btn'>
+                      <Link to={`/admin/editStatus/` + order._id} ><i className="fas fa-edit edit"></i></Link>
+                      <button onClick={() => deleteOrders(order._id)}><i className="fas fa-trash-alt delete"></i></button>
+                    </td>
+                  </tr>
+                })
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {
+        showModal && (
+
+          <div className="modal-product-details">
+            <div className="modal-content manage-table">
+              <button className="close-btn" onClick={() => setShowModal(false)}>
+                X
+              </button>
+
+              <h3>Ordered Products</h3>
+              <table border="1">
+
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  {
+                    selectedProducts.map((product, index) => (
+                      <tr key={index}>
+
+                        <td>
+                          <img
+                            src={`http://localhost:3001/${product.productImage}`}
+                            width="50"
+                          />
+                        </td>
+
+                        <td>{product.productName}</td>
+                        <td>₹{product.newPrice}</td>
+                        <td>{product.quantity}</td>
+
+                      </tr>
+                    ))
+                  }
+
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+
+        )
+      }
+
+    </>
+  )
+}
+
+export default ManageOrders

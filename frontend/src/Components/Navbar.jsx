@@ -1,0 +1,88 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Login from './Login'
+import AddToCart from "./AddToCart";
+
+function Navbar() {
+    const [showModal, setShowModal] = useState(false);
+
+    const userEmail = JSON.parse(localStorage.getItem('userEmail'))
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || []
+    const cartItemsCount = cart.length
+
+
+    const closeModal = () => {
+        return setShowModal(false);
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem("userEmail")
+        window.location.reload()
+    }
+
+    return (
+        <>
+            <nav>
+                <div className="navbar">
+                    <div className="logos">
+                        <Link to="/"><img src="/images/purpllelogo.svg" alt="Puplle Logo" id="purplle" /></Link>
+                        <img src="/images/elitelogo.gif" alt="Elite Logo" id="elite" style={{ marginLeft: "3px", width: 50 }} />
+                    </div>
+
+                    <div className="url">
+                        <ul>
+                            <li>
+                                <a href="">SHOP CATEGORIES</a>
+                            </li>
+                            <li><a href="#">BRANDS</a></li>
+                            <li>
+                                <Link to="/offer">OFFERS</Link>
+                            </li>
+                            <li>
+                                <Link to="/new">NEW</Link>
+                            </li>
+                            <li>
+                                <Link to="/splurge">SPLURGE</Link>
+                            </li>
+                            <li>
+                                <Link to="/magazine">MAGAZINE</Link>
+                            </li>
+                            <li>
+                                <Link to="/eliteoffers">ELITE OFFERS</Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="nav-icons">
+                        <a href="" id="search"><i className="fa-solid fa-magnifying-glass"></i></a>
+                        <a href="" id="heart"><i className="fa-regular fa-heart"></i></a>
+                        <Link to='/addToCart' href="" id="bars">
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                            {cartItemsCount > 0 &&
+                                <span className="cart-item-length">{cartItemsCount}</span>
+                            }
+                        </Link>
+
+                        {userEmail ? (
+                            <Link id="smile" onClick={handleLogout}>
+                                <i className="fa-regular fa-face-smile"></i>
+                                <span className="tooltiptext">Logout</span>
+                            </Link>
+                        ) : (
+
+                            <Link id="smile" onClick={() => setShowModal(true)}>
+                                <i className="fa-regular fa-face-smile"></i>
+                                <span className="tooltiptext">Login or Register</span>
+                            </Link>
+                        )}
+                        {showModal && <Login closeModal={closeModal} />}
+                    </div>
+
+                </div>
+            </nav>
+        </>
+    );
+}
+
+export default Navbar;
