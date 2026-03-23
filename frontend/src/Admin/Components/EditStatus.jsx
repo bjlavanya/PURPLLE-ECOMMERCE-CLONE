@@ -49,7 +49,7 @@ function EditStatus() {
                             </div>
 
                         </div>
-                        <button type="submit" className='add-product-button admin-button'>UPDATE STAUTS</button>
+                        <button type="submit" className='add-product-button admin-button'>UPDATE STATUS</button>
                     </form>
                 </div>
 

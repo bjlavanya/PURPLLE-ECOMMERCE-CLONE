@@ -8,7 +8,8 @@ function AddToCart() {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate()
 
-    const userEmail = JSON.parse(localStorage.getItem('userEmail'))
+    // const userEmail = JSON.parse(localStorage.getItem('userEmail'))
+    const userId = localStorage.getItem("userId");
 
     const [cartItems, setCartItems] = useState([])
 
@@ -37,7 +38,7 @@ function AddToCart() {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem("userEmail")
+        localStorage.removeItem("userId")
         window.location.reload()
     }
 
@@ -78,7 +79,7 @@ function AddToCart() {
     const orderTotal = subTotal + platformFee + shipping
 
     const placeAnOrder = async () => {
-        const user = JSON.parse(localStorage.getItem('userEmail'))
+        const user = localStorage.getItem('userId')
 
         //if user not logged before placing order - then show login page
         if (!user) {
@@ -88,7 +89,7 @@ function AddToCart() {
 
         try {
             const res = await axios.post("http://127.0.0.1:3001/placeAnOrder", {
-                userEmail: user,
+                userId: user,
                 products: cartItems,
                 totalAmount: orderTotal
             })
@@ -121,7 +122,7 @@ function AddToCart() {
                             }
                         </Link>
 
-                        {userEmail ? (
+                        {userId ? (
                             <Link id="smile" onClick={handleLogout}>
                                 <i className="fa-regular fa-face-smile"></i>
                                 <span className="tooltiptext">Logout</span>

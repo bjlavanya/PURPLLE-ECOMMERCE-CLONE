@@ -6,14 +6,14 @@ const OrderDeliveredMail = async(email) => {
         const transporter = nodemailer.createTransport( {
             service: "gmail",
             auth: {
-                user: "lavibg2004@gmail.com",
-                pass: 'xvsvpeexwfclpovl'
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
             }
         });
 
         //send mail
         await transporter.sendMail( {
-            from: 'PURPLLE - OTP VERIFICATION',
+            from: 'PURPLLE',
             to: `${email}`,
             subject: 'Your Order is Being Delivered',
             html: `

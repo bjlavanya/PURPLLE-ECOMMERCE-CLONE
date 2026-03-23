@@ -25,11 +25,11 @@ function PrevArrow({ onClick }) {
 
 function HandpickedProducts() {
 
-  const [products, setProducts] = useState("")
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     axios.get("http://127.0.0.1:3001/products")
-          .then(data => setProducts(data))
+          .then(res => setProducts(res.data))
           .catch(err => console.log(err))
   }, [])
 
@@ -54,7 +54,7 @@ function HandpickedProducts() {
 
       <section className="handpickedImage">
         <Slider {...settings}>
-            { products && products?.data.filter((product) => product.category === 'Handpicked Products').map((product) => (
+            { products && products.filter((product) => product.category === 'Handpicked Products').map((product) => (
                 <div  className="sponsored" key={product.id}>
                     <Link to={`/singleProductPage/${product._id}`}>
                         <img src={`http://localhost:3001/${product.productImage}`} alt={product.productName} />

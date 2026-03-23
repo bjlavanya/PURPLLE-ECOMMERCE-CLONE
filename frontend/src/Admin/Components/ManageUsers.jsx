@@ -41,7 +41,6 @@ function ManageUsers() {
                   return <tr key={user._id}>
                     <td>{user.email}</td>
                     <td className='action-btn'>
-                      <Link ><i className="fas fa-edit edit"></i></Link>
                       <button onClick={() => deleteUser(user._id)}><i className="fas fa-trash-alt delete"></i></button>
                     </td>
                   </tr>

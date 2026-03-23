@@ -6,7 +6,7 @@ import AddToCart from "./AddToCart";
 function Navbar() {
     const [showModal, setShowModal] = useState(false);
 
-    const userEmail = JSON.parse(localStorage.getItem('userEmail'))
+    const userId = localStorage.getItem("userId");
 
     const cart = JSON.parse(localStorage.getItem('cart')) || []
     const cartItemsCount = cart.length
@@ -17,7 +17,7 @@ function Navbar() {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem("userEmail")
+        localStorage.removeItem("userId")
         window.location.reload()
     }
 
@@ -64,7 +64,7 @@ function Navbar() {
                             }
                         </Link>
 
-                        {userEmail ? (
+                        {userId ? (
                             <Link id="smile" onClick={handleLogout}>
                                 <i className="fa-regular fa-face-smile"></i>
                                 <span className="tooltiptext">Logout</span>

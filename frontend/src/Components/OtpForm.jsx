@@ -82,7 +82,9 @@ function OtpForm({length=6, email, setShowOtpForm, closeModal }) {
             otp: enteredOtp
         });
 
-        localStorage.setItem('userEmail', JSON.stringify(email)) // storing useremail at local storage - browser
+        // localStorage.setItem('userEmail', JSON.stringify(email)) // storing useremail at local storage - browser
+
+        localStorage.setItem("userId", response.data.userId);
 
         console.log("Response:", response.data);
         alert("Login Successfully")

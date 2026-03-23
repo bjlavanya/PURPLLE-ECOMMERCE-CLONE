@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -32,7 +33,9 @@ const upload = multer({ storage })
 app.use(express.static("UploadsImage"))
 
 // DATABASE MONGODB CONNECTION
-mongoose.connect('mongodb://127.0.0.1:27017/purplle')
+// mongoose.connect('mongodb://127.0.0.1:27017/purplle')
+
+mongoose.connect(process.env.MONGO_URI)
 console.log("MongoDB Connected")
 
 // LOGIN ROUTE
@@ -181,10 +184,14 @@ app.get('/products/:id', async (req, res) => {
 // PLACE AN ORDER
 
 app.post('/placeAnOrder', async (req, res) => {
-    const { userEmail, products, totalAmount } = req.body
+    const { userId, products, totalAmount } = req.body
+
+    const user = await Users.findById(userId)
 
     const orderList = new Orders({
-        userEmail, products, totalAmount
+        userEmail: user.email,
+        products: products,
+        totalAmount: totalAmount
     })
 
     await orderList.save()
