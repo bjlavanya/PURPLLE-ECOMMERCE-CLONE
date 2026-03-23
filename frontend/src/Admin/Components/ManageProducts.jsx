@@ -9,13 +9,13 @@ function ManageProducts() {
 
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3001/manageProducts")
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageProducts")
       .then(products => setProducts(products.data))
       .catch(err => console.log(err))
   }, [])
 
   const deleteProduct = async (id) => {
-    axios.delete(`http://127.0.0.1:3001/deleteProducts/${id}`)
+    axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteProducts/${id}`)
     alert("Product Deleted")
     window.location.reload();
   }
@@ -48,7 +48,7 @@ function ManageProducts() {
                 {
                   products.map(product => {
                     return <tr key={product._id}>
-                      <td><img src={`http://localhost:3001/${product.productImage}`} alt="" /></td>
+                      <td><img src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`} alt="" /></td>
                       <td>{product.productName}</td>
                       <td>{product.productDescription}</td>
                       <td>{product.newPrice}</td>

@@ -17,6 +17,8 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
+const PORT = process.env.PORT || 3001;
+
 // MULTER FOR IMAGE
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -240,6 +242,6 @@ app.delete('/deleteOrders/:id', async (req, res) => {
 })
 
 //Server running
-app.listen(3001, () => {
-    console.log("server is running")
+app.listen(PORT, () => {
+    console.log(`server is running at ${PORT}`)
 })

@@ -9,7 +9,7 @@ function ManageOrders() {
   const [selectedProducts, setSelectedProducts] = useState([])
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3001/manageOrders")
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageOrders")
       .then(orders => setOrders(orders.data))
       .catch(err => console.log(err))
   }, [])
@@ -20,7 +20,7 @@ function ManageOrders() {
   }
 
   const deleteOrders = async (id) => {
-    axios.delete(`http://127.0.0.1:3001/deleteOrders/${id}`)
+    axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteOrders/${id}`)
     alert("Orders Deleted")
     window.location.reload();
   }
@@ -94,7 +94,7 @@ function ManageOrders() {
 
                         <td>
                           <img
-                            src={`http://localhost:3001/${product.productImage}`}
+                            src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`}
                             width="50"
                           />
                         </td>

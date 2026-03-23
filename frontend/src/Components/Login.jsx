@@ -15,11 +15,14 @@ function Login({ closeModal }) {
   const [showOtpForm, setShowOtpForm] = useState(false);
 
   const handleSubmit = async (e) => {
+    console.log("handleSubmit called");
         e.preventDefault();
+
+        
 
         try {
             const result = await axios.post(
-            'http://127.0.0.1:3001/login/sendOtp',
+            'https://purplle-ecommerce-clone-backend.onrender.com/login/sendOtp',
             { email }
             );
 
@@ -27,6 +30,7 @@ function Login({ closeModal }) {
 
         } catch (err) {
             console.log("Send OTP Error:", err.response?.data || err.message);
+            alert("Failed to send OTP. Check console for details.");
         }
     };
   return (
@@ -36,19 +40,19 @@ function Login({ closeModal }) {
 
             {!showOtpForm ? (
             <form action="" className='login-form' onSubmit={handleSubmit}>
-                <button className="close" onClick={closeModal}>
+                <button type="button" className="close" onClick={closeModal}>
                     <IoMdClose />
                 </button>
 
-                <img src="public/images/logintopImage.webp" alt="LoginLogo" />
+                <img src="/images/logintopImage.webp" alt="LoginLogo" />
                 
                 <h3 className='login-heading'>Login or Signup</h3><br />
 
                 <input 
                     type="email" 
-                    id="contact" 
-                    name="contact" 
-                    className="contact" 
+                    id="email" 
+                    name="email" 
+                    className="email" 
                     placeholder="Enter email address"
                     value={email}  
                     onChange={(e) => setEmail(e.target.value)}

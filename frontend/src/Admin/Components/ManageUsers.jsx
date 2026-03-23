@@ -9,13 +9,13 @@ function ManageUsers() {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3001/manageUsers")
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageUsers")
       .then(users => setUsers(users.data))
       .catch(err => console.log(err))
   }, [])
 
   const deleteUser = async (id) => {
-    axios.delete(`http://127.0.0.1:3001/deleteUsers/${id}`)
+    axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteUsers/${id}`)
     alert("User Deleted")
     window.location.reload();
   }

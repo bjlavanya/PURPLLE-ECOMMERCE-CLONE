@@ -77,7 +77,7 @@ function OtpForm({length=6, email, setShowOtpForm, closeModal }) {
     }
 
     try {
-        const response = await axios.post("http://127.0.0.1:3001/login/verifyOtp", {
+        const response = await axios.post("https://purplle-ecommerce-clone-backend.onrender.com/login/verifyOtp", {
             email,
             otp: enteredOtp
         });
@@ -100,7 +100,7 @@ function OtpForm({length=6, email, setShowOtpForm, closeModal }) {
 
   const handleResendOtp = async () => {
     try {
-        await axios.post("http://127.0.0.1:3001/login/sendOtp", {
+        await axios.post("https://purplle-ecommerce-clone-backend.onrender.com/login/sendOtp", {
             email,
         });
 

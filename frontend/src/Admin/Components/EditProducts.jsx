@@ -21,7 +21,7 @@ function EditProducts() {
     const {id} = useParams()
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/imageUpload/${id}`)
+        axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/imageUpload/${id}`)
         .then((res) => {
             const data = res.data
 
@@ -55,7 +55,7 @@ function EditProducts() {
         formdata.append("highlights", highlights)
         formdata.append("category", category)
 
-        fetch(`http://127.0.0.1:3001/imageUpload/${id}`, {
+        fetch(`https://purplle-ecommerce-clone-backend.onrender.com/imageUpload/${id}`, {
             method: "put",
             body: formdata
         })

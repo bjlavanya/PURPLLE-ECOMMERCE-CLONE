@@ -28,7 +28,7 @@ function HandpickedProducts() {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:3001/products")
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
           .then(res => setProducts(res.data))
           .catch(err => console.log(err))
   }, [])
@@ -57,7 +57,7 @@ function HandpickedProducts() {
             { products && products.filter((product) => product.category === 'Handpicked Products').map((product) => (
                 <div  className="sponsored" key={product.id}>
                     <Link to={`/singleProductPage/${product._id}`}>
-                        <img src={`http://localhost:3001/${product.productImage}`} alt={product.productName} />
+                        <img src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`} alt={product.productName} />
                     </Link>
 
                     {/* <div className="offers">

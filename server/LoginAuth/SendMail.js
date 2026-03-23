@@ -1,10 +1,12 @@
 const nodemailer = require('nodemailer');
 
-const sendMail = async(email, otp) => {
+const sendMail = async (email, otp) => {
     try {
         //make transporter to send mail
-        const transporter = nodemailer.createTransport( {
+        const transporter = nodemailer.createTransport({
             service: "gmail",
+            port: 587,         
+            secure: false,  
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
@@ -12,8 +14,8 @@ const sendMail = async(email, otp) => {
         });
 
         //send mail
-        await transporter.sendMail( {
-            from: 'PURPLLE - OTP VERIFICATION',
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
             to: `${email}`,
             subject: 'OTP Verification Code for Purplle Login/Signup',
             html: `
@@ -23,8 +25,9 @@ const sendMail = async(email, otp) => {
             `
         });
     }
-    catch(error) {
-        console.log("Send Mail error: ", error)
+    catch (error) {
+        console.error("Send Mail error:", error);
+        throw error;
     }
 }
 

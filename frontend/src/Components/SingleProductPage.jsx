@@ -14,7 +14,7 @@ function SingleProductPage() {
     const [product, setProduct] = useState({})
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/products/${id}`)
+        axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/products/${id}`)
             .then(res => setProduct(res.data))
             .catch(err => console.log(err))
     }, [id])
@@ -50,7 +50,7 @@ function SingleProductPage() {
                 {product && (
                     <div className="single-product-details">
                         <div className="single-product-image">
-                            <img src={`http://localhost:3001/${product.productImage}`} alt="" />
+                            <img src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`} alt="" />
                         </div>
 
                         <div className="single-product-description">

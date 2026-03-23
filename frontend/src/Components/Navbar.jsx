@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Login from './Login'
-import AddToCart from "./AddToCart";
 
 function Navbar() {
     const [showModal, setShowModal] = useState(false);

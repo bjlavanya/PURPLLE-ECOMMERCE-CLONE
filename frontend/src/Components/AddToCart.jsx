@@ -88,7 +88,7 @@ function AddToCart() {
         }
 
         try {
-            const res = await axios.post("http://127.0.0.1:3001/placeAnOrder", {
+            const res = await axios.post("https://purplle-ecommerce-clone-backend.onrender.com/placeAnOrder", {
                 userId: user,
                 products: cartItems,
                 totalAmount: orderTotal
