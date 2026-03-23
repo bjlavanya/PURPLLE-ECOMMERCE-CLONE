@@ -45,7 +45,7 @@ const sendMail = async (email, otp) => {
   try {
     const msg = {
       to: email,
-      from: process.env.EMAIL_USER, // verified sender
+      from: "onboarding@sendgrid.net",
       subject: 'OTP Verification Code',
       html: `
         <h3>Dear Customer</h3>
