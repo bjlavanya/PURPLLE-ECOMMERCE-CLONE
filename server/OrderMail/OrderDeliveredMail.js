@@ -4,7 +4,7 @@ const OrderDeliveredMail = async(email) => {
     try {
         //make transporter to send mail
         const transporter = nodemailer.createTransport( {
-            service: "gmail",
+            host: "smtp-relay.gmail.com",
             port: 587,         
             secure: false,  
             auth: {
