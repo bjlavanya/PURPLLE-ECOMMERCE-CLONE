@@ -44,8 +44,8 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const sendMail = async (email, otp) => {
   try {
     const msg = {
-      to: email,
-      from: "onboarding@sendgrid.net",
+      to: `${email}`,
+      from: process.env.EMAIL_USER, // verified sender
       subject: 'OTP Verification Code',
       html: `
         <h3>Dear Customer</h3>
