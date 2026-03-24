@@ -23,7 +23,7 @@ function AddToCart() {
             let data = [];
 
             for (const item of cart) {
-                const res = await axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/${item.productId}`);
+                const res = await axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/products/${item.productId}`);
                 data.push({ ...res.data, quantity: item.quantity });
             }
 
@@ -57,11 +57,21 @@ function AddToCart() {
         setCartItems(updatedItems);
     }
 
+    // const removeCartItem = (index) => {
+    //     const cart = cartItems.filter((item, i) => i !== index)
+    //     setCartItems(cart)
+    //     localStorage.setItem("cart", JSON.stringify(cart))
+    // }
+
     const removeCartItem = (index) => {
-        const cart = cartItems.filter((item, i) => i !== index)
-        setCartItems(cart)
-        localStorage.setItem("cart", JSON.stringify(cart))
-    }
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        const updated = [...cartItems];
+        updated.splice(index, 1);
+        setCartItems(updated);
+    };
 
     //Calcultaion
     const totalMRP = cartItems.reduce((total, item) => {
@@ -170,7 +180,7 @@ function AddToCart() {
 
                                 <div className="cart-items" key={index}>
                                     <div className="cart-image">
-                                        <img src={`http://localhost:3001/${item.productImage}`} alt="" />
+                                        <img src={`https://purplle-ecommerce-clone-backend.onrender.com/${item.productImage}`} alt="" />
                                     </div>
 
                                     <div className="cart-product-details">
