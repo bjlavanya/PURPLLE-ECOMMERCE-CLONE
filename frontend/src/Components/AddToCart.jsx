@@ -180,7 +180,7 @@ function AddToCart() {
 
                                 <div className="cart-items" key={index}>
                                     <div className="cart-image">
-                                        <img src={product.productImage} alt="" />
+                                        <img src={item.productImage} alt="" />
                                     </div>
 
                                     <div className="cart-product-details">
