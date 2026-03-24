@@ -18,7 +18,7 @@ import ProductAds4 from './ProductAds4'
 import TopBrands from './TopBrands'
 import EliteProGoldenAds from './EliteProGoldenAds'
 import PurplleRules from './PurplleRules'
-import PurplleNotices from './PruplleNotices';
+import PurplleNotices from './PurplleNotices';
 
 function Home() {
     return (

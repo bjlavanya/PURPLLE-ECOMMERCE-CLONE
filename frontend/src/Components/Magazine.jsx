@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { magazineBlogs } from "./AllProducts";
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
-import PurplleNotices from "./PruplleNotices";
+import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 
 function NextArrow({ onClick }) {

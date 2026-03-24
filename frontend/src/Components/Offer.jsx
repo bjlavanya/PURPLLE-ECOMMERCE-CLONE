@@ -7,7 +7,7 @@ import { editorPickProducts, } from "./AllProducts";
 import BudgetBeautyProducts from "./BudgetBeautyProducts";
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
-import PurplleNotices from "./PruplleNotices";
+import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 
 function NextArrow({ onClick }) {

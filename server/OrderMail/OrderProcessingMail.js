@@ -1,33 +1,28 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
-const OrderProcessingMail = async(email) => {
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+const OrderProcessingMail = async (email) => {
     try {
-        //make transporter to send mail
-        const transporter = nodemailer.createTransport( {
-            host: "smtp-relay.gmail.com",
-            port: 587,          
-            secure: false,  
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-
-        //send mail
-        await transporter.sendMail( {
-            from: 'PURPLLE',
+        const msg = {
             to: `${email}`,
+            from: process.env.EMAIL_USER,
             subject: 'Your Order is Being Processed',
             html: `
             <h3>Dear Customer</h3>
             <p>Thank you for your order! We are currently processing it and will notify you once it’s on its way.</p>
             <h3>Thank You, Team Purplle</h3>
             `
-        });
-    }
-    catch(error) {
-        console.log("Send Mail error: ", error)
-    }
-}
+        };
 
-module.exports = OrderProcessingMail; 
+        await sgMail.send(msg);
+
+        console.log("Order Processed Mail sent successfully");
+
+    } catch (error) {
+        console.error("Send Mail error:", error);
+        throw error;
+    }
+};
+
+module.exports = OrderProcessingMail;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
-import PurplleNotices from "./PruplleNotices";
+import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 
 function NewFeatured() {

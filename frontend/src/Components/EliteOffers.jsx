@@ -1,6 +1,6 @@
 import React from "react";
 import Topbar from "./Topbar";
-import PurplleNotices from "./PruplleNotices";
+import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 

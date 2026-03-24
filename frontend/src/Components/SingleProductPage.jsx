@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from 'axios'
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
-import PurplleNotices from "./PruplleNotices";
+import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 
 function SingleProductPage() {

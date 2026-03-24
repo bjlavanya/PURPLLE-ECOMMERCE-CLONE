@@ -9,13 +9,19 @@ const multer = require("multer")
 const path = require("path")
 const authRoutes = require('./LoginAuth/Auth')
 const fs = require('fs')
-const OrderProcessingMail = require('./OrderMail/OrderProcessingMail'); 
-const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail'); 
+const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
+const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
 
 // CREATED APP
 const app = express()
 app.use(express.json())
-app.use(cors())
+
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://purplle-ecommerce-clone-frontend.onrender.com"
+    ]
+}));
 
 const PORT = process.env.PORT || 3001;
 
@@ -217,13 +223,15 @@ app.put('/updateOrderStatus/:id', async (req, res) => {
     },
         {
             new: true
-    })
+        })
 
-    if(orderStatus === 'Order Processing') {
-        await OrderProcessingMail(updateOrderStatus.userEmail)
+    if (orderStatus && orderStatus.trim().toLowerCase() === "order processing") {
+        console.log("Order Processing mail triggered");
+        console.log("Email:", updateOrderStatus.userEmail);
+        await OrderProcessingMail(updateOrderStatus.userEmail);
     }
 
-    if(orderStatus === 'Order Delivered') {
+    if (orderStatus === 'Order Delivered') {
         await OrderDeliveredMail(updateOrderStatus.userEmail)
     }
 
