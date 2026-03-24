@@ -57,7 +57,7 @@ function HandpickedProducts() {
             { products && products.filter((product) => product.category === 'Handpicked Products').map((product) => (
                 <div  className="sponsored" key={product.id}>
                     <Link to={`/singleProductPage/${product._id}`}>
-                        <img src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`} alt={product.productName} />
+                        <img src={product.productImage} alt={product.productName} />
                     </Link>
 
                     {/* <div className="offers">

@@ -9,6 +9,8 @@ const multer = require("multer")
 const path = require("path")
 const authRoutes = require('./LoginAuth/Auth')
 const fs = require('fs')
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
 const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
 
@@ -26,19 +28,39 @@ app.use(cors({
 const PORT = process.env.PORT || 3001;
 
 // MULTER FOR IMAGE
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './UploadsImage')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + "." + file.originalname)
-    }
-})
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './UploadsImage')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, Date.now() + "." + file.originalname)
+//     }
+// })
 
-const upload = multer({ storage })
+// const upload = multer({ storage })
+
+//Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET
+});
+
+// Multer storage for Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'products',           // Cloudinary folder name
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'avif'],
+    public_id: (req, file) => Date.now() + '-' + file.originalname
+  }
+});
+
+const upload = multer({ storage });
+
 
 // IMAGE IS STATIC --- TO SHOWN IN BROWSER USING FOLDER
-app.use(express.static("UploadsImage"))
+// app.use(express.static("UploadsImage"))
 
 // DATABASE MONGODB CONNECTION
 // mongoose.connect('mongodb://127.0.0.1:27017/purplle')
@@ -54,7 +76,9 @@ app.use('/login', authRoutes)
 // ADDING PRODUCT DETAILS FROM FORM TO BACKEND
 app.post('/imageUpload', upload.single('image'), async (req, res) => {
     try {
-        const productImage = req.file.filename
+        // const productImage = req.file.filename
+
+        const productImage = req.file.path;
 
         const { productName, productDescription, newPrice, oldPrice, discount, productQuantity, highlights, category } = req.body
 
@@ -95,9 +119,14 @@ app.delete('/deleteProducts/:id', async (req, res) => {
         const { id } = req.params
         const product = await Products.findById(id)
 
-        const imagePath = path.join(__dirname, "UploadsImage", product.productImage)
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath)
+        // const imagePath = path.join(__dirname, "UploadsImage", product.productImage)
+        // if (fs.existsSync(imagePath)) {
+        //     fs.unlinkSync(imagePath)
+        // }
+
+        if (product?.productImage) {
+            const publicId = product.productImage.split('/').pop().split('.')[0];
+            await cloudinary.uploader.destroy('products/' + publicId);
         }
 
         const deleteProduct = await Products.findByIdAndDelete(req.params.id)
@@ -130,13 +159,24 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         const product = await Products.findById(id)
 
         let imageName = product.productImage
-        if (req.file) {
-            const imagePath = path.join(__dirname, "UploadsImage", product.productImage)
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath)
-            }
+        // if (req.file) {
+        //     const imagePath = path.join(__dirname, "UploadsImage", product.productImage)
+        //     if (fs.existsSync(imagePath)) {
+        //         fs.unlinkSync(imagePath)
+        //     }
 
-            imageName = req.file.filename
+        //     imageName = req.file.filename
+        // }
+
+
+          // If new image uploaded
+        if (req.file) {
+            // Delete old image from Cloudinary
+            const publicId = product.productImage.split('/').pop().split('.')[0]; // extract public_id
+            await cloudinary.uploader.destroy('products/' + publicId);
+
+            // New image URL
+            imageName = req.file.path;
         }
 
         const updateProduct = await Products.findByIdAndUpdate(id, {
