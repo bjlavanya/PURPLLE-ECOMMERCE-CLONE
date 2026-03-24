@@ -23,7 +23,7 @@ function AddToCart() {
             let data = [];
 
             for (const item of cart) {
-                const res = await axios.get(`http://127.0.0.1:3001/products/${item.productId}`);
+                const res = await axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/${item.productId}`);
                 data.push({ ...res.data, quantity: item.quantity });
             }
 
