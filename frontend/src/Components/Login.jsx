@@ -15,10 +15,7 @@ function Login({ closeModal }) {
   const [showOtpForm, setShowOtpForm] = useState(false);
 
   const handleSubmit = async (e) => {
-    console.log("handleSubmit called");
-        e.preventDefault();
-
-        
+        e.preventDefault(); 
 
         try {
             const result = await axios.post(
