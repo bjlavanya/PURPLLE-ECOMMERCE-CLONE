@@ -50,7 +50,7 @@ function SingleProductPage() {
                 {product && (
                     <div className="single-product-details">
                         <div className="single-product-image">
-                            <img src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`} alt="" />
+                            <img src={product.productImage} alt="" />
                         </div>
 
                         <div className="single-product-description">

@@ -94,7 +94,7 @@ function ManageOrders() {
 
                         <td>
                           <img
-                            src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`}
+                            src={product.productImage}
                             width="50"
                           />
                         </td>

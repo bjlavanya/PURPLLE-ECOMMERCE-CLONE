@@ -180,7 +180,7 @@ function AddToCart() {
 
                                 <div className="cart-items" key={index}>
                                     <div className="cart-image">
-                                        <img src={`https://purplle-ecommerce-clone-backend.onrender.com/${item.productImage}`} alt="" />
+                                        <img src={product.productImage} alt="" />
                                     </div>
 
                                     <div className="cart-product-details">

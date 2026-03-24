@@ -48,7 +48,7 @@ function ManageProducts() {
                 {
                   products.map(product => {
                     return <tr key={product._id}>
-                      <td><img src={`https://purplle-ecommerce-clone-backend.onrender.com/${product.productImage}`} alt="" /></td>
+                      <td><img src={product.productImage} alt="" /></td>
                       <td>{product.productName}</td>
                       <td>{product.productDescription}</td>
                       <td>{product.newPrice}</td>
