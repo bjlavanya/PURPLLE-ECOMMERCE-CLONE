@@ -151,16 +151,21 @@ app.delete('/deleteUsers/:id', async (req, res) => {
         console.log(err)
     }
 })
-
-// EDIT PRODUCTS
 app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
+
         const { id } = req.params;
         const product = await Products.findById(id);
 
         let imageUrl = product.productImage;
+        let imagePublicId = product.imagePublicId;
 
         if (req.file) {
+
+            // Delete old image
+            if (imagePublicId) {
+                await cloudinary.uploader.destroy(imagePublicId);
+            }
 
             // Upload new image
             const result = await cloudinary.uploader.upload(req.file.path, {
@@ -168,17 +173,15 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
             });
 
             imageUrl = result.secure_url;
-
-            // Delete old image
-            const publicId = "products/" + path.parse(product.productImage.split('/').pop()).name;
-            await cloudinary.uploader.destroy(publicId);
+            imagePublicId = result.public_id;
         }
 
         const updateProduct = await Products.findByIdAndUpdate(
             id,
             {
                 ...req.body,
-                productImage: imageUrl
+                productImage: imageUrl,
+                imagePublicId: imagePublicId
             },
             { new: true }
         );
