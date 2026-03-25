@@ -151,37 +151,32 @@ app.delete('/deleteUsers/:id', async (req, res) => {
         console.log(err)
     }
 })
+
 app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
 
         const { id } = req.params;
+
         const product = await Products.findById(id);
 
         let imageUrl = product.productImage;
-        let imagePublicId = product.imagePublicId;
+
+        const publicId = "products/" + path.parse(product.productImage.split('/').pop()).name;
 
         if (req.file) {
 
-            // Delete old image
-            if (imagePublicId) {
-                await cloudinary.uploader.destroy(imagePublicId);
-            }
+            // delete old image
+            await cloudinary.uploader.destroy(publicId);
 
-            // Upload new image
-            const result = await cloudinary.uploader.upload(req.file.path, {
-                folder: "products"
-            });
-
-            imageUrl = result.secure_url;
-            imagePublicId = result.public_id;
+            // new image url from multer-cloudinary
+            imageUrl = req.file.path;
         }
 
         const updateProduct = await Products.findByIdAndUpdate(
             id,
             {
                 ...req.body,
-                productImage: imageUrl,
-                imagePublicId: imagePublicId
+                productImage: imageUrl
             },
             { new: true }
         );
@@ -189,6 +184,7 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         res.status(200).json(updateProduct);
 
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
