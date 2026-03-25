@@ -159,7 +159,6 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         const { id } = req.params
         const product = await Products.findById(id)
 
-        let imageName = product.productImage
         // if (req.file) {
         //     const imagePath = path.join(__dirname, "UploadsImage", product.productImage)
         //     if (fs.existsSync(imagePath)) {
@@ -170,9 +169,9 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         // }
 
 
-        const imageUrl = product.productImage;
+        const imageName = product.productImage;
 
-        const publicId = "products/" + path.parse(imageUrl.split('/').pop()).name;
+        const publicId = "products/" + path.parse(imageName.split('/').pop()).name;
 
         await cloudinary.uploader.destroy(publicId);
 
