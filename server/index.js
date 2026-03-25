@@ -41,19 +41,19 @@ const PORT = process.env.PORT || 3001;
 
 //Cloudinary
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
 });
 
 // Multer storage for Cloudinary
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'products',           // Cloudinary folder name
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'avif'],
-    public_id: (req, file) => Date.now() + '-' + file.originalname
-  }
+    cloudinary: cloudinary,
+    params: {
+        folder: 'products',           // Cloudinary folder name
+        allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'avif'],
+        public_id: (req, file) => Date.now() + '-' + file.originalname
+    }
 });
 
 const upload = multer({ storage });
@@ -124,10 +124,15 @@ app.delete('/deleteProducts/:id', async (req, res) => {
         //     fs.unlinkSync(imagePath)
         // }
 
-        if (product?.productImage) {
-            const publicId = product.productImage.split('/').pop().split('.')[0];
-            await cloudinary.uploader.destroy('products/' + publicId);
-        }
+        const imageUrl = product.productImage;
+
+        const publicId = imageUrl
+            .split('/')
+            .slice(-2)
+            .join('/')
+            .split('.')[0];
+
+        await cloudinary.uploader.destroy(publicId);
 
         const deleteProduct = await Products.findByIdAndDelete(req.params.id)
         res.status(200).json(deleteProduct)
@@ -169,7 +174,7 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         // }
 
 
-          // If new image uploaded
+        // If new image uploaded
         if (req.file) {
             // Delete old image from Cloudinary
             const publicId = product.productImage.split('/').pop().split('.')[0]; // extract public_id
