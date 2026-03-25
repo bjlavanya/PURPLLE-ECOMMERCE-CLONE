@@ -50,7 +50,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'products',           // Cloudinary folder name
+        folder: 'products',  // Cloudinary folder name
         allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'avif'],
         public_id: (req, file) => Date.now() + '-' + file.originalname
     }
@@ -127,10 +127,9 @@ app.delete('/deleteProducts/:id', async (req, res) => {
         const imageUrl = product.productImage;
 
         const publicId = imageUrl
-            .split('/')
-            .slice(-2)
-            .join('/')
-            .split('.')[0];
+            .split('/upload/')[1]     
+            .split('/')[1]            
+            .split('.')[0] + '.webp';
 
         await cloudinary.uploader.destroy(publicId);
 
