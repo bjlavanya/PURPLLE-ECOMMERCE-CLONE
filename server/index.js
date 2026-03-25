@@ -170,15 +170,11 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         // }
 
 
-        // If new image uploaded
-        if (req.file) {
-            // Delete old image from Cloudinary
-            const publicId = product.productImage.split('/').pop().split('.')[0]; // extract public_id
-            await cloudinary.uploader.destroy('products/' + publicId);
+        const imageUrl = product.productImage;
 
-            // New image URL
-            imageName = req.file.path;
-        }
+        const publicId = "products/" + path.parse(imageUrl.split('/').pop()).name;
+
+        await cloudinary.uploader.destroy(publicId);
 
         const updateProduct = await Products.findByIdAndUpdate(id, {
             ...req.body,
