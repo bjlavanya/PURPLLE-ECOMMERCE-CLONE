@@ -153,41 +153,42 @@ app.delete('/deleteUsers/:id', async (req, res) => {
 })
 
 // EDIT PRODUCTS
-
 app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
-        const { id } = req.params
-        const product = await Products.findById(id)
+        const { id } = req.params;
+        const product = await Products.findById(id);
 
-        // if (req.file) {
-        //     const imagePath = path.join(__dirname, "UploadsImage", product.productImage)
-        //     if (fs.existsSync(imagePath)) {
-        //         fs.unlinkSync(imagePath)
-        //     }
+        let imageUrl = product.productImage;
 
-        //     imageName = req.file.filename
-        // }
+        if (req.file) {
 
+            // Upload new image
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                folder: "products"
+            });
 
-        const imageName = product.productImage;
+            imageUrl = result.secure_url;
 
-        const publicId = "products/" + path.parse(imageName.split('/').pop()).name;
+            // Delete old image
+            const publicId = "products/" + path.parse(product.productImage.split('/').pop()).name;
+            await cloudinary.uploader.destroy(publicId);
+        }
 
-        await cloudinary.uploader.destroy(publicId);
-
-        const updateProduct = await Products.findByIdAndUpdate(id, {
-            ...req.body,
-            productImage: imageName
-        },
+        const updateProduct = await Products.findByIdAndUpdate(
+            id,
             {
-                new: true
-            })
-        res.status(200).json(updateProduct)
-    }
-    catch (err) {
+                ...req.body,
+                productImage: imageUrl
+            },
+            { new: true }
+        );
 
+        res.status(200).json(updateProduct);
+
+    } catch (err) {
+        res.status(500).json(err);
     }
-})
+});
 
 //Getting the image --http://localhost:3001/img/69ae5bd33e6fcea5a4b7a916
 
