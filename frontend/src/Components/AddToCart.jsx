@@ -57,21 +57,21 @@ function AddToCart() {
         setCartItems(updatedItems);
     }
 
-    // const removeCartItem = (index) => {
-    //     const cart = cartItems.filter((item, i) => i !== index)
-    //     setCartItems(cart)
-    //     localStorage.setItem("cart", JSON.stringify(cart))
-    // }
-
     const removeCartItem = (index) => {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
+        const cart = cartItems.filter((item, i) => i !== index)
+        setCartItems(cart)
+        localStorage.setItem("cart", JSON.stringify(cart))
+    }
 
-        const updated = [...cartItems];
-        updated.splice(index, 1);
-        setCartItems(updated);
-    };
+    // const removeCartItem = (index) => {
+    //     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    //     cart.splice(index, 1);
+    //     localStorage.setItem("cart", JSON.stringify(cart));
+
+    //     const updated = [...cartItems];
+    //     updated.splice(index, 1);
+    //     setCartItems(updated);
+    // };
 
     //Calcultaion
     const totalMRP = cartItems.reduce((total, item) => {

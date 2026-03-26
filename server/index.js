@@ -155,20 +155,18 @@ app.delete('/deleteUsers/:id', async (req, res) => {
 app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
 
-        const { id } = req.params;
+        const { id } = req.params
+        const product = await Products.findById(id)
+        let imageUrl = product.productImage
 
-        const product = await Products.findById(id);
-
-        let imageUrl = product.productImage;
-
-        const publicId = "products/" + path.parse(product.productImage.split('/').pop()).name;
+        const publicId = "products/" + path.parse(product.productImage.split('/').pop()).name
 
         if (req.file) {
 
             // delete old image
-            await cloudinary.uploader.destroy(publicId);
+            await cloudinary.uploader.destroy(publicId)
 
-            // new image url from multer-cloudinary
+            // new image 
             imageUrl = req.file.path;
         }
 

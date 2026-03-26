@@ -55,7 +55,7 @@ function HandpickedProducts() {
       <section className="handpickedImage">
         <Slider {...settings}>
             { products && products.filter((product) => product.category === 'Handpicked Products').map((product) => (
-                <div  className="sponsored" key={product.id}>
+                <div  className="sponsored" key={product._id}>
                     <Link to={`/singleProductPage/${product._id}`}>
                         <img src={product.productImage} alt={product.productName} />
                     </Link>
