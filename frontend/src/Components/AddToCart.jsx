@@ -8,7 +8,6 @@ function AddToCart() {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate()
 
-    // const userEmail = JSON.parse(localStorage.getItem('userEmail'))
     const userId = localStorage.getItem("userId");
 
     const [cartItems, setCartItems] = useState([])
@@ -62,16 +61,6 @@ function AddToCart() {
         setCartItems(cart)
         localStorage.setItem("cart", JSON.stringify(cart))
     }
-
-    // const removeCartItem = (index) => {
-    //     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    //     cart.splice(index, 1);
-    //     localStorage.setItem("cart", JSON.stringify(cart));
-
-    //     const updated = [...cartItems];
-    //     updated.splice(index, 1);
-    //     setCartItems(updated);
-    // };
 
     //Calcultaion
     const totalMRP = cartItems.reduce((total, item) => {

@@ -83,6 +83,10 @@ nav .navbar .logos img {
     cursor: pointer;
 }
 
+nav .navbar .url:hover {
+    color: #9c00ad;
+}
+
 nav .navbar #smile {
     margin-right: 60px;
 }
@@ -1109,7 +1113,7 @@ footer .footer-links a:hover {
 
 /* ----- LOGIN or SIGNUP FORM ----- */
 
-.login-wrapper {
+.login-wrapper, .search-wrapper {
     position: fixed;
     left: 0;
     top: 0;
@@ -1326,6 +1330,232 @@ footer .footer-links a:hover {
 .login-form .resend .resend-link {
     color: #9c00ad;
     cursor: pointer;
+}
+
+/* ------------------------------ SEARCH MODAL ------------------------------- */
+
+.search-modal {
+    position: fixed;
+    background-color: white;
+    height: 65%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+.search-modal .search-close {
+    text-align: right;
+    color: #a0a0a0;
+    font-size: 25px;
+    font-weight: 200;
+    padding: 20px 30px 10px 10px;
+    cursor: pointer;
+}
+
+.search-modal .search-close:hover {
+    color: #9c00ad;
+}
+
+.search-modal .searchbar-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    flex: 1;
+}
+
+.search-modal .searchbar-box .search-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-modal .searchbar-box .search-bar input {
+    border: none;
+    outline: none;
+    width: 1000px;
+    border-bottom: 1px solid #9c00ad;
+    padding: 10px 0px 10px 0;
+}
+
+.search-modal .searchbar-box .search-bar label {
+    font-size: 12px;
+    color: #a0a0a0;
+}
+
+.search-modal .searchbar-box .search-icon {
+    color: #9c00ad;
+    font-size: 25px;
+    margin-left: -25px;
+}
+
+.search-modal .search-contents {
+    display: flex;
+    margin: 40px 200px 200px 270px;
+}
+
+.search-modal .search-contents .search-products {
+    margin-right: 20px;
+}
+
+.search-modal .search-contents .search-products img {
+    width: 130px;
+}
+
+.search-modal .search-contents .line {
+    background-color: #a0a0a0;
+    width: 1px;
+    height: 200px;
+    opacity: 0.5;
+    margin: -10px 30px;
+}
+
+.search-modal .search-contents .search-productname {
+    color: #2c414c;
+    font-size: 14px;
+}
+
+.search-modal .search-contents .search-productname .heading {
+    font-weight: 500;
+}
+
+.search-modal .search-contents .search-productname p {
+    margin-bottom: 10px;
+    margin-right: 300px;
+    cursor: pointer;
+}
+
+.search-modal .search-contents .search-productname p:hover {
+    font-weight: bold;
+}
+
+.search-modal .search-contents .search-products {
+    cursor: pointer;
+}
+
+.search-modal .search-contents .search-products:hover {
+    opacity: 0.7;
+}
+
+.search-modal .search-contents .search-products .product-name {
+    color: #2c414c;
+    font-size: 12px;
+}
+
+.search-modal .search-contents .search-products .price {
+    font-size: 16px;
+    color: #2c414c;
+    font-weight: bolder;
+}
+
+.search-modal .search-contents .search-products .old-price {
+    font-size: 12px;
+    text-decoration-line: line-through;
+    color: #bfc6c9;
+}
+
+.search-modal .search-contents .search-products .discount {
+    color: #206e4d;
+    font-size: 12px;
+}
+
+/* ---------------------SEARCH PAGE ------------------------------- */
+
+.search-page {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-page .search-heading {
+    text-align: center;
+}
+
+.search-page .search-heading .main-heading {
+    font-size: 24px;
+}
+
+.search-page .search-heading .sub-heading {
+    font-size: 14px;
+    padding: 10px;
+}
+
+.search-page .search-heading .sub-heading b {
+    color: #9c00ad;
+}
+
+.search-page .search-product-list {
+    margin-left: 250px;
+    margin-right: 200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.search-page .search-product-list .product-list {
+    width: 200px;
+}
+
+.search-page .search-product-list .product-image img {
+    width: 200px;
+    height: 200px;
+}
+
+.search-page .search-product-list .product-details {
+    margin-top: 10px;
+}
+
+.search-page .search-product-list .product-details .brand {
+    font-size: 14px;
+    color: #000;
+}
+
+.search-page .search-product-list .product-details .product-name {
+    font-size: 15px;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.search-page .search-product-list .product-details .price-section {
+    margin-top: 6px;
+}
+
+.search-page .search-product-list .price {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.search-page .search-product-list .old-price {
+    margin-left: 6px;
+    font-size: 16px;
+    text-decoration: line-through;
+    color: #00000080;
+}
+
+.search-page .search-product-list .discount {
+    margin-left: 6px;
+    color: #206e4d;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.search-page .search-product-list .add-cart {
+    width: 100%;
+    margin-top: 14px;
+    padding: 8px;
+    border: 2px solid #9c00ad;
+    background: white;
+    color: #9c00ad;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-page .search-product-list .add-cart:hover {
+    background: #9c00ad;
+    color: white;
 }
 
 /* ------------------------- ADMIN --------------------------------- */
@@ -1569,7 +1799,10 @@ select {
 .manage-table th {
     border: 1px solid #ddd;
     padding: 8px;
-    /* word-wrap: break-word; */
+}
+
+.manage-table td {
+    font-size: 13px;
 }
 
 .manage-table th {
@@ -1581,7 +1814,7 @@ select {
 }
 
 .manage-table img {
-    width: 150px;
+    width: 100px;
 }
 
 .manage-table td .edit {

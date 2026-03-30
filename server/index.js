@@ -259,10 +259,8 @@ app.put('/updateOrderStatus/:id', async (req, res) => {
             new: true
         })
 
-    if (orderStatus && orderStatus.trim().toLowerCase() === "order processing") {
-        console.log("Order Processing mail triggered");
-        console.log("Email:", updateOrderStatus.userEmail);
-        await OrderProcessingMail(updateOrderStatus.userEmail);
+    if (orderStatus === 'Order Processing') {
+        await OrderDeliveredMail(updateOrderStatus.userEmail)
     }
 
     if (orderStatus === 'Order Delivered') {
@@ -280,6 +278,27 @@ app.delete('/deleteOrders/:id', async (req, res) => {
     }
     catch (err) {
         console.log(err)
+    }
+})
+
+//SEARCH IMPLEMENTATION
+
+app.get('/search', async (req, res) => {
+    try {
+
+        const { q } = req.query 
+
+        const products = await Products.find({
+            $or: [
+                { productName: { $regex: q || "", $options: "i" } },
+                { productDescription: { $regex: q || "", $options: "i" } }
+            ]
+        })
+
+        res.status(200).json({ products })
+
+    } catch (error) {
+        res.status(500).json({ message: error.message })
     }
 })
 

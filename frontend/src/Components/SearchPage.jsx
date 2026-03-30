@@ -1,0 +1,81 @@
+import Topbar from "./Topbar";
+import Navbar from "./Navbar";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+
+function SearchPage() {
+    const [products, setProducts] = useState([])
+    const location = useLocation();
+
+    // useEffect(() => {
+    //     const urlParams = new URLSearchParams(location.search)
+
+    //     const searchQuery = urlParams.get('q')
+
+    //     if(searchQuery) {
+    //         axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?q=${searchQuery}`)
+    //         .then((res) => setProducts(res.data.products)) 
+    //     }
+    // }, [])
+
+    useEffect(() => {
+
+        const urlParams = new URLSearchParams(location.search);
+        const searchQuery = urlParams.get("q");
+
+        if (searchQuery) {
+
+            axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?q=${searchQuery}`)
+                .then((res) => setProducts(res.data.products))
+                .catch(err => console.log(err));
+
+        }
+
+    }, [location.search]);
+    return (
+        <>
+            <Topbar />
+            <Navbar />
+
+
+
+
+            <div className="search-page">
+                <div className="search-heading">
+                    <h2 className="main-heading">Lakme</h2>
+                    <h6 className="sub-heading">Showing <b>321</b> Products</h6>
+                </div>
+
+                <div className="search-product-list">
+                    {products && products.map((product) => (
+                        <div className="product-list" key={product._id}>
+                            <div className="product-image">
+                                <img src={product.productImage} alt={product.title} />
+                            </div>
+
+                            <div className="product-details">
+                                <p className="brand">{product.productName} </p>
+
+                                <p className="product-name">{product.productDescription.substr(0, 50) + "...."}</p>
+
+                                <div className="price-section">
+                                    <span className="price">₹{product.newPrice} </span>
+                                    <span className="old-price">₹{product.oldPrice} </span>
+                                    <span className="discount">{product.discount}% off</span>
+                                </div>
+
+                                <button className="add-cart">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default SearchPage

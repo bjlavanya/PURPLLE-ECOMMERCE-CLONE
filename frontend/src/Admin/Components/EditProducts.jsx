@@ -192,6 +192,7 @@ function EditProducts() {
                                     <option value = "Editors pick">Editors pick</option>
                                     <option value = "Budget Beauty">Budget Beauty</option>
                                     <option value = "Curated Products">Curated Products</option>
+                                    <option value = "Lakme">Lakme</option>
                                 </select>
                             </div>
 

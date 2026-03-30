@@ -1,9 +1,13 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Login from './Login'
+import SearchModal from "./SearchModal";
+import axios from "axios";
 
 function Navbar() {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false)
+
+    const [searchModal, setSearchModal] = useState(false)
 
     const userId = localStorage.getItem("userId");
 
@@ -11,8 +15,24 @@ function Navbar() {
     const cartItemsCount = cart.length
 
 
+    // useEffect(() => {
+    //     const urlParams = new URLSearchParams(location.search)
+
+    //     const searchQuery = urlParams.get('q')
+
+    //     if(searchQuery) {
+    //         const searchQ = urlParams.toString()
+    //         axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?${searchQ}`)
+    //         .then((res) => setProducts(res.data.products)) 
+    //     }
+    // }, [])
+
     const closeModal = () => {
         return setShowModal(false);
+    }
+
+    const closeSearchModal = () => {
+        return setSearchModal(false);
     }
 
     const handleLogout = () => {
@@ -54,7 +74,11 @@ function Navbar() {
                     </div>
 
                     <div className="nav-icons">
-                        <a href="" id="search"><i className="fa-solid fa-magnifying-glass"></i></a>
+                        <Link href="" id="search" onClick={() => setSearchModal(true)}>
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </Link>
+                        {searchModal && <SearchModal closeSearchModal={closeSearchModal} />}
+                        
                         <a href="" id="heart"><i className="fa-regular fa-heart"></i></a>
                         <Link to='/addToCart' href="" id="bars">
                             <i class="fa-solid fa-cart-arrow-down"></i>
@@ -79,6 +103,7 @@ function Navbar() {
                     </div>
 
                 </div>
+                
             </nav>
         </>
     );

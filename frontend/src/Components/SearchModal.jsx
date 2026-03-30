@@ -1,0 +1,82 @@
+import { RiCloseLargeLine } from "react-icons/ri";
+import { BsSearch } from "react-icons/bs";
+import { useRef, useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+function SearchModal({ closeSearchModal }) {
+    const inputRef = useRef(null);
+
+    const [query, setQuery] = useState("")
+    const [products, setProducts] = useState([])
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+            .then(res => setProducts(res.data))
+            .catch(err => console.log(err))
+    }, [])
+
+    useEffect(() => {
+        inputRef.current.focus();
+    }, []);
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            navigate(`/search?q=${query}`);
+            closeSearchModal();
+        }
+    };
+
+    return (
+        <>
+            <div className="search-wrapper"></div>
+
+            <div className="search-modal">
+                <div className="search-close" onClick={closeSearchModal}>
+                    <RiCloseLargeLine />
+                </div>
+
+                <div className="searchbar-box">
+                    <div className="search-bar">
+                        <label htmlFor="">Search for Products and Brands</label>
+                        <input type="text" name="search-bar" id="search-bar" ref={inputRef} onChange={e => setQuery(e.target.value)} onKeyDown={handleKeyDown} />
+                    </div>
+                    <BsSearch className="search-icon" />
+                </div>
+
+                <div className="search-contents">
+                    <div className="search-productname">
+                        <p className="heading">Related Products</p>
+                        {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
+                            <p key={product._id}>{product.productName}</p>
+                        ))}
+                    </div>
+
+                    <div className="line"></div>
+
+                    {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((product) => (
+                        <div className="search-products" key={product._id}>
+                            <img src={product.productImage} alt="" />
+                            <div className="product-details">
+
+
+                                <p className="product-name">{product.productName}</p>
+
+                                <div className="price-section">
+                                    <span className="price">₹{product.newPrice} </span>
+                                    <span className="old-price">₹{product.oldPrice} </span>
+                                    <span className="discount">{product.discount}% off</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default SearchModal
