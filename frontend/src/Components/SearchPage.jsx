@@ -7,25 +7,11 @@ import { useLocation } from "react-router-dom";
 function SearchPage() {
     const [products, setProducts] = useState([])
     const location = useLocation();
-
-    // useEffect(() => {
-    //     const urlParams = new URLSearchParams(location.search)
-
-    //     const searchQuery = urlParams.get('q')
-
-    //     if(searchQuery) {
-    //         axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?q=${searchQuery}`)
-    //         .then((res) => setProducts(res.data.products)) 
-    //     }
-    // }, [])
+    const urlParams = new URLSearchParams(location.search);
+    const searchQuery = urlParams.get("q");
 
     useEffect(() => {
-
-        const urlParams = new URLSearchParams(location.search);
-        const searchQuery = urlParams.get("q");
-
         if (searchQuery) {
-
             axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?q=${searchQuery}`)
                 .then((res) => setProducts(res.data.products))
                 .catch(err => console.log(err));
@@ -43,8 +29,8 @@ function SearchPage() {
 
             <div className="search-page">
                 <div className="search-heading">
-                    <h2 className="main-heading">Lakme</h2>
-                    <h6 className="sub-heading">Showing <b>321</b> Products</h6>
+                    <h2 className="main-heading">{searchQuery}</h2>
+                    <h6 className="sub-heading">Showing <b>{products.length}</b> Products</h6>
                 </div>
 
                 <div className="search-product-list">
@@ -55,9 +41,9 @@ function SearchPage() {
                             </div>
 
                             <div className="product-details">
-                                <p className="brand">{product.productName} </p>
+                                <p className="product-name">{product.productName} </p>
 
-                                <p className="product-name">{product.productDescription.substr(0, 50) + "...."}</p>
+                                <p className="product-descriptiom">{product.productDescription.substr(0, 40) + "...."}</p>
 
                                 <div className="price-section">
                                     <span className="price">₹{product.newPrice} </span>

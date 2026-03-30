@@ -1474,6 +1474,7 @@ footer .footer-links a:hover {
 
 .search-page .search-heading .main-heading {
     font-size: 24px;
+    text-transform: capitalize;
 }
 
 .search-page .search-heading .sub-heading {
@@ -1515,7 +1516,6 @@ footer .footer-links a:hover {
 .search-page .search-product-list .product-details .product-name {
     font-size: 15px;
     margin-top: 4px;
-    font-weight: 500;
 }
 
 .search-page .search-product-list .product-details .price-section {
