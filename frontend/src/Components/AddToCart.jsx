@@ -284,7 +284,6 @@ function AddToCart() {
 
     const [cartItems, setCartItems] = useState([])
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || []
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -310,7 +309,7 @@ function AddToCart() {
     const closeSearchModal = () => {
         return setSearchModal(false);
     }
-    
+
     const handleLogout = () => {
         localStorage.removeItem("userId")
         localStorage.removeItem('cart')
@@ -333,9 +332,15 @@ function AddToCart() {
     }
 
     const removeCartItem = (index) => {
-        const cart = cartItems.filter((item, i) => i !== index)
-        setCartItems(cart)
-        localStorage.setItem("cart", JSON.stringify(cart))
+        // const cart = cartItems.filter((item, i) => i !== index)
+        // setCartItems(cart)
+        // localStorage.setItem("cart", JSON.stringify(cart))
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const updatedCart = cart.filter((item, i) => i !== index);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        const updatedItems = cartItems.filter((item, i) => i !== index);
+        setCartItems(updatedItems);
     }
 
     //Calcultaion
@@ -393,7 +398,7 @@ function AddToCart() {
                         </Link>
                         {searchModal && <SearchModal closeSearchModal={closeSearchModal} />}
                         <a href="" id="heart"><i className="fa-regular fa-heart"></i></a>
-                        
+
 
                         {userId ? (
                             <Link id="smile" onClick={handleLogout}>
