@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Login from './Login'
 import SearchModal from "./SearchModal";
-import axios from "axios";
 
 function Navbar() {
     const [showModal, setShowModal] = useState(false)
@@ -14,19 +13,6 @@ function Navbar() {
     const cart = JSON.parse(localStorage.getItem('cart')) || []
     const cartItemsCount = cart.length
 
-
-    // useEffect(() => {
-    //     const urlParams = new URLSearchParams(location.search)
-
-    //     const searchQuery = urlParams.get('q')
-
-    //     if(searchQuery) {
-    //         const searchQ = urlParams.toString()
-    //         axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?${searchQ}`)
-    //         .then((res) => setProducts(res.data.products)) 
-    //     }
-    // }, [])
-
     const closeModal = () => {
         return setShowModal(false);
     }
@@ -37,6 +23,7 @@ function Navbar() {
 
     const handleLogout = () => {
         localStorage.removeItem("userId")
+        localStorage.removeItem("cart")
         window.location.reload()
     }
 

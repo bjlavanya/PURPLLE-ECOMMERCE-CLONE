@@ -2,7 +2,7 @@ import Topbar from "./Topbar";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 function SearchPage() {
     const [products, setProducts] = useState([])
@@ -15,17 +15,13 @@ function SearchPage() {
             axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?q=${searchQuery}`)
                 .then((res) => setProducts(res.data.products))
                 .catch(err => console.log(err));
-
         }
 
-    }, [location.search]);
+    }, [urlParams]);
     return (
         <>
             <Topbar />
             <Navbar />
-
-
-
 
             <div className="search-page">
                 <div className="search-heading">
@@ -35,7 +31,7 @@ function SearchPage() {
 
                 <div className="search-product-list">
                     {products && products.map((product) => (
-                        <div className="product-list" key={product._id}>
+                        <Link to={`/singleProductPage/${product._id}`} className="product-list" key={product._id}>
                             <div className="product-image">
                                 <img src={product.productImage} alt={product.title} />
                             </div>
@@ -55,7 +51,7 @@ function SearchPage() {
                                     Add to Cart
                                 </button>
                             </div>
-                        </div>
+                        </Link>
                     ))}
 
                 </div>

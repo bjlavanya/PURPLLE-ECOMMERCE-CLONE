@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import AdminSidebars from './AdminSidebars'
 import axios from 'axios'
 import { Link } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { BsSearch } from "react-icons/bs";
 
 function ManageProducts() {
+  const inputRef = useRef(null);
   const [products, setProducts] = useState([])
-
+  const [query, setQuery] = useState("")
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageProducts")
@@ -14,10 +15,34 @@ function ManageProducts() {
       .catch(err => console.log(err))
   }, [])
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   const deleteProduct = async (id) => {
-    axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteProducts/${id}`)
+    await axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteProducts/${id}`)
     alert("Product Deleted")
-    window.location.reload();
+    window.location.reload()
+  }
+
+  const handleSearch = async (e) => {
+    const value = e.target.value
+    setQuery(value)
+    if (value === "") {
+      axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageProducts")
+        .then(products => setProducts(products.data))
+        .catch(err => console.log(err))
+    }
+    else {
+      try {
+        const res = await axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/search?q=${value}`)
+        setProducts(res.data.products)
+      }
+      catch (error) {
+        console.log(error)
+      }
+    }
+
   }
 
   return (
@@ -26,7 +51,15 @@ function ManageProducts() {
 
       <div className="admin-all-content-space">
         <div className="manage-table">
-          <h3>Manage Product Details</h3>
+          <div className="manage-table-headings">
+            <h3>Manage Product Details</h3>
+
+            <div className="admin-search-products">
+              <input type="text" className="search-bar" id="search-bar" placeholder='Search products' ref={inputRef} value={query} onChange={handleSearch} />
+              <BsSearch className="search-icon" />
+            </div>
+          </div>
+
           <div className="table-container">
             <table border="1">
               <thead>

@@ -252,6 +252,7 @@ app.get('/manageOrders', (req, res) => {
 app.put('/updateOrderStatus/:id', async (req, res) => {
     const { id } = req.params
     const { orderStatus } = req.body
+    console.log(orderStatus)
     const updateOrderStatus = await Orders.findByIdAndUpdate(id, {
         orderStatus: orderStatus
     },
@@ -259,11 +260,15 @@ app.put('/updateOrderStatus/:id', async (req, res) => {
             new: true
         })
 
-    if (orderStatus === 'Order Processing') {
-        await OrderDeliveredMail(updateOrderStatus.userEmail)
+    const status = orderStatus.trim().toLowerCase()
+
+    if (status === 'order processing') {
+        console.log("Processing mail triggered", status)
+        await OrderProcessingMail(updateOrderStatus.userEmail)
     }
 
-    if (orderStatus === 'Order Delivered') {
+    else if (status === 'order delivered') {
+        console.log("Processing mail triggered", status)
         await OrderDeliveredMail(updateOrderStatus.userEmail)
     }
 

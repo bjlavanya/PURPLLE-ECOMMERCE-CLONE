@@ -3,6 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import { useRef, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SearchModal({ closeSearchModal }) {
     const inputRef = useRef(null);
@@ -13,21 +14,25 @@ function SearchModal({ closeSearchModal }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
-            .then(res => setProducts(res.data))
-            .catch(err => console.log(err))
-    }, [])
-
-    useEffect(() => {
         inputRef.current.focus();
     }, []);
 
     const handleKeyDown = (e) => {
+
+        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+            .then(res => setProducts(res.data))
+            .catch(err => console.log(err))
+
         if (e.key === "Enter") {
             navigate(`/search?q=${query}`);
             closeSearchModal();
         }
     };
+
+    const searchHandleProductName = (productName) => {
+        navigate(`/search?q=${productName}`);
+        closeSearchModal();
+    }
 
     return (
         <>
@@ -50,14 +55,14 @@ function SearchModal({ closeSearchModal }) {
                     <div className="search-productname">
                         <p className="heading">Related Products</p>
                         {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
-                            <p key={product._id}>{product.productName}</p>
+                            <p onClick={() => searchHandleProductName(product.productName)} key={product._id}>{product.productName}</p>
                         ))}
                     </div>
 
                     <div className="line"></div>
 
                     {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map((product) => (
-                        <div className="search-products" key={product._id}>
+                        <Link to={`/singleProductPage/${product._id}`} className="search-products" key={product._id} >
                             <img src={product.productImage} alt="" />
                             <div className="product-details">
 
@@ -71,7 +76,7 @@ function SearchModal({ closeSearchModal }) {
                                 </div>
 
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

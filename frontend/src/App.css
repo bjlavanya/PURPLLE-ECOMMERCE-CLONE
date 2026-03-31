@@ -380,7 +380,7 @@ nav .navbar ul li a:hover {
 }
 
 .handpickedImage .sponsored .cart {
-    width: 208px;
+    width: 215px;
     border: 1px solid #9c00ad;
     border-radius: 10px;
     padding: 6px;
@@ -736,7 +736,7 @@ footer .footer-links a:hover {
 
 .single-product-details .single-product-image img {
     width: 600px;
-    margin-top: 40px;
+    margin-top: 50px;
     margin-left: 70px;
     border-radius: 20px;
     height: 600px;
@@ -1337,7 +1337,7 @@ footer .footer-links a:hover {
 .search-modal {
     position: fixed;
     background-color: white;
-    height: 65%;
+    height: 60%;
     left: 0;
     top: 0;
     bottom: 0;
@@ -1392,7 +1392,7 @@ footer .footer-links a:hover {
 
 .search-modal .search-contents {
     display: flex;
-    margin: 40px 200px 200px 270px;
+    margin: 40px 200px 200px 270px
 }
 
 .search-modal .search-contents .search-products {
@@ -1422,8 +1422,9 @@ footer .footer-links a:hover {
 
 .search-modal .search-contents .search-productname p {
     margin-bottom: 10px;
-    margin-right: 300px;
+    margin-right: 200px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .search-modal .search-contents .search-productname p:hover {
@@ -1432,6 +1433,7 @@ footer .footer-links a:hover {
 
 .search-modal .search-contents .search-products {
     cursor: pointer;
+    text-decoration-line: none;
 }
 
 .search-modal .search-contents .search-products:hover {
@@ -1441,6 +1443,7 @@ footer .footer-links a:hover {
 .search-modal .search-contents .search-products .product-name {
     color: #2c414c;
     font-size: 12px;
+    word-wrap: break-word;
 }
 
 .search-modal .search-contents .search-products .price {
@@ -1497,6 +1500,8 @@ footer .footer-links a:hover {
 
 .search-page .search-product-list .product-list {
     width: 200px;
+    text-decoration-line: none;
+    color: inherit;
 }
 
 .search-page .search-product-list .product-image img {
@@ -1778,6 +1783,25 @@ select {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 30px;
     margin-bottom: 70px;
+}
+
+.manage-table .manage-table-headings, .manage-table .manage-table-headings .admin-search-products  {
+    display: flex;
+    justify-content: space-between;
+}
+
+.manage-table .manage-table-headings .search-bar {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #9c00ad;
+    width: 400px;
+    margin-bottom: 20px;
+}
+
+.manage-table .manage-table-headings .search-icon {
+    color: #9c00ad;
+    font-size: 20px;
+    margin-left: -25px;
 }
 
 .manage-table h3 {

@@ -17,11 +17,19 @@ export const heroSectionSlider = [
     },
     {
         id: 5,
-        image: "/images/herosection5.webp",
+        image: "/images/herosection7.webp",
     },
     {
         id: 6,
+        image: "/images/herosection5.webp",
+    },
+    {
+        id: 7,
         image: "/images/herosection6.webp",
+    },
+    {
+        id: 8,
+        image: "/images/herosection8.webp",
     },
 ];
 

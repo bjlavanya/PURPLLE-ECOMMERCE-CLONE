@@ -80,7 +80,7 @@ function Footer() {
                         <h3>Payment</h3>
                     </div>
                     <div className="footer-bottom-pay-connect">
-                        <img src="images/payment1.webp" alt="" />
+                        <img src="/images/payment1.webp" alt="" />
                     </div>
                 </div>
                 <div className="footer-bottom-details">

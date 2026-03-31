@@ -20,17 +20,18 @@ function SingleProductPage() {
     }, [id])
 
     const addToCart = () => {
-        let cart = JSON.parse(localStorage.getItem("cart")) || []; 
-        const existing = cart.find(item => item.productId === product._id); 
-        if (existing)
-        { 
-            navigate("/addToCart");  
-        } 
-        else 
-        { 
-            cart.push({ productId: product._id, quantity: 1 }); 
-        } 
-        localStorage.setItem("cart", JSON.stringify(cart)); 
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let userId = localStorage.getItem("userId")
+        const existing = cart.find(
+            item => item.productId === product._id && item.userId === userId
+        );
+        if (existing) {
+            navigate("/addToCart");
+        }
+        else {
+            cart.push({ userId: userId, productId: product._id, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
         navigate("/addToCart");
     }
 
@@ -73,7 +74,7 @@ function SingleProductPage() {
                                 <p className="highlights-details">{product.highlights}</p>
                             </div>
 
-                            <Link to="/addToCart"  onClick={addToCart} className="product-buttons" style={{textDecoration:'none'}}>
+                            <Link to="/addToCart" onClick={addToCart} className="product-buttons" style={{ textDecoration: 'none' }}>
                                 <button className="cart">Add To Cart</button>
                             </Link>
                         </div>

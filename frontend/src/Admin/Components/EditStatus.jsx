@@ -19,6 +19,8 @@ function EditStatus() {
             const response = await axios.put(`https://purplle-ecommerce-clone-backend.onrender.com/updateOrderStatus/${id}`, {
                 orderStatus
             });
+
+            console.log(orderStatus)
             alert("Status Updated and mail sent");
             navigate("/admin/manageOrders");
 
