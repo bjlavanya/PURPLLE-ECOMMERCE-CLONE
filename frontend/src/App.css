@@ -40,6 +40,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: white;
 }
 
 nav .navbar {
@@ -52,6 +53,7 @@ nav .navbar {
     padding: 0 60px;
     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
     background-color: white;
+    position: relative;
 }
 
 nav .navbar .nav-icons i {
@@ -84,6 +86,55 @@ nav .navbar .logos img {
 }
 
 nav .navbar .url:hover {
+    color: #9c00ad;
+}
+
+nav .navbar .sub-menu-wrap {
+    position: absolute;
+    top: 120%;
+    right: 8%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.28);
+    z-index: 999;
+    max-height: 600px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    background-color: white;
+}
+
+/* nav .navbar .sub-menu-wrap.open-menu {
+    max-height: 400px;
+} */
+
+nav .navbar .sub-menu {
+    background-color: white;
+    width: 180px;
+    min-height: 140px;
+}
+
+nav .navbar .sub-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin: 10px 0;
+    color: #424242;
+    margin-left: -12px;
+    font-size: 14px;
+    padding: 3px;
+}
+
+nav .navbar .sub-menu-link p {
+    width: 100%;
+    padding: 5px 5px 5px 0;
+}
+
+nav .navbar .sub-menu-link i {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+nav .navbar .sub-menu-link:hover {
+    font-weight: 600;
     color: #9c00ad;
 }
 
@@ -1113,13 +1164,14 @@ footer .footer-links a:hover {
 
 /* ----- LOGIN or SIGNUP FORM ----- */
 
-.login-wrapper, .search-wrapper {
+.login-wrapper,
+.search-wrapper {
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
     right: 0;
-    background-color: #0e0e0e99;
+    background-color: #3f3d3d99;
 }
 
 .login {
@@ -1280,6 +1332,7 @@ footer .footer-links a:hover {
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
+    z-index: 500;
 }
 
 .login-form .otp-input {
@@ -1563,6 +1616,305 @@ footer .footer-links a:hover {
     color: white;
 }
 
+/* --------------------------- USER PROFILE -------------------------------- */
+
+.user-profile,
+.my-orders-section {
+    background-color: #f3eaf5;
+    width: 100%;
+    min-height: 629px;
+}
+
+.user-profile-details,
+.my-order-details {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #c2bfbf;
+    margin-left: 380px;
+    background-color: white;
+    padding: 20px;
+}
+
+.user-profile-details .user-profile-icon img {
+    width: 80px;
+}
+
+.user-profile-details .user-account {
+    padding-top: 30px;
+}
+
+.user-profile-details .user-account h4 {
+    color: #312727;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding-bottom: 10px;
+}
+
+.user-profile-details .user-account span {
+    width: 100%;
+    color: #00000080;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.user-profile-details .before-login-user {
+    font-size: 12px;
+    color: #312727;
+    margin-top: -5px;
+}
+
+.user-profile-details .login-signup {
+    width: 260%;
+    padding: 10px;
+    border-radius: 12px;
+    margin-top: 15px;
+    border: none;
+    background-color: #9c00ad;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user-profile-details .edit-profile {
+    margin-left: 625px;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #9c00ad;
+    font-weight: 600;
+}
+
+.my-order-part {
+    width: 50%;
+    border: 1px solid #c2bfbf;
+    margin-left: 380px;
+    background-color: white;
+    padding: 20px;
+}
+
+.my-order-part .my-order-div {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.my-order-part .my-order-div .my-order {
+    display: flex;
+    gap: 10px;
+}
+
+.my-order-part .my-order-div .my-order .icons {
+    width: 50px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+}
+
+.my-order-part .my-order-div .userprofile-icon {
+    margin-left: 18px;
+    margin-top: 15px;
+    color: #424242;
+}
+
+.my-order-part .my-order-div .my-order p {
+    padding-top: 5px;
+    color: #424242;
+}
+
+.my-order-part .my-order-div .my-order .order-heading {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.my-order-part .my-order-div .my-order .order-desp {
+    font-size: 12px;
+}
+
+.my-order-part .my-order-div .gt {
+    padding-right: 10px;
+    color: #424242;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.user-profile-details .logout {
+    margin: 20px 0px;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    background: none;
+    border: 2px solid #9c00ad;
+    color: #9c00ad;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.user-profile-details .logout:hover {
+    color: #840193;
+    font-size: 17px;
+}
+
+/* --------------------------------- MY ORDERS -------------------------------- */
+
+.my-orders {
+    margin-top: 20px;
+}
+
+.my-orders button {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    color: #424242;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.my-orders h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c414c;
+}
+
+.my-order-details .line {
+    height: 1px;
+    width: 725px;
+    margin: 20px 0;
+}
+
+.my-order-details .no-my-orders-section img {
+    margin-left: 223px;
+    width: 300px;
+}
+
+.my-order-details .ordering-empty-section .main-heading {
+    margin-left: 170px;
+    padding: 20px;
+    font-size: 16px;
+    color: #2c414c;
+}
+
+.my-order-details .ordering-empty-section .sub-heading {
+    margin-left: 290px;
+    font-size: 14px;
+    color: #9c00ad;
+}
+
+.my-order-details .ordering-empty-section button {
+    margin-left: 280px;
+    padding: 20px;
+    font-size: 16px;
+    color: #2c414c;
+    background-color: #9c00ad;
+    color: white;
+    font-weight: 600;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 25%;
+    cursor: pointer;
+}
+
+.your-order-section {
+    width: 100%;
+    padding: 18px;
+    display: flex;
+    border: 1px solid #f2f2f2;
+    justify-content: space-between;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.your-order-section img {
+    width: 120px;
+}
+
+.your-order-section .product-details-img {
+    display: flex;
+    gap: 20px;
+}
+
+.your-order-section .product-details-img button {
+    width: 50%;
+    background-color: #9c00ad;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.your-order-section .order-product-details, .your-order-section .total-amount, .your-order-section .status {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* .your-order-section .order-product-details .productname {
+    width: 300px;
+    word-break: break-all;
+} */
+
+.your-order-section .order-product-details p, .your-order-section .order-status p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.order-products {
+    background: #f2f2f2;
+    transform: translate(-5%, -10%);
+}
+
+.order-products .modal-product-heading {
+    font-size: 18px;
+    color: #9c00ad;
+    letter-spacing: 0;
+    text-transform: capitalize;
+}
+
+.order-products .product-list{
+  max-height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.order-products .product-card{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.order-products .product-img{
+  width: 100px;
+}
+
+.order-products .product-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.order-products .product-name{
+  margin: 0;
+  font-size: 16px;
+}
+
+.order-products .product-price,
+.order-products .product-qty{
+  margin: 2px 0;
+  font-size: 14px;
+}
+
 /* ------------------------- ADMIN --------------------------------- */
 
 .admin-form {
@@ -1785,7 +2137,8 @@ select {
     margin-bottom: 70px;
 }
 
-.manage-table .manage-table-headings, .manage-table .manage-table-headings .admin-search-products  {
+.manage-table .manage-table-headings,
+.manage-table .manage-table-headings .admin-search-products {
     display: flex;
     justify-content: space-between;
 }
@@ -1886,6 +2239,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    z-index: 1000;
 }
 
 .modal-content {

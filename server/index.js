@@ -228,6 +228,8 @@ app.get('/products/:id', async (req, res) => {
 app.post('/placeAnOrder', async (req, res) => {
     const { userId, products, totalAmount } = req.body
 
+    console.log("userId received:", userId);
+
     const user = await Users.findById(userId)
 
     const orderList = new Orders({
@@ -246,6 +248,16 @@ app.get('/manageOrders', (req, res) => {
     Orders.find()
         .then(orders => res.json(orders))
         .catch(err => res.json(err))
+})
+
+app.get('/manageOrders/:id', async (req, res) => {
+    try {
+        const user = await Users.findById(req.params.id)
+        const orders = await Orders.find({ userEmail: user.email })
+        res.json(orders)
+    } catch (err) {
+        res.status(500).json(err)
+    }
 })
 
 // UPDATING ORDER STATUS
@@ -290,7 +302,7 @@ app.delete('/deleteOrders/:id', async (req, res) => {
 app.get('/search', async (req, res) => {
     try {
 
-        const { q } = req.query 
+        const { q } = req.query
 
         const products = await Products.find({
             $or: [

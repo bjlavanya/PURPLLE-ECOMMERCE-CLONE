@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CiCircleInfo } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import OtpForm from './OtpForm';
 
 

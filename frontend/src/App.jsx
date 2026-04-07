@@ -1,6 +1,5 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Home from './Components/Home'
@@ -12,7 +11,8 @@ import EliteOffers from './Components/EliteOffers'
 import SingleProductPage from './Components/SingleProductPage';
 import AddToCart from './Components/AddToCart';
 import SearchPage from './Components/SearchPage';
-import SearchModal from './Components/SearchModal';
+import UserProfile from './Components/UserProfile';
+import MyOrders from './Components/MyOrders';
 
 function App() {
   return (
@@ -28,6 +28,8 @@ function App() {
           <Route path='/singleProductPage/:id' element={<SingleProductPage />} />
           <Route path='/addToCart' element={<AddToCart />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route path="/myOrders" element={<MyOrders />} />
       </Routes>
       
     </>
