@@ -4,10 +4,21 @@ import Navbar from './Navbar'
 import { PiHeadsetLight } from "react-icons/pi";
 import { PiPackageThin } from "react-icons/pi";
 import { CiLocationOn } from "react-icons/ci";
+import { useState, useEffect } from "react";
+import axios from 'axios'
 
 function UserProfile() {
 
   const userId = localStorage.getItem("userId");
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+      if (userId) {
+        axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/userData/${userId}`)
+          .then(res => setUser(res.data))
+          .catch(err => console.log(err))
+      }
+    }, [userId])
 
   return (
     <>
@@ -20,8 +31,8 @@ function UserProfile() {
             <>
               <div className="user-profile-details">
                 <div className="user-account">
-                  <h4>Guest</h4>
-                  <span className="email">lavanyabj234455@gmail.com</span> <br /> <span className="phone-number">899078867</span>
+                  <h4>{user.username}</h4>
+                  <span className="email">{user.email}</span> <br /> <span className="phone-number">899078867</span>
                 </div>
                 <div className="user-profile-icon">
                   <img src="/images/user-profile-icon.webp" alt="" />
