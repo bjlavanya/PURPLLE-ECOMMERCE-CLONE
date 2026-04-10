@@ -6,7 +6,7 @@ const otpGenerator = require('otp-generator');
 
 //routes
 //send otp
-router.post('/sendOtp', async(req, res) => {
+router.post('/sendOtp', async (req, res) => {
     try {
         //fetching email
         const { email } = req.body;
@@ -19,28 +19,41 @@ router.post('/sendOtp', async(req, res) => {
             digits: true
         });
 
-        const otpExpiry = new Date(Date.now() + 15*60*1000);
+        const otpExpiry = new Date(Date.now() + 15 * 60 * 1000);
 
         //check user already exists
-        let user = await User.findOne( {email} );
-        if(user) {
+        let user = await User.findOne({ email });
+        if (user) {
+            if (!user.username) {
+                user.username = "Guest";
+            }
             user.otp = otp;
             user.otpExpiry = otpExpiry;
-            await user.save(); 
+            await user.save();
         }
         else {
-            user = await User.create( {
-                email, otp, otpExpiry
+            // user = await User.create({
+            //     email, otp, otpExpiry
+            // });
+
+            user = new User({
+                username: "Guest",
+                email,
+                otp,
+                otpExpiry
             });
+
+            await user.save();
+            console.log("Saved user:", user);
         }
 
         await sendMail(email, otp);
 
-        res.json({message: "OTP sent successfully"});
+        res.json({ message: "OTP sent successfully" });
     }
-    catch(error) {
+    catch (error) {
         console.log("Error is ", error);
-        return res.status(500).json( {
+        return res.status(500).json({
             success: false,
             message: 'Internal server error in sending otp'
         })
@@ -48,34 +61,34 @@ router.post('/sendOtp', async(req, res) => {
 });
 
 //otp verification
-router.post("/verifyOtp", async(req, res) => {
+router.post("/verifyOtp", async (req, res) => {
     try {
-        const {email, otp} = req.body;
+        const { email, otp } = req.body;
 
-        const user = await User.findOne({email});
+        const user = await User.findOne({ email });
 
-        if(!user) {
+        if (!user) {
             return res.status(400).json({ message: "User Not Found" });
         }
 
-        if(String(user.otp) !== String(otp)) {
+        if (String(user.otp) !== String(otp)) {
             return res.status(400).json({ message: "OTP Does Not Match" })
         }
 
-        if(user.otpExpiry < new Date()) {
-            return res.status(400).json({message: "OTP Expired"  })
+        if (user.otpExpiry < new Date()) {
+            return res.status(400).json({ message: "OTP Expired" })
         }
 
         user.isVerified = true;
 
         await user.save();
 
-         return res.status(200).json({ message: "OTP verified successfully", userId: user._id });
+        return res.status(200).json({ message: "OTP verified successfully", userId: user._id });
 
     }
-    catch(error) {
+    catch (error) {
         console.log("Error is ", error);
-        return res.status(500).json( {
+        return res.status(500).json({
             success: false,
             message: 'Internal server error in sending otp'
         })

@@ -1,8 +1,9 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 import Topbar from './Topbar'
 import Navbar from './Navbar'
 import { PiHeadsetLight } from "react-icons/pi";
 import { PiPackageThin } from "react-icons/pi";
+import { CiLocationOn } from "react-icons/ci";
 
 function UserProfile() {
 
@@ -20,14 +21,14 @@ function UserProfile() {
               <div className="user-profile-details">
                 <div className="user-account">
                   <h4>Guest</h4>
-                  <span className="email">lavanyabj234455@gmail.com</span> <span>|</span> <span className="phone-number">899078867</span>
+                  <span className="email">lavanyabj234455@gmail.com</span> <br /> <span className="phone-number">899078867</span>
                 </div>
                 <div className="user-profile-icon">
                   <img src="/images/user-profile-icon.webp" alt="" />
                 </div>
               </div>
               <div className="user-profile-details">
-                <button className='edit-profile'>Edit Profile</button>
+                <Link to='/userProfile/editProfile' className='edit-profile' >Edit Profile</Link>
               </div>
             </>
           ) : (
@@ -42,19 +43,19 @@ function UserProfile() {
         }
 
         <div className="my-order-part">
-          <div className="my-order-div">
+          <Link className="my-order-div" to='/myOrders'>
             <div className="my-order">
               <div className="icons">
                 <PiPackageThin className='userprofile-icon' />
               </div>
               <div className="order-words">
                 <p className='order-heading'>My Orders</p>
-                <p className='order-desp'>Track your placed orders</p>
+                <p className='order-desp'>View and track all your orders</p>
               </div>
 
             </div>
             <p className='gt'>&gt;</p>
-          </div>
+          </Link>
 
           <div className="my-order-div">
             <div className="my-order">
@@ -64,6 +65,20 @@ function UserProfile() {
               <div className="order-words">
                 <p className='order-heading'>Customer Support </p>
                 <p className='order-desp'>Help regarding any doubts</p>
+              </div>
+
+            </div>
+            <p className='gt'>&gt;</p>
+          </div>
+
+          <div className="my-order-div">
+            <div className="my-order">
+              <div className="icons">
+                <CiLocationOn className='userprofile-icon' />
+              </div>
+              <div className="order-words">
+                <p className='order-heading'>My Address </p>
+                <p className='order-desp'>Manage and view your saved delivery addresses.</p>
               </div>
 
             </div>

@@ -1,9 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import Login from './Login'
 import axios from 'axios'
 import SearchModal from "./SearchModal";
+import { CiFaceSmile } from "react-icons/ci";
+import { PiPackageLight } from "react-icons/pi";
+import { IoIosLogIn } from "react-icons/io";
+import { CiLocationOn } from "react-icons/ci";
 
 function AddToCart() {
     const [showModal, setShowModal] = useState(false);
@@ -14,6 +18,24 @@ function AddToCart() {
 
     const [cartItems, setCartItems] = useState([])
 
+    //submenu
+    const [open, setOpen] = useState(false);
+    const subMenuRef = useRef()
+    const menuRef = useRef()
+
+    useEffect(() => {
+        let handler = (e) => {
+            if (menuRef.current && subMenuRef.current && !menuRef.current.contains(e.target) && !subMenuRef.current.contains(e.target)) {
+                setOpen(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handler)
+
+        return () => {
+            document.removeEventListener('mousedown', handler)
+        }
+    })
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -130,19 +152,56 @@ function AddToCart() {
                         <a href="" id="heart"><i className="fa-regular fa-heart"></i></a>
 
 
-                        {userId ? (
-                            <Link id="smile" onClick={handleLogout}>
-                                <i className="fa-regular fa-face-smile"></i>
-                                <span className="tooltiptext">Logout</span>
-                            </Link>
-                        ) : (
+                        <Link ref={menuRef} id="smile" onClick={() => setOpen(!open)}>
+                            <i className="fa-regular fa-face-smile"></i>
+                        </Link>
 
-                            <Link id="smile" onClick={() => setShowModal(true)}>
-                                <i className="fa-regular fa-face-smile"></i>
-                                <span className="tooltiptext">Login or Register</span>
-                            </Link>
-                        )}
-                        {showModal && <Login closeModal={closeModal} />}
+                        {
+                            open &&
+                            <div ref={subMenuRef} className="sub-menu-wrap" id="submenu">
+                                <div className="sub-menu">
+                                    <Link to='/userProfile' className="sub-menu-link" style={{ paddingTop: '8px' }} >
+                                        <i><CiFaceSmile /></i>
+                                        <p>My Account</p>
+                                    </Link>
+
+                                    <Link to='/userProfile' className="sub-menu-link" style={{ paddingTop: '8px' }} >
+                                        <i><CiLocationOn /></i>
+                                        <p>My Address</p>
+                                    </Link>
+
+                                    {
+                                        userId ? (
+                                            <Link to='/myOrders' href="#" className="sub-menu-link">
+                                                <i><PiPackageLight /></i>
+                                                <p>My Orders</p>
+                                            </Link>
+
+                                        ) : (
+                                            <Link href="#" className="sub-menu-link" onClick={() => setShowModal(true)}>
+                                                <i><PiPackageLight /></i>
+                                                <p>My Orders</p>
+                                            </Link>
+                                        )
+                                    }
+
+
+                                    {userId ? (
+                                        <Link href="#" className="sub-menu-link" onClick={handleLogout}>
+                                            <i><IoIosLogIn /></i>
+                                            <p>Logout</p>
+                                        </Link>
+                                    ) : (
+                                        <Link href="#" className="sub-menu-link" onClick={() => setShowModal(true)}>
+                                            <i><IoIosLogIn /></i>
+                                            <p>Login or Register</p>
+                                        </Link>
+                                    )}
+                                    {showModal && <Login closeModal={closeModal} />}
+                                </div>
+                            </div>
+
+                        }
                     </div>
 
                 </div>

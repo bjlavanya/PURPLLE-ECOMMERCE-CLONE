@@ -186,10 +186,6 @@ nav .navbar #bars .cart-item-length {
     justify-content: center;
 }
 
-nav .navbar #smile:hover .tooltiptext {
-    visibility: visible;
-}
-
 nav .navbar ul li a:hover {
     color: purple;
 }
@@ -200,7 +196,6 @@ nav .navbar ul li a:hover {
 .elitepro .home {
     margin-left: 100px;
     padding: 15px;
-    cursor: pointer;
 }
 
 .herosection .splurgeImage {
@@ -1619,14 +1614,15 @@ footer .footer-links a:hover {
 /* --------------------------- USER PROFILE -------------------------------- */
 
 .user-profile,
-.my-orders-section {
+.my-orders-section, edit-user-profile, .user-my-address {
     background-color: #f3eaf5;
     width: 100%;
     min-height: 629px;
+    max-height: 1000px;
 }
 
 .user-profile-details,
-.my-order-details {
+.my-order-details, .edit-user-details, .user-myaddress-details {
     width: 50%;
     display: flex;
     justify-content: space-between;
@@ -1638,6 +1634,7 @@ footer .footer-links a:hover {
 
 .user-profile-details .user-profile-icon img {
     width: 80px;
+    margin-top: 20px;
 }
 
 .user-profile-details .user-account {
@@ -1683,9 +1680,10 @@ footer .footer-links a:hover {
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     color: #9c00ad;
-    font-weight: 600;
+    font-weight: 700;
+    text-decoration-line: none;
 }
 
 .my-order-part {
@@ -1694,13 +1692,15 @@ footer .footer-links a:hover {
     margin-left: 380px;
     background-color: white;
     padding: 20px;
+    cursor: pointer;
 }
 
 .my-order-part .my-order-div {
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-decoration-line: none;
 }
 
 .my-order-part .my-order-div .my-order {
@@ -1913,6 +1913,98 @@ footer .footer-links a:hover {
 .order-products .product-qty{
   margin: 2px 0;
   font-size: 14px;
+}
+
+/* ---------------------------- EDIT PROFILE -------------------------- */
+
+.edit-user-details .edit-user h2 {
+    font-size: 18px;
+}
+
+.edit-user-details .edit-user .line, .user-myaddress-details .line {
+    height: 1px;
+    width: 725px;
+    margin: 20px 0;
+    background-color: #ece9e9;
+}
+
+.edit-user-details .edit-user-form .edit-form-details, .user-myaddress-details .edit-user-form .edit-form-details {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #bebcbc;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.edit-user-details .edit-user-form .edit-form-details:active {
+    border: 1px solid #9c00ad;
+}
+
+.user-myaddress-details .edit-user-form .edit-form-details:active {
+    border: 1px solid #9c00ad;
+}
+
+.edit-user-details .edit-user-form .edit-form-details .form-items, .user-myaddress-details .edit-user-form .edit-form-details .form-items {
+    color: #908e8e;
+    font-size: 12px;
+    margin-left: 9px;
+    font-weight: 500;
+}
+
+.edit-user-details .edit-user-form .edit-form-details input, .user-myaddress-details .edit-user-form .edit-form-details input {
+    outline: none;
+    border: none;
+    margin-top: 5px;
+    padding: 3px;
+    margin-left: 5px;
+}
+
+.edit-user-details .edit-user .update-btn, .user-myaddress-details .edit-user .update-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #9c00ad;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.edit-user-details .edit-user .update-btn:hover {
+    background-color: #b201c6;
+}
+
+/* --------------------------- MY ADDRESS FORM ---------------------------- */
+
+.user-myaddress-details .deliver-to {
+    font-size: 14px;
+    color: #989494;
+    margin-bottom: 9px;
+    margin-top: 40px;
+}
+
+.user-myaddress-details .address-info, .user-myaddress-details .contact-info {
+    font-size: 16px;
+    color: #312727;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.user-myaddress-details .myaddress-city-state {
+    display: flex;
+    gap: 20px;
+}
+
+.user-myaddress-details .contact-info {
+    margin-top: 40px;
+}
+
+.user-myaddress-details .edit-user .update-btn:hover {
+    background-color: #b201c6;
 }
 
 /* ------------------------- ADMIN --------------------------------- */

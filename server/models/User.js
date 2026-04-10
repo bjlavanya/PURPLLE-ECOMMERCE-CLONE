@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
+    username: {
+        type: String, 
+        default: 'Guest'
+    },
     email: {
         type: String,
         required: true,
@@ -11,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     },
     otpExpiry: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
     isVerified: {
         type: Boolean,

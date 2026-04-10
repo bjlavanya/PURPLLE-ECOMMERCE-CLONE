@@ -13,6 +13,8 @@ import AddToCart from './Components/AddToCart';
 import SearchPage from './Components/SearchPage';
 import UserProfile from './Components/UserProfile';
 import MyOrders from './Components/MyOrders';
+import EditProfile from './Components/EditProfile';
+import MyAddressForm from './Components/MyAddressForm';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/userProfile" element={<UserProfile />} />
           <Route path="/myOrders" element={<MyOrders />} />
+          <Route path="/userProfile/editProfile" element={<EditProfile />} />
+          <Route path="/userProfile/myAddressForm" element={<MyAddressForm />} />
       </Routes>
       
     </>

@@ -54,7 +54,7 @@ function SearchModal({ closeSearchModal }) {
                 <div className="search-contents">
                     <div className="search-productname">
                         <p className="heading">Related Products</p>
-                        {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
+                        {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).splice(0, 5).map((product) => (
                             <p onClick={() => searchHandleProductName(product.productName)} key={product._id}>{product.productName}</p>
                         ))}
                     </div>

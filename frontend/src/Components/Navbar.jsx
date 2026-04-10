@@ -16,7 +16,7 @@ function Navbar() {
 
     useEffect(() => {
         let handler = (e) => {
-            if (!menuRef.current.contains(e.target) && !subMenuRef.current.contains(e.target)) {
+            if (menuRef.current && subMenuRef.current &&!menuRef.current.contains(e.target) && !subMenuRef.current.contains(e.target)) {
                 setOpen(false)
             }
         }
@@ -49,10 +49,6 @@ function Navbar() {
         window.location.reload()
     }
 
-    function toggleUserMenu() {
-        const subMenu = document.getElementById('submenu')
-        subMenu.classList.toggle('open-menu')
-    }
     return (
         <>
             <nav>
@@ -113,7 +109,7 @@ function Navbar() {
                                         <p>My Account</p>
                                     </Link>
 
-                                    <Link to='/userProfile' className="sub-menu-link" style={{ paddingTop: '8px' }} >
+                                    <Link to='/userProfile/myAddressForm' className="sub-menu-link" style={{ paddingTop: '8px' }} >
                                         <i><CiLocationOn /></i>
                                         <p>My Address</p>
                                     </Link>

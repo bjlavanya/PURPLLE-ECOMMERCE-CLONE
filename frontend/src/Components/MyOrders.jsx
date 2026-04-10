@@ -3,12 +3,13 @@ import Topbar from './Topbar'
 import Navbar from './Navbar'
 import { FaArrowLeft } from "react-icons/fa6";
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function MyOrders() {
   const [orders, setOrders] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
+  const navigate =  useNavigate()
 
   const userId = localStorage.getItem("userId");
 
@@ -43,76 +44,90 @@ function MyOrders() {
             </h2>
 
             <div className="line"><hr /></div>
-            {/* <div className="no-my-orders-section">
-              <img src="/images/no-order-img.png" alt="" />
-            </div>
 
-            <div className="ordering-empty-section">
-              <p className="main-heading">Currently there are no orders in your account.</p>
-              <p className="sub-heading">Let us go shopping!</p>
-              <button>Shop Now</button>
-            </div> */}
-
-            {
-              orders.map((order, index) => (
-                <div className="your-order-section" key={order._id}>
-                  <div className="product-details-img">
-                    <img src={order.products[0].productImage} alt="" />
-
-                    <div className="order-product-details">
-                      <p className="order-id" style={{ fontWeight: '500' }}>Order ID: ORD{order._id.substr(15,)}</p>
-                      <p className="productname"> {order.products[0].productName} + ({order.products.length - 1} items)</p>
-                      <p className="order-date">Order Date: 2026-03-27</p>
-                      <button>View All</button>
-                    </div>
-
-                  </div>
-                  <p className="total-amount">₹{order.totalAmount}</p>
-
-                  <div className="order-status">
-                    <p className="status">Status:</p>
-                    <p>{order.orderStatus}</p>
-                  </div>
-
+            {orders.length === 0 ? (
+              <>
+                <div className="no-my-orders-section">
+                  <img src="/images/no-order-img.png" alt="" />
                 </div>
 
-              ))
-            }
+                <div className="ordering-empty-section">
+                  <p className="main-heading">Currently there are no orders in your account.</p>
+                  <p className="sub-heading">Let us go shopping!</p>
+                  <button onClick={continueShopping}>Shop Now</button>
+                </div>
+              </>
+            ) : (
+              <>
+
+                {
+                  orders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate)).map((order, index) => {
+                    const date = new Date(order.orderDate)
+                    const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
+
+                    return (
+                      <div className="your-order-section" key={order._id}>
+                        <div className="product-details-img">
+                          <img src={order.products[0].productImage} alt="" />
+
+                          <div className="order-product-details">
+                            <p className="order-id" style={{ fontWeight: '500' }}> Order ID: ORD{order._id.substr(15,)} </p>
+
+                            <p className="productname"> {order.products[0].productName} (+{order.products.length - 1} items) </p>
+
+                            <p className="order-date"> Order Date: {formattedOrderDate} </p>
+
+                            <button onClick={() => viewProducts(order.products)}> View All </button>
+                          </div>
+                        </div>
+
+                        <p className="total-amount">₹{order.totalAmount}</p>
+
+                        <div className="order-status">
+                          <p className="status">Status:</p>
+                          <p>{order.orderStatus}</p>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+
+              </>
+            )}
 
 
           </div>
         </div>
       </div>
 
-      {/* <div className="modal-product-details">
-        <div className="modal-content manage-table order-products">
-          <button className="close-btn">X</button>
-          <h3 className='modal-product-heading'>Ordered Products</h3>
+      {
+        showModal && (
+          <div className="modal-product-details">
+            <div className="modal-content manage-table order-products">
+              <button className="close-btn" onClick={() => setShowModal(false)}>X</button>
+              <h3 className='modal-product-heading'>Ordered Products</h3>
 
-          <div className="product-list">
+              <div className="product-list">
+                {
+                  selectedProducts.map((product, index) => (
+                    <div className="product-card" key={index}>
+                      <img src={product.productImage} className="product-img" />
+                      <div className="product-info">
+                        <h4 className="product-name">{product.productName}</h4>
+                        <p className="product-price">Price: ₹{product.newPrice}</p>
+                        <p className="product-qty">Quantity: {product.quantity}</p>
+                      </div>
+                    </div>
+                  ))
+                }
 
-            <div className="product-card">
-              <img src="/images/bestsellers3.webp" className="product-img" />
-              <div className="product-info">
-                <h4 className="product-name">jfdkdjkd</h4>
-                <p className="product-price">Price: ₹800</p>
-                <p className="product-qty">Quantity: 2</p>
               </div>
-            </div>
 
-            <div className="product-card">
-              <img src="/images/bestsellers3.webp" className="product-img" />
-              <div className="product-info">
-                <h4 className="product-name">jfdkdjkd</h4>
-                <p className="product-price">Price: ₹800</p>
-                <p className="product-qty">Quantity: 2</p>
-              </div>
             </div>
-
           </div>
+        )
+      }
 
-        </div>
-      </div> */}
     </>
   )
 }
