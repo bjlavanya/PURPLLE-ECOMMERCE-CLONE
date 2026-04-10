@@ -39,7 +39,7 @@ body {
 nav {
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1001;
     background-color: white;
 }
 
@@ -1158,6 +1158,9 @@ footer .footer-links a:hover {
 }
 
 /* ----- LOGIN or SIGNUP FORM ----- */
+.login-wrapper {
+    z-index: 2000;
+}
 
 .login-wrapper,
 .search-wrapper {
@@ -1174,6 +1177,7 @@ footer .footer-links a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-78%, -50%);
+    z-index: 2001;
 }
 
 .login-form {
@@ -1671,6 +1675,8 @@ footer .footer-links a:hover {
     color: white;
     font-size: 16px;
     font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .user-profile-details .edit-profile {

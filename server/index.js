@@ -185,7 +185,7 @@ app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-});
+})
 
 //Getting the image --http://localhost:3001/img/69ae5bd33e6fcea5a4b7a916
 
@@ -318,6 +318,7 @@ app.get('/search', async (req, res) => {
     }
 })
 
+//USER PROFILE DATA
 app.get('/userData/:id', async (req, res) => {
     try {
         const user = await Users.findById(req.params.id);
@@ -329,8 +330,30 @@ app.get('/userData/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-});
+})
 
+//EDIT USER
+app.put('/editProfile/:id', async (req, res) => {
+    try {
+
+        const { id } = req.params
+        const {username, phonenumber} = req.body
+        const updateUser = await Users.findByIdAndUpdate(
+            id,
+            {
+               username: username,
+               phonenumber: phonenumber
+            },
+            { new: true }
+        );
+
+        res.status(200).json(updateUser);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 //Server running
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`)

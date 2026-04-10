@@ -6,19 +6,24 @@ import { PiPackageThin } from "react-icons/pi";
 import { CiLocationOn } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import Login from './Login'
 
 function UserProfile() {
-
+  const [showModal, setShowModal] = useState(false)
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState({})
 
   useEffect(() => {
-      if (userId) {
-        axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/userData/${userId}`)
-          .then(res => setUser(res.data))
-          .catch(err => console.log(err))
-      }
-    }, [userId])
+    if (userId) {
+      axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/userData/${userId}`)
+        .then(res => setUser(res.data))
+        .catch(err => console.log(err))
+    }
+  }, [userId])
+
+  const closeModal = () => {
+    return setShowModal(false);
+  }
 
   return (
     <>
@@ -31,8 +36,8 @@ function UserProfile() {
             <>
               <div className="user-profile-details">
                 <div className="user-account">
-                  <h4>{user.username}</h4>
-                  <span className="email">{user.email}</span> <br /> <span className="phone-number">899078867</span>
+                  <h4>{user?.username}</h4>
+                  <span className="email">{user?.email}</span> <br /> <span className="phone-number">{user?.phonenumber}</span>
                 </div>
                 <div className="user-profile-icon">
                   <img src="/images/user-profile-icon.webp" alt="" />
@@ -47,7 +52,8 @@ function UserProfile() {
               <div className="user-account">
                 <h4>Hey there!</h4>
                 <p className='before-login-user'>Login/Signup to manage your orders and a lot more</p>
-                <button className='login-signup'>Login/Signup</button>
+                <button className='login-signup' onClick={() => setShowModal(true)}>Login/Signup</button>
+                {showModal && <Login closeModal={closeModal} />}
               </div>
             </div>
           )

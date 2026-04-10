@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    phonenumber: {
+        type: String, 
+        default: null
+    },
     otp: {
         type: String,
     },
