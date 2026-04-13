@@ -2069,6 +2069,14 @@ edit-user-profile,
     color: #767272;
 }
 
+.user-myaddress-details .manage-address .user-details .address {
+    max-width: 600px;
+}
+
+.user-myaddress-details .manage-address .user-details p {
+    margin-bottom: 8px;
+}
+
 /* ------------------------- ADMIN --------------------------------- */
 
 .admin-form {

@@ -16,7 +16,7 @@ function Navbar() {
 
     useEffect(() => {
         let handler = (e) => {
-            if (menuRef.current && subMenuRef.current &&!menuRef.current.contains(e.target) && !subMenuRef.current.contains(e.target)) {
+            if (menuRef.current && subMenuRef.current && !menuRef.current.contains(e.target) && !subMenuRef.current.contains(e.target)) {
                 setOpen(false)
             }
         }
@@ -109,10 +109,19 @@ function Navbar() {
                                         <p>My Account</p>
                                     </Link>
 
-                                    <Link to='/userProfile/myAddress/manage' className="sub-menu-link" style={{ paddingTop: '8px' }} >
-                                        <i><CiLocationOn /></i>
-                                        <p>My Address</p>
-                                    </Link>
+                                    { userId ? (
+                                        <Link to='/userProfile/myAddress/manage' className="sub-menu-link" style={{ paddingTop: '8px' }} >
+                                            <i><CiLocationOn /></i>
+                                            <p>My Address</p>
+                                        </Link>
+                                    ) : (
+                                        <Link href="#" className="sub-menu-link" onClick={() => setShowModal(true)}>
+                                            <i><PiPackageLight /></i>
+                                            <p>My Address</p>
+                                        </Link>
+                                    )
+                                    }
+
 
                                     {
                                         userId ? (
@@ -128,7 +137,7 @@ function Navbar() {
                                             </Link>
                                         )
                                     }
-                                   
+
 
                                     {userId ? (
                                         <Link href="#" className="sub-menu-link" onClick={handleLogout}>

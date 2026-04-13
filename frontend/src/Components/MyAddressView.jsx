@@ -9,6 +9,7 @@ import axios from 'axios'
 function MyAddressView() {
     const userId = localStorage.getItem("userId");
     const [user, setUser] = useState({})
+    const address = user?.address?.[user?.address?.length - 1]
 
     useEffect(() => {
         if (userId) {
@@ -37,7 +38,7 @@ function MyAddressView() {
 
                         <div className="line"><hr /></div>
 
-                        { userId ? (
+                        { address?.pincode  ? (
                         <div className="manage-address">
                             <div className="address-home">
                                 <IoIosHome className="address-home-icon" />
@@ -45,8 +46,8 @@ function MyAddressView() {
 
                             <div className="user-details">
                                 <p className="username">{user?.username}</p>
-                                <p className="address">Mangalore</p>
-                                <p className="phonenumber">MOB: 96768694004</p>
+                                <p className="address">{address.location}, {address.city}, {address.state} - {address.pincode}</p>
+                                <p className="phonenumber">MOB: {user?.phonenumber}</p>
                             </div>
                         </div>
                         ) : (

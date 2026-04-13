@@ -14,6 +14,9 @@ function AddToCart() {
     const navigate = useNavigate()
     const [searchModal, setSearchModal] = useState(false)
 
+    const [user, setUser] = useState({})
+    const address = user?.address?.[user?.address?.length - 1]
+
     const userId = localStorage.getItem("userId");
 
     const [cartItems, setCartItems] = useState([])
@@ -36,6 +39,14 @@ function AddToCart() {
             document.removeEventListener('mousedown', handler)
         }
     })
+
+     useEffect(() => {
+        if (userId) {
+            axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
+                .then(res => setUser(res.data))
+                .catch(err => console.log(err))
+        }
+    }, [userId])
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -116,6 +127,11 @@ function AddToCart() {
         //if user not logged before placing order - then show login page
         if (!user) {
             setShowModal(true)
+            return
+        }
+
+        if(!address?.pincode) {
+            navigate('//userProfile/myAddressForm')
             return
         }
 
