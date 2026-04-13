@@ -368,7 +368,7 @@ app.put('/editProfile/:id', async (req, res) => {
 
 // Add address
 
-app.post('/profile/myaddress/:id', async (req, res) => {
+app.put('/profile/myaddress/:id', async (req, res) => {
     try {
         const { pincode, location, city, state, username, phonenumber } = req.body
         const user = await Users.findById(req.params.id);
