@@ -222,12 +222,12 @@ function MyAddressForm() {
 
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Name *</label>
-                                    <input type="text" name="name" id="name" value={user?.username} onChange={(e) => setUser({ ...user, username: e.target.value })} required />
+                                    <input type="text" name="name" id="name" value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })} required />
                                 </div>
 
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Phone Number *</label>
-                                    <input type="tel" pattern='[0-9]{10}' maxLength={10} name="phoneNumber" id="phoneNumber" value={user?.phonenumber} onChange={(e) => setUser({ ...user, phonenumber: e.target.value })} required />
+                                    <input type="tel" pattern='[0-9]{10}' maxLength={10} name="phoneNumber" id="phoneNumber" value={user.phonenumber} onChange={(e) => setUser({ ...user, phonenumber: e.target.value })} required />
                                 </div>
 
                                 <button className="update-btn">
