@@ -1618,7 +1618,9 @@ footer .footer-links a:hover {
 /* --------------------------- USER PROFILE -------------------------------- */
 
 .user-profile,
-.my-orders-section, edit-user-profile, .user-my-address {
+.my-orders-section,
+edit-user-profile,
+.user-my-address {
     background-color: #f3eaf5;
     width: 100%;
     min-height: 629px;
@@ -1626,7 +1628,9 @@ footer .footer-links a:hover {
 }
 
 .user-profile-details,
-.my-order-details, .edit-user-details, .user-myaddress-details {
+.my-order-details,
+.edit-user-details,
+.user-myaddress-details {
     width: 50%;
     display: flex;
     justify-content: space-between;
@@ -1857,7 +1861,9 @@ footer .footer-links a:hover {
     cursor: pointer;
 }
 
-.your-order-section .order-product-details, .your-order-section .total-amount, .your-order-section .status {
+.your-order-section .order-product-details,
+.your-order-section .total-amount,
+.your-order-section .status {
     margin-top: 10px;
     font-size: 14px;
 }
@@ -1867,7 +1873,8 @@ footer .footer-links a:hover {
     word-break: break-all;
 } */
 
-.your-order-section .order-product-details p, .your-order-section .order-status p {
+.your-order-section .order-product-details p,
+.your-order-section .order-status p {
     margin-bottom: 10px;
     font-size: 14px;
 }
@@ -1884,41 +1891,41 @@ footer .footer-links a:hover {
     text-transform: capitalize;
 }
 
-.order-products .product-list{
-  max-height: 300px;
-  overflow-y: scroll;
-  padding: 10px;
+.order-products .product-list {
+    max-height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
 }
 
-.order-products .product-card{
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  background: #fff;
+.order-products .product-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: #fff;
 }
 
-.order-products .product-img{
-  width: 100px;
+.order-products .product-img {
+    width: 100px;
 }
 
-.order-products .product-info{
-  display: flex;
-  flex-direction: column;
+.order-products .product-info {
+    display: flex;
+    flex-direction: column;
 }
 
-.order-products .product-name{
-  margin: 0;
-  font-size: 16px;
+.order-products .product-name {
+    margin: 0;
+    font-size: 16px;
 }
 
 .order-products .product-price,
-.order-products .product-qty{
-  margin: 2px 0;
-  font-size: 14px;
+.order-products .product-qty {
+    margin: 2px 0;
+    font-size: 14px;
 }
 
 /* ---------------------------- EDIT PROFILE -------------------------- */
@@ -1927,14 +1934,16 @@ footer .footer-links a:hover {
     font-size: 18px;
 }
 
-.edit-user-details .edit-user .line, .user-myaddress-details .line {
+.edit-user-details .edit-user .line,
+.user-myaddress-details .line {
     height: 1px;
     width: 725px;
     margin: 20px 0;
     background-color: #ece9e9;
 }
 
-.edit-user-details .edit-user-form .edit-form-details, .user-myaddress-details .edit-user-form .edit-form-details {
+.edit-user-details .edit-user-form .edit-form-details,
+.user-myaddress-details .edit-user-form .edit-form-details {
     width: 100%;
     padding: 4px;
     border: 1px solid #bebcbc;
@@ -1953,14 +1962,16 @@ footer .footer-links a:hover {
     border: 1px solid #9c00ad;
 }
 
-.edit-user-details .edit-user-form .edit-form-details .form-items, .user-myaddress-details .edit-user-form .edit-form-details .form-items {
+.edit-user-details .edit-user-form .edit-form-details .form-items,
+.user-myaddress-details .edit-user-form .edit-form-details .form-items {
     color: #908e8e;
     font-size: 12px;
     margin-left: 9px;
     font-weight: 500;
 }
 
-.edit-user-details .edit-user-form .edit-form-details input, .user-myaddress-details .edit-user-form .edit-form-details input {
+.edit-user-details .edit-user-form .edit-form-details input,
+.user-myaddress-details .edit-user-form .edit-form-details input {
     outline: none;
     border: none;
     margin-top: 5px;
@@ -1968,7 +1979,8 @@ footer .footer-links a:hover {
     margin-left: 5px;
 }
 
-.edit-user-details .edit-user .update-btn, .user-myaddress-details .edit-user .update-btn {
+.edit-user-details .edit-user .update-btn,
+.user-myaddress-details .edit-user .update-btn {
     width: 100%;
     padding: 12px;
     background-color: #9c00ad;
@@ -1984,7 +1996,7 @@ footer .footer-links a:hover {
     background-color: #b201c6;
 }
 
-/* --------------------------- MY ADDRESS FORM ---------------------------- */
+/* --------------------------- MY ADDRESS FORM / MANAGE ---------------------------- */
 
 .user-myaddress-details .deliver-to {
     font-size: 14px;
@@ -1993,7 +2005,8 @@ footer .footer-links a:hover {
     margin-top: 40px;
 }
 
-.user-myaddress-details .address-info, .user-myaddress-details .contact-info {
+.user-myaddress-details .address-info,
+.user-myaddress-details .contact-info {
     font-size: 16px;
     color: #312727;
     font-weight: 600;
@@ -2011,6 +2024,49 @@ footer .footer-links a:hover {
 
 .user-myaddress-details .edit-user .update-btn:hover {
     background-color: #b201c6;
+}
+
+.user-myaddress-details .no-address-div .smile-address {
+    font-size: 5rem;
+    font-weight: 300;
+    color: #767272;
+    margin-left: 320px;
+}
+
+.user-myaddress-details .no-address-div .no-address-para {
+    font-size: 14px;
+    color: #767272;
+    margin-left: 285px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.user-myaddress-details .manage-address {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.user-myaddress-details .manage-address .address-home-icon {
+    font-size: 1.5rem;
+    color: #767272;
+}
+
+.user-myaddress-details .manage-address .user-details .username,
+.user-myaddress-details .manage-address .user-details .address,
+.user-myaddress-details .manage-address .user-details .phonenumber {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #312727;
+}
+
+.user-myaddress-details .manage-address .user-details .address,
+.user-myaddress-details .manage-address .user-details .phonenumber {
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: capitalize;
+    color: #767272;
 }
 
 /* ------------------------- ADMIN --------------------------------- */
