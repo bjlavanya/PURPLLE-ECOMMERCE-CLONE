@@ -61,7 +61,7 @@ function MyAddressForm() {
 
         try {
 
-            const response = await axios.post(
+            const response = await axios.put(
                 `https://purplle-ecommerce-clone-backend.onrender.com/profile/myaddress/${userId}`,
                 {
                     pincode,
