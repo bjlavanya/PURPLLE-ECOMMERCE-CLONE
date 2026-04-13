@@ -88,7 +88,7 @@ function UserProfile() {
             <p className='gt'>&gt;</p>
           </div>
 
-          <div className="my-order-div">
+          <Link className="my-order-div" to='/userProfile/myAddress/manage'>
             <div className="my-order">
               <div className="icons">
                 <CiLocationOn className='userprofile-icon' />
@@ -100,7 +100,7 @@ function UserProfile() {
 
             </div>
             <p className='gt'>&gt;</p>
-          </div>
+          </Link>
         </div>
 
         {

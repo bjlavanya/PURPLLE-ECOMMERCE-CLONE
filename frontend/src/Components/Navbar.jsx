@@ -109,7 +109,7 @@ function Navbar() {
                                         <p>My Account</p>
                                     </Link>
 
-                                    <Link to='/userProfile/myAddressForm' className="sub-menu-link" style={{ paddingTop: '8px' }} >
+                                    <Link to='/userProfile/myAddress/manage' className="sub-menu-link" style={{ paddingTop: '8px' }} >
                                         <i><CiLocationOn /></i>
                                         <p>My Address</p>
                                     </Link>

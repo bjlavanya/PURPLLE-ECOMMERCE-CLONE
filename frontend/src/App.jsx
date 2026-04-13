@@ -15,6 +15,7 @@ import UserProfile from './Components/UserProfile';
 import MyOrders from './Components/MyOrders';
 import EditProfile from './Components/EditProfile';
 import MyAddressForm from './Components/MyAddressForm';
+import MyAddressView from './Components/MyAddressView';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/myOrders" element={<MyOrders />} />
           <Route path="/userProfile/editProfile" element={<EditProfile />} />
           <Route path="/userProfile/myAddressForm" element={<MyAddressForm />} />
+          <Route path="/userProfile/myAddress/manage" element={<MyAddressView />} />
       </Routes>
       
     </>
