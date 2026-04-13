@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
     username: {
-        type: String, 
+        type: String,
         default: 'Guest'
     },
     email: {
@@ -11,9 +11,29 @@ const UserSchema = new mongoose.Schema({
         trim: true
     },
     phonenumber: {
-        type: String, 
+        type: String,
         default: null
     },
+    address: [
+        {
+            pincode: {
+                type: String,
+                default: null
+            },
+            location: {
+                type: String,
+                default: null
+            },
+            city: {
+                type: String,
+                default: null
+            },
+            state: {
+                type: String,
+                default: null
+            }
+        }
+    ],
     otp: {
         type: String,
     },

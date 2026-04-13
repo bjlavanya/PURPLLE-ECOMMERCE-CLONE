@@ -337,12 +337,12 @@ app.put('/editProfile/:id', async (req, res) => {
     try {
 
         const { id } = req.params
-        const {username, phonenumber} = req.body
+        const { username, phonenumber } = req.body
         const updateUser = await Users.findByIdAndUpdate(
             id,
             {
-               username: username,
-               phonenumber: phonenumber
+                username: username,
+                phonenumber: phonenumber
             },
             { new: true }
         );
@@ -353,7 +353,28 @@ app.put('/editProfile/:id', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-});
+})
+
+// Add address
+
+app.post('/profile/myaddress/:id', async (req, res) => {
+    try {
+        const { pincode, location, city, state } = req.body
+        const user = await Users.findById(req.params.id);
+
+        user.address.push({
+            pincode, location, city, state
+        })
+        
+        await user.save();
+
+        res.status(200).json(user)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 //Server running
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`)

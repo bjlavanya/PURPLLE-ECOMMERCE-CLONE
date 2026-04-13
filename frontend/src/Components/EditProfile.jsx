@@ -27,7 +27,7 @@ function EditProfile() {
   }, [userId])
 
   const back = () => {
-    navigate('/userProfile')
+    navigate(-1)
   }
 
   const updateProfile = async (e) => {

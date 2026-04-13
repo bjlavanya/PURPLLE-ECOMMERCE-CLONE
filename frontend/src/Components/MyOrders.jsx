@@ -28,7 +28,7 @@ function MyOrders() {
   }
 
   const continueShopping = () => {
-    navigate('/')
+    navigate(-1)
   }
   return (
     <>

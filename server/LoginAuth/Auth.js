@@ -40,7 +40,15 @@ router.post('/sendOtp', async (req, res) => {
                 username: "Guest",
                 email,
                 otp,
-                phonenumber:null,
+                phonenumber: null,
+                address: [
+                    {
+                        pincode: null,
+                        location: null,
+                        city: null,
+                        state: null
+                    }
+                ],
                 otpExpiry
             });
 
