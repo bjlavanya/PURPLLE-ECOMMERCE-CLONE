@@ -376,9 +376,19 @@ app.put('/profile/myaddress/:id', async (req, res) => {
         user.username = username
         user.phonenumber = phonenumber
 
-        user.address.push({
-            pincode, location, city, state
-        })
+        // if (user.address.length === 1) {
+        //     user.address.push({
+        //         pincode, location, city, state
+        //     })
+        // }
+        // else {
+        //     user.address[1] = {pincode, location, city, state}
+        // }
+
+        user.address[0].pincode = pincode;
+        user.address[0].location = location;
+        user.address[0].city = city;
+        user.address[0].state = state;
 
         await user.save();
 

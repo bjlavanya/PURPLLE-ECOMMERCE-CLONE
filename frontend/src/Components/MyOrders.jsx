@@ -28,6 +28,10 @@ function MyOrders() {
   }
 
   const continueShopping = () => {
+    navigate('/')
+  }
+
+  const back = () => {
     navigate(-1)
   }
   return (
@@ -39,7 +43,7 @@ function MyOrders() {
         <div className="my-order-details">
           <div className="my-orders">
             <h2 className="my-orders-heading">
-              <button onClick={continueShopping}><FaArrowLeft className="arrow-left" /></button>
+              <button onClick={back}><FaArrowLeft className="arrow-left" /></button>
               My Orders
             </h2>
 

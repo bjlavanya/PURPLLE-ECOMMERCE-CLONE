@@ -5,8 +5,10 @@ import { PiSmileySadThin } from "react-icons/pi";
 import { IoIosHome } from "react-icons/io";
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function MyAddressView() {
+    const navigate = useNavigate()
     const userId = localStorage.getItem("userId");
     const [user, setUser] = useState({})
     const address = user?.address?.[user?.address?.length - 1]

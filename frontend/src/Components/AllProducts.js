@@ -1,7 +1,7 @@
 export const heroSectionSlider = [
     {
         id: 1,
-        image: "/images/herosection.webp",
+        image: "/images/herosection9.webp",
     },
     {
         id: 2,
