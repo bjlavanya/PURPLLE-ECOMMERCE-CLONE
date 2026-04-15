@@ -75,7 +75,7 @@ function MyAddressForm() {
 
             console.log(response.data)
             alert("Address added successfully")
-            navigate(-1)
+            navigate('/')
 
             setPincode("")
             setLocation("")

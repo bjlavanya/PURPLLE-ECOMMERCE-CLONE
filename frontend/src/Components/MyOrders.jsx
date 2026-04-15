@@ -88,7 +88,7 @@ function MyOrders() {
                         <p className="total-amount">₹{order.totalAmount}</p>
 
                         <div className="order-status">
-                          <p className="status">Status:</p>
+                          <p className="status">Order Status:</p>
                           <p>{order.orderStatus}</p>
                         </div>
                       </div>

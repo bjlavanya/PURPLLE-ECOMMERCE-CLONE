@@ -14,6 +14,8 @@ function AddToCart() {
     const navigate = useNavigate()
     const [searchModal, setSearchModal] = useState(false)
 
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+
     const [user, setUser] = useState({})
     const address = user?.address?.[user?.address?.length - 1]
 
@@ -40,7 +42,7 @@ function AddToCart() {
         }
     })
 
-     useEffect(() => {
+    useEffect(() => {
         if (userId) {
             axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
                 .then(res => setUser(res.data))
@@ -151,65 +153,81 @@ function AddToCart() {
 
     // }
 
-    const placeAnOrder = async () => {
+    // const proceedToPay = async () => {
+    //     const userId = localStorage.getItem("userId")
+
+    //     if (!userId) {
+    //         setShowModal(true)
+    //         return
+    //     }
+
+    //     if (!address?.pincode) {
+    //         navigate('/userprofile/myAddressForm')
+    //         return
+    //     }
+
+    //     try {
+    //         //create razorpay order
+    //         const res = await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/createOrder', {
+    //             totalAmount: orderTotal
+    //         })
+
+    //         const { order, razorpayKeyId } = res.data
+
+    //         // razorpay payment options
+    //         const options = {
+    //             key: razorpayKeyId,
+    //             amount: order.amount,
+    //             currency: 'INR',
+    //             name: 'Purplle',
+    //             description: 'Order Payment',
+    //             order_id: order.id,
+
+    //             handler: async function (response) {
+    //                 try {
+    //                     const verify = await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/verifyPayment', {
+    //                         razorpay_order_id: response.razorpay_order_id,
+    //                         razorpay_payment_id: response.razorpay_payment_id,
+    //                         razorpay_signature: response.razorpay_signature,
+    //                         userId: userId,
+    //                         products: cartItems,
+    //                         totalAmount: orderTotal
+    //                     })
+
+    //                     if (verify.data.success) {
+    //                         alert('Paynent Successfull')
+    //                         navigate('/myOrders')
+    //                     }
+    //                 }
+    //                 catch (err) {
+    //                     console.log(err)
+    //                 }
+    //             }
+    //         }
+
+    //         // open razorpay popup
+    //         const rzp = new window.Razorpay(options)
+    //         rzp.open()
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+
+    const proceedToPay = () => {
         const userId = localStorage.getItem("userId")
 
-        if(!userId) {
+        if (!userId) {
             setShowModal(true)
             return
         }
 
-        if(!address?.pincode) {
+        if (!address?.pincode) {
             navigate('/userprofile/myAddressForm')
             return
         }
 
-        try {
-            //create razorpay order
-            const res = await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/createOrder', {
-                totalAmount: orderTotal
-            })
-
-            const { order, razorpayKeyId } = res.data
-
-            // razorpay payment options
-            const options = {
-                key: razorpayKeyId,
-                amount: order.amount,
-                currency: 'INR',
-                name: 'Purplle',
-                description: 'Order Payment',
-                order_id: order.id,
-
-                handler: async function (response) {
-                    try {
-                        const verify = await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/verifyPayment', {
-                            razorpay_order_id: response.razorpay_order_id,
-                            razorpay_payment_id: response.razorpay_payment_id,
-                            razorpay_signature: response.razorpay_signature,
-                            userId: userId,
-                            products: cartItems,
-                            totalAmount: orderTotal
-                        })
-
-                        if(verify.data.success) {
-                            alert('Paynent Successfull')
-                            navigate('/myOrders')
-                        }
-                    }
-                    catch(err) {
-                        console.log(err)
-                    }
-                }
-            }
-
-            // open razorpay popup
-            const rzp = new window.Razorpay(options)
-            rzp.open()
-        }
-        catch(err) {
-            console.log(err)
-        }
+        setShowPaymentModal(true)
     }
 
     return (
@@ -396,7 +414,7 @@ function AddToCart() {
                                 <div className="price-info">
                                     <div className="amount">₹{orderTotal} <span className="save">YOU SAVE ₹{saving}</span></div>
                                 </div>
-                                <button className="pay-btn" onClick={placeAnOrder}>Place an Order</button>
+                                <button className="pay-btn" onClick={proceedToPay}>Proceed To Pay</button>
                             </div>
 
                         </>
@@ -405,7 +423,30 @@ function AddToCart() {
 
                 </div>
             </div>
-{showModal && <Login closeModal={closeModal} />}
+            {showModal && <Login closeModal={closeModal} />}
+
+            {showPaymentModal && (
+                <div className="modal-product-details">
+                    <div className="modal-content manage-table order-products" style={{ marginTop: '250px' }}>
+                        <button className="close-btn" onClick={() => setShowModal(false)}>X</button>
+                        <h3 className='modal-product-heading'>Ordered Products</h3>
+
+                        <div className="product-list">
+
+                            <div className="product-card" >
+                                <img src='/images/herosection3.webp' className="product-img" />
+                                <div className="product-info">
+                                    <h4 className="product-name">hello</h4>
+                                    <p className="product-price">Price:</p>
+                                    <p className="product-qty">Quantity:</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            )}
         </>
     )
 }
