@@ -419,7 +419,7 @@ app.post('/createOrder', async (req, res) => {
 })
 
 // VERIFY PAYMENT
-app.post("/verify-payment", async (req, res) => {
+app.post("/verifyPayment", async (req, res) => {
 
     const {
         razorpay_order_id,
