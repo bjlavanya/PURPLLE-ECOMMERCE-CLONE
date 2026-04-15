@@ -13,7 +13,6 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
 const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
 const Razorpay = require('razorpay');
-const { default: orders } = require('razorpay/dist/types/orders');
 
 // CREATED APP
 const app = express()
