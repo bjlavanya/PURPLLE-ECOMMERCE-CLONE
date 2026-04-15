@@ -13,6 +13,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
 const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
 const Razorpay = require('razorpay');
+const crypto = require("crypto");
 
 // CREATED APP
 const app = express()
@@ -74,8 +75,8 @@ app.use('/login', authRoutes)
 // PAYMENT - RAZORPAY
 
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
 
@@ -399,7 +400,7 @@ app.put('/profile/myaddress/:id', async (req, res) => {
 // PAYMENT RAZORPAY -- BACKEND -- CREATE ORDER API
 
 app.post('/createOrder', async (req, res) => {
-    const {totalAmount} = req.body
+    const { totalAmount } = req.body
 
     try {
         const order = await razorpay.orders.create({
@@ -409,65 +410,61 @@ app.post('/createOrder', async (req, res) => {
         })
         res.status(200).json(order)
     }
-    catch(err) {
+    catch (err) {
         console.log(err)
     }
 })
 
 // VERIFY PAYMENT
-
-const crypto = require("crypto");
-const Order = require("../models/Order");
-
 app.post("/verify-payment", async (req, res) => {
 
-  const {
-    razorpay_order_id,
-    razorpay_payment_id,
-    razorpay_signature,
-    userId,
-    products,
-    totalAmount
-  } = req.body;
+    const {
+        razorpay_order_id,
+        razorpay_payment_id,
+        razorpay_signature,
+        userId,
+        products,
+        totalAmount
+    } = req.body;
 
-  const generated_signature = crypto
-    .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-    .update(razorpay_order_id + "|" + razorpay_payment_id)
-    .digest("hex")
+    const generated_signature = crypto
+        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .update(razorpay_order_id + "|" + razorpay_payment_id)
+        .digest("hex")
 
-  const user = await User.findById(userId)
-  const userEmail = user?.email
+    const user = await Users.findById(userId)
+    const userEmail = user?.email
 
-  if (generated_signature === razorpay_signature) {
+    if (generated_signature === razorpay_signature) {
 
-    await Order.create({
-      userEmail,
-      products,
-      totalAmount,
-      paymentId: razorpay_payment_id,
-      paymentStatus: "Success"
-    });
+        await Orders.create({
+            userEmail,
+            products,
+            totalAmount,
+            paymentId: razorpay_payment_id,
+            paymentStatus: "Success"
+        });
 
-    res.status(200).json({
-      success: true,
-      message: "Payment successful and order stored"
-    });
+        res.status(200).json({
+            success: true,
+            message: "Payment successful and order stored"
+        });
 
-  } else {
+    } else {
 
-    await Order.create({
-      userEmail,
-      products,
-      totalAmount,
-      paymentStatus: "Failed"
-    });
+        await Orders.create({
+            userEmail,
+            products,
+            totalAmount,
+            paymentStatus: "Failed"
+        });
 
-    res.status(400).json({
-      success: false,
-      message: "Payment verification failed"
-    });
+        res.status(400).json({
+            success: false,
+            message: "Payment verification failed"
+        });
 
-  }
+    }
 
 })
 
