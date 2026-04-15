@@ -152,9 +152,9 @@ function AddToCart() {
     // }
 
     const placeAnOrder = async () => {
-        const user = localStorage.getItem("userId")
+        const userId = localStorage.getItem("userId")
 
-        if(!user) {
+        if(!userId) {
             setShowModal(true)
             return
         }
@@ -170,11 +170,11 @@ function AddToCart() {
                 totalAmount: orderTotal
             })
 
-            const order = res.data
+            const { order, razorpayKeyId } = res.data
 
             // razorpay payment options
             const options = {
-                key: process.env.RAZORPAY_KEY_ID,
+                key: razorpayKeyId,
                 amount: order.amount,
                 currency: 'INR',
                 name: 'Purplle',
@@ -187,7 +187,7 @@ function AddToCart() {
                             razorpay_order_id: response.razorpay_order_id,
                             razorpay_payment_id: response.razorpay_payment_id,
                             razorpay_signature: response.razorpay_signature,
-                            userId: user,
+                            userId: userId,
                             products: cartItems,
                             totalAmount: orderTotal
                         })
@@ -274,7 +274,7 @@ function AddToCart() {
                                             <p>Login or Register</p>
                                         </Link>
                                     )}
-                                    {showModal && <Login closeModal={closeModal} />}
+                                    {/* {showModal && <Login closeModal={closeModal} />} */}
                                 </div>
                             </div>
 
@@ -405,7 +405,7 @@ function AddToCart() {
 
                 </div>
             </div>
-
+{showModal && <Login closeModal={closeModal} />}
         </>
     )
 }

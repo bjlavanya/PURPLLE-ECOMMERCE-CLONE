@@ -408,7 +408,10 @@ app.post('/createOrder', async (req, res) => {
             currency: 'INR',
             receipt: 'receipt_' + Date.now()
         })
-        res.status(200).json(order)
+        res.status(200).json({
+            order,
+            razorpayKeyId: process.env.RAZORPAY_KEY_ID
+        })
     }
     catch (err) {
         console.log(err)
