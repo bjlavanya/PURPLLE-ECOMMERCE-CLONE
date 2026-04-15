@@ -5,11 +5,11 @@ export const heroSectionSlider = [
     },
     {
         id: 2,
-        image: "/images/herosection2.webp",
+        image: "/images/herosection10.webp",
     },
     {
         id: 3,
-        image: "/images/herosection3.webp",
+        image: "/images/herosection11.webp",
     },
     {
         id: 4,

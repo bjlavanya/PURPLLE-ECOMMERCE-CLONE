@@ -2045,6 +2045,34 @@ edit-user-profile,
     display: flex;
     gap: 15px;
     margin-top: 30px;
+    position: relative;
+}
+
+.user-myaddress-details .manage-address .sub-menu-wrap {
+    position: absolute;
+    top: 30%;
+    right: 3%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(218, 215, 215, 0.28);
+    z-index: 999;
+    max-height: 600px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    background-color: white;
+}
+
+.user-myaddress-details .manage-address .sub-menu {
+    background-color: white;
+    min-width: 100px;
+}
+
+.user-myaddress-details .manage-address .sub-menu-link {
+    display: flex;
+    text-decoration: none;
+    color: #767272;
+    margin: 10px;
+    font-size: 14px;
+    padding: 2px;
+    gap: 10px;
 }
 
 .user-myaddress-details .manage-address .address-home-icon {
@@ -2075,6 +2103,11 @@ edit-user-profile,
 
 .user-myaddress-details .manage-address .user-details p {
     margin-bottom: 8px;
+}
+
+.user-myaddress-details .manage-address .three-dot-icon {
+    margin-left: 170px;
+    cursor: pointer;
 }
 
 /* ------------------------- ADMIN --------------------------------- */
@@ -2401,7 +2434,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .modal-content {

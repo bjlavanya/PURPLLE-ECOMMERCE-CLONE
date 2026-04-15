@@ -121,34 +121,95 @@ function AddToCart() {
 
     const orderTotal = subTotal + platformFee + shipping
 
-    const placeAnOrder = async () => {
-        const user = localStorage.getItem('userId')
+    // const placeAnOrder = async () => {
+    //     const user = localStorage.getItem('userId')
 
-        //if user not logged before placing order - then show login page
-        if (!user) {
+    //     //if user not logged before placing order - then show login page
+    //     if (!user) {
+    //         setShowModal(true)
+    //         return
+    //     }
+
+    //     if(!address?.pincode) {
+    //         navigate('//userProfile/myAddressForm')
+    //         return
+    //     }
+
+    //     try {
+    //         const res = await axios.post("https://purplle-ecommerce-clone-backend.onrender.com/placeAnOrder", {
+    //             userId: user,
+    //             products: cartItems,
+    //             totalAmount: orderTotal
+    //         })
+
+    //         alert("Order placed successfully")
+    //     }
+
+    //     catch (err) {
+    //         console.log("order failed: ", err)
+    //     }
+
+    // }
+
+    const placeAnOrder = async () => {
+        const user = localStorage.getItem("userId")
+
+        if(!user) {
             setShowModal(true)
             return
         }
 
         if(!address?.pincode) {
-            navigate('//userProfile/myAddressForm')
+            navigate('/userprofile/myAddressForm')
             return
         }
 
         try {
-            const res = await axios.post("https://purplle-ecommerce-clone-backend.onrender.com/placeAnOrder", {
-                userId: user,
-                products: cartItems,
+            //create razorpay order
+            const res = await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/createOrder', {
                 totalAmount: orderTotal
             })
 
-            alert("Order placed successfully")
-        }
+            const order = res.data
 
-        catch (err) {
-            console.log("order failed: ", err)
-        }
+            // razorpay payment options
+            const options = {
+                key: process.env.RAZORPAY_KEY_ID,
+                amount: order.amount,
+                currency: 'INR',
+                name: 'Purplle',
+                description: 'Order Payment',
+                order_id: order.id,
 
+                handler: async function (response) {
+                    try {
+                        const verify = await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/verifyPayment', {
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature,
+                            userId: user,
+                            products: cartItems,
+                            totalAmount: orderTotal
+                        })
+
+                        if(verify.data.success) {
+                            alert('Paynent Successfull')
+                            navigate('/myOrders')
+                        }
+                    }
+                    catch(err) {
+                        console.log(err)
+                    }
+                }
+            }
+
+            // open razorpay popup
+            const rzp = new window.Razorpay(options)
+            rzp.open()
+        }
+        catch(err) {
+            console.log(err)
+        }
     }
 
     return (
