@@ -8,19 +8,25 @@ import { CiFaceSmile } from "react-icons/ci";
 import { PiPackageLight } from "react-icons/pi";
 import { IoIosLogIn } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
+import { useLocation } from "react-router-dom";
+import { FaLocationDot } from "react-icons/fa6";
+import { BiSolidPackage } from "react-icons/bi";
+import { MdOutlinePayment } from "react-icons/md";
+import { BsCashStack } from "react-icons/bs";
+import { CiBank } from "react-icons/ci";
 
 function AddToCart() {
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate()
     const [searchModal, setSearchModal] = useState(false)
-
+    const location = useLocation();
+    const [loginFromCheckout, setLoginFromCheckout] = useState(false)
     const [showPaymentModal, setShowPaymentModal] = useState(false);
 
     const [user, setUser] = useState({})
-    const address = user?.address?.[user?.address?.length - 1]
+    const address = user?.address?.[0]
 
     const userId = localStorage.getItem("userId");
-
     const [cartItems, setCartItems] = useState([])
 
     //submenu
@@ -41,6 +47,12 @@ function AddToCart() {
             document.removeEventListener('mousedown', handler)
         }
     })
+
+    useEffect(() => {
+        if (location.state?.openPayment) {
+            setShowPaymentModal(true);
+        }
+    }, [location.state]);
 
     useEffect(() => {
         if (userId) {
@@ -218,6 +230,9 @@ function AddToCart() {
         const userId = localStorage.getItem("userId")
 
         if (!userId) {
+            if (!address?.pincode) {
+                setLoginFromCheckout(true)
+            }
             setShowModal(true)
             return
         }
@@ -423,23 +438,87 @@ function AddToCart() {
 
                 </div>
             </div>
-            {showModal && <Login closeModal={closeModal} />}
+            {showModal && <Login closeModal={closeModal} loginFromCheckout={loginFromCheckout} />}
 
-            {showPaymentModal && (
-                <div className="modal-product-details">
-                    <div className="modal-content manage-table order-products" style={{ marginTop: '250px' }}>
-                        <button className="close-btn" onClick={() => setShowModal(false)}>X</button>
-                        <h3 className='modal-product-heading'>Ordered Products</h3>
+            {showPaymentModal && userId && (
+                <div className="checkout-section">
+                    <div className="manage-table order-products checkout-content" style={{ marginTop: '250px' }}>
+                        <div className="checkout-top-section">
+                            <button className="close-btn" onClick={() => setShowPaymentModal(false)}>X</button>
+                            <h3 className='modal-product-heading checkout-heading'>Checkout</h3>
+                        </div>
 
-                        <div className="product-list">
+                        <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+                        <div className="hr-line" style={{ background: '#cec9c9' }}></div>
 
-                            <div className="product-card" >
-                                <img src='/images/herosection3.webp' className="product-img" />
-                                <div className="product-info">
-                                    <h4 className="product-name">hello</h4>
-                                    <p className="product-price">Price:</p>
-                                    <p className="product-qty">Quantity:</p>
+                        <div className="checkout-details">
+                            <div className="checkout-deliver-to">
+                                <div className="deliver-address">
+                                    <div className="deliver-head-icon">
+                                        <FaLocationDot className="location-icon" />
+                                        <p className="deliver-to-heading">Deliver To:</p>
+                                    </div>
+                                    <Link to='/userProfile/myAddress/edit' className="edit-address">Edit Address</Link>
                                 </div>
+
+                                <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+
+                                <div className="address-details">
+                                    <p className="username">{user?.username}</p>
+                                    <p className="phonenumber">{user?.phonenumber}</p>
+                                    <p className="location">{address.location}, {address.city}, {address.state} - {address.pincode}</p>
+                                </div>
+                            </div>
+
+                            <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+                            <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+
+                            <div className="order-summary">
+                                <div className="order-summary-heading">
+                                    <BiSolidPackage className="package-icon" />
+                                    <p>Order Summary</p>
+                                </div>
+
+                                <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+
+                                <div className="order-details">
+                                    <p>Total Items: <b>{cartItems.length}</b></p>
+                                    <p>Total Amount: <b>₹{orderTotal}</b></p>
+                                </div>
+                            </div>
+
+                            <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+                            <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+
+                            <div className="payment-mode">
+                                <div className="payment-mode-heading">
+                                    <MdOutlinePayment className="payment-icon" />
+                                    <p>Select Payment Mode</p>
+                                </div>
+
+                                <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+
+
+                                <div className="payment-selection">
+                                    <div className="cash-on-delivery">
+                                        <div className="COD-heading">
+                                            <BsCashStack className="cash-icon" />
+                                            <p>Cash On Delivery</p>
+                                        </div>
+                                        <p className="COD-desp">Pay when your order is delivered</p>
+                                        <button className="COD-btn">Place An Order</button>
+                                    </div>
+
+                                    <div className="cash-on-delivery">
+                                        <div className="COD-heading">
+                                            <CiBank className="cash-icon" />
+                                            <p>Net Banking / Online Payment</p>
+                                        </div>
+                                        <p className="COD-desp">Pay securely using online payment method</p>
+                                        <button className="COD-btn">Pay Now</button>
+                                    </div>
+                                </div>
+
                             </div>
 
                         </div>

@@ -2110,6 +2110,149 @@ edit-user-profile,
     cursor: pointer;
 }
 
+/* Checkout */
+
+.checkout-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 2002;
+}
+
+.checkout-section .checkout-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 800px;
+    transform: translate(0%, -30%);
+}
+
+.checkout-section .checkout-heading {
+    text-align: center;
+    font-size: 24px;
+}
+
+.checkout-section .checkout-top-section {
+    width: 100%;
+    background-color: white;
+}
+
+.checkout-section .hr-line {
+    height: 1px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.checkout-section .checkout-deliver-to {
+    margin-top: 20px;
+    background-color: white;
+    padding: 5px;
+}
+
+.checkout-section .deliver-head-icon, .checkout-section .order-summary-heading, .checkout-section .payment-mode-heading, .checkout-section .cash-on-delivery .COD-heading {
+    display: flex;
+    gap: 10px;
+}
+
+.checkout-section .deliver-head-icon p, .checkout-section .order-summary-heading p, .checkout-section .payment-mode-heading p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #9c00ad;
+}
+
+.checkout-section .deliver-head-icon .location-icon, .checkout-section .order-summary-heading .package-icon, .checkout-section .payment-mode-heading .payment-icon {
+    color: #9c00ad;
+    font-size: 18px;
+}
+
+.checkout-section .edit-address {
+    font-size: 16px;
+    font-weight: 800;
+    color: #312727;
+    cursor: pointer;
+    text-decoration-line: none;
+}
+
+.checkout-section .edit-address:hover {
+    color: #9c00ad;
+}
+
+.checkout-section .deliver-address {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.checkout-section .address-details {
+    margin-bottom: 10px;
+}
+
+.checkout-section .address-details .username {
+    font-weight: 600;
+}
+
+.checkout-section .address-details .username,
+.checkout-section .address-details .phonenumber, .checkout-section .address-details .location {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.checkout-section .order-summary, .checkout-section .payment-mode {
+    margin-top: 25px;
+}
+
+.checkout-section .order-summary .order-details {
+    margin-bottom: 25px;
+}
+
+.checkout-section .order-summary .order-details p {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.checkout-section .payment-selection {
+    display: flex;
+    gap: 250px;
+    margin-bottom: 15px;
+}
+
+.checkout-section .cash-on-delivery .COD-heading {
+    margin-top: 20px;
+}
+
+.checkout-section .cash-on-delivery .COD-heading p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #312727;
+}
+
+.checkout-section .cash-on-delivery .COD-desp {
+    font-size: 12px;
+    margin-left: 23px;
+    margin-top: 8px;
+}
+
+.checkout-section .cash-on-delivery .COD-btn {
+    margin-top: 10px;
+    margin-left: 23px;
+    padding: 7px;
+    outline: none;
+    border: none;
+    background-color: #9c00ad;
+    color: white;
+    width: 100%;
+    font-weight: 600;
+    font-family: 15px;
+    cursor: pointer;
+}
+
+
 /* ------------------------- ADMIN --------------------------------- */
 
 .admin-form {
@@ -2434,7 +2577,7 @@ select {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    z-index: 1001;
+    z-index: 2002;
 }
 
 .modal-content {
@@ -2446,12 +2589,14 @@ select {
 
 .close-btn {
     float: right;
-    background: #9c00ad;
-    color: white;
+    color: #9c00ad;
+    background-color: white;
     border: none;
     padding: 5px 12px;
     cursor: pointer;
     border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 /* React Toast CSS */

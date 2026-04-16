@@ -57,7 +57,7 @@ function EditMyAddress() {
 
             alert("Address Updated Successfully");
 
-            navigate("/userProfile/myAddress/manage");
+            navigate(-1);
 
         } catch (err) {
             console.log(err);

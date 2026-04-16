@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import OtpForm from './OtpForm';
 
 
-function Login({ closeModal }) {
+function Login({ closeModal, loginFromCheckout  }) {
   const location = useLocation();
 
   const [email, setEmail] = useState(
@@ -71,6 +71,7 @@ function Login({ closeModal }) {
                 email={email}
                 setShowOtpForm = {setShowOtpForm}
                 closeModal={closeModal}
+                loginFromCheckout={loginFromCheckout}
                 />
             )}
 

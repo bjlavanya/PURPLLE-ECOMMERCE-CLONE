@@ -75,7 +75,7 @@ function MyAddressForm() {
 
             console.log(response.data)
             alert("Address added successfully")
-            navigate('/')
+            navigate('/addToCart', { state: { openPayment: true } })
 
             setPincode("")
             setLocation("")

@@ -2,12 +2,13 @@ import { useEffect, useRef } from 'react'
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
-import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
-function OtpForm({ length = 6, email, setShowOtpForm, closeModal }) {
+function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheckout }) {
     const [otp, setOtp] = useState(new Array(length).fill(""));
     const [errorMessage, setErrorMessage] = useState("");
     const [timer, setTimer] = useState(30);
+    const navigate = useNavigate();
     const [showResend, setShowResend] = useState(false);
     const inputRefs = useRef([]);
 
@@ -104,7 +105,32 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal }) {
 
             console.log("Response:", response.data);
             alert("Login Successfully")
-            window.location.reload();
+
+            // if (loginFromCheckout) {
+            //     navigate('/userprofile/myAddressForm');
+            // } else {
+            //    window.location.reload();
+            // }
+
+            if (loginFromCheckout) {
+
+                const res = await axios.get(
+                    `https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`
+                );
+
+                if (!res.data.address || res.data.address.length === 0) {
+                    closeModal()
+                    navigate('/userprofile/myAddressForm');
+                } else {
+                    setShowOtpForm(false)
+                    closeModal()
+                    navigate('/addToCart', { state: { openPayment: true } });
+                }
+
+            } else {
+                window.location.reload()
+            }
+
         } catch (error) {
             if (error.response) {
                 setErrorMessage(error.response.data.message);
