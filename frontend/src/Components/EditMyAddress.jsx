@@ -57,6 +57,7 @@ function EditMyAddress() {
 
             alert("Address Updated Successfully");
 
+            //navigate('/addTocart', {state: {openPayment : true}})
             navigate(-1);
 
         } catch (err) {

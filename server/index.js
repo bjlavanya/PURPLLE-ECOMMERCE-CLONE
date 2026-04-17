@@ -244,7 +244,7 @@ app.get('/products/:id', async (req, res) => {
 // PLACE AN ORDER
 
 app.post('/placeAnOrder', async (req, res) => {
-    const { userId, products, totalAmount } = req.body
+    const { userId, products, totalAmount, paymentMode, paymentId, paymentStatus } = req.body
 
     console.log("userId received:", userId);
 
@@ -253,7 +253,10 @@ app.post('/placeAnOrder', async (req, res) => {
     const orderList = new Orders({
         userEmail: user.email,
         products: products,
-        totalAmount: totalAmount
+        totalAmount: totalAmount,
+        paymentMode: paymentMode,
+        paymentId: null,
+        paymentStatus: 'Pending'
     })
 
     await orderList.save()
