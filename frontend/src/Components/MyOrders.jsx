@@ -9,7 +9,7 @@ function MyOrders() {
   const [orders, setOrders] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
-  const navigate =  useNavigate()
+  const navigate = useNavigate()
 
   const userId = localStorage.getItem("userId");
 
@@ -72,17 +72,40 @@ function MyOrders() {
                     return (
                       <div className="your-order-section" key={order._id}>
                         <div className="product-details-img">
-                          <img src={order.products[0].productImage} alt="" />
 
-                          <div className="order-product-details">
-                            <p className="order-id" style={{ fontWeight: '500' }}> Order ID: ORD{order._id.substr(15,)} </p>
+                          <div className="userorder-details">
+                            <div className="order-id-date">
+                              <p className="order-id">ORDER ID : <b>ORD49846</b> </p>
+                              <p className="order-date">ORDER DATE: 25-01-2023</p>
+                            </div>
 
-                            <p className="productname"> {order.products[0].productName} (+{order.products.length - 1} items) </p>
+                            <div className="user-order-status">
+                              <p className="orderstatus">Order Status:</p>
+                              <p>Order Processing</p>
+                            </div>
 
-                            <p className="order-date"> Order Date: {formattedOrderDate} </p>
-
-                            <button onClick={() => viewProducts(order.products)}> View All </button>
+                            <div className="payment-details">
+                              <p className="total">Total Amount: 5000</p>
+                              <p className="payment-mode">Payement: COD</p>
+                            </div>
                           </div>
+
+                          <div className="line-section"></div>
+
+                          {/* <div className="order-products-section">
+                            <img src={order.products[0].productImage} alt="" />
+
+                            <div className="order-product-details">
+                              <p className="order-id" style={{ fontWeight: '500' }}> Order ID: ORD{order._id.substr(15,)} </p>
+
+                              <p className="productname"> {order.products[0].productName} (+{order.products.length - 1} items) </p>
+
+                              <p className="order-date"> Order Date: {formattedOrderDate} </p>
+
+                              <button onClick={() => viewProducts(order.products)}> View All </button>
+                            </div>
+                          </div> */}
+
                         </div>
 
                         <p className="total-amount">₹{order.totalAmount}</p>

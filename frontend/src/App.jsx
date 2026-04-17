@@ -17,6 +17,7 @@ import EditProfile from './Components/EditProfile';
 import MyAddressForm from './Components/MyAddressForm';
 import MyAddressView from './Components/MyAddressView';
 import EditMyAddress from './Components/EditMyAddress';
+import UserOrders from './Components/UserOrders';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/userProfile/myAddressForm" element={<MyAddressForm />} />
           <Route path="/userProfile/myAddress/manage" element={<MyAddressView />} />
           <Route path="/userProfile/myAddress/edit" element={<EditMyAddress />} />
+          <Route path="/userProfile/myOrders" element={<UserOrders />} />
       </Routes>
       
     </>

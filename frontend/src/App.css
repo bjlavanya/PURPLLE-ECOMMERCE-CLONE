@@ -1620,7 +1620,7 @@ footer .footer-links a:hover {
 .user-profile,
 .my-orders-section,
 edit-user-profile,
-.user-my-address {
+.user-my-address, .user-orders-section {
     background-color: #f3eaf5;
     width: 100%;
     min-height: 629px;
@@ -1775,7 +1775,7 @@ edit-user-profile,
     margin-top: 20px;
 }
 
-.my-orders button {
+.my-orders button, .user-orders-section .user-orders-details button {
     background: none;
     outline: none;
     border: none;
@@ -1785,38 +1785,38 @@ edit-user-profile,
     margin-top: 5px;
 }
 
-.my-orders h2 {
+.my-orders h2, .user-orders-section .my-orders-heading {
     font-size: 16px;
     font-weight: 600;
     color: #2c414c;
 }
 
-.my-order-details .line {
+.my-order-details .line, .user-orders-details .line {
     height: 1px;
-    width: 725px;
+    width: 950px;
     margin: 20px 0;
 }
 
 .my-order-details .no-my-orders-section img {
-    margin-left: 223px;
+    margin-left: 330px;
     width: 300px;
 }
 
 .my-order-details .ordering-empty-section .main-heading {
-    margin-left: 170px;
+    margin-left: 300px;
     padding: 20px;
     font-size: 16px;
     color: #2c414c;
 }
 
 .my-order-details .ordering-empty-section .sub-heading {
-    margin-left: 290px;
+    margin-left: 420px;
     font-size: 14px;
     color: #9c00ad;
 }
 
 .my-order-details .ordering-empty-section button {
-    margin-left: 280px;
+    margin-left: 360px;
     padding: 20px;
     font-size: 16px;
     color: #2c414c;
@@ -1833,10 +1833,10 @@ edit-user-profile,
 .your-order-section {
     width: 100%;
     padding: 18px;
-    display: flex;
-    border: 1px solid #f2f2f2;
-    justify-content: space-between;
-    background-color: #f2f2f2;
+    /* display: flex; */
+    border: 2px solid #f2f2f2;
+    background-color: white;
+    /* justify-content: space-between; */
     border-radius: 10px;
     margin-bottom: 15px;
 }
@@ -1845,10 +1845,10 @@ edit-user-profile,
     width: 120px;
 }
 
-.your-order-section .product-details-img {
+/* .your-order-section .product-details-img {
     display: flex;
     gap: 20px;
-}
+} */
 
 .your-order-section .product-details-img button {
     width: 50%;
@@ -1861,7 +1861,31 @@ edit-user-profile,
     cursor: pointer;
 }
 
-.your-order-section .order-product-details,
+.your-order-section .userorder-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.your-order-section .userorder-details .order-id-date {
+    margin-bottom: 20px;
+}
+
+.your-order-section .userorder-details .order-id-date .order-id, .your-order-section .userorder-details .order-id-date .order-date {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #312727;
+}
+
+.your-order-section .line-section {
+    height: 1px;
+    width: 100%;
+    margin-right: 10px;
+    background-color: #e1dada;
+    margin-bottom: 10px;
+}
+
+/* .your-order-section .order-product-details,
 .your-order-section .total-amount,
 .your-order-section .status {
     margin-top: 10px;
@@ -1926,7 +1950,7 @@ edit-user-profile,
 .order-products .product-qty {
     margin: 2px 0;
     font-size: 14px;
-}
+} */
 
 /* ---------------------------- EDIT PROFILE -------------------------- */
 
@@ -2252,6 +2276,17 @@ edit-user-profile,
     cursor: pointer;
 }
 
+/* User orders */
+
+.user-orders-details, .my-order-details {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #c2bfbf;
+    margin-left: 280px;
+    background-color: white;
+    padding: 20px;
+}
 
 /* ------------------------- ADMIN --------------------------------- */
 

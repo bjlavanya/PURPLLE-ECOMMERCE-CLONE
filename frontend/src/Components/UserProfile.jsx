@@ -75,7 +75,7 @@ function UserProfile() {
           </Link>
 
           <div className="my-order-div">
-            <div className="my-order">
+            <Link className="my-order" style={{textDecorationLine:'none'}} to='/userProfile/myOrders'>
               <div className="icons">
                 <PiHeadsetLight className='userprofile-icon' />
               </div>
@@ -84,7 +84,7 @@ function UserProfile() {
                 <p className='order-desp'>Help regarding any doubts</p>
               </div>
 
-            </div>
+            </Link>
             <p className='gt'>&gt;</p>
           </div>
 
