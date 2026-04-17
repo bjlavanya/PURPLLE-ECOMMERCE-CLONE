@@ -482,11 +482,11 @@ app.post("/verifyPayment", async (req, res) => {
 const pdfdocument = new pdfkit
 pdfdocument.pipe(fs.createWriteStream("billpdf.pdf"))
 
-pdfdocument.image("/image/purpllelogo.svg", {
-    fit:[200, 200],
-    align:'left',
-    valign: 'left'
-})
+// pdfdocument.image("/image/purpllelogo.svg", {
+//     fit:[200, 200],
+//     align:'left',
+//     valign: 'left'
+// })
 
 pdfdocument.text('Welcome to Purplle Website Billing PDf')
     .fontSize(25)
