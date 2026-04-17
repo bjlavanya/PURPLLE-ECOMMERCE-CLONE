@@ -480,7 +480,7 @@ app.post("/verifyPayment", async (req, res) => {
 // PDF GENERATE OF PAYMENT & ORDER
 
 const pdfdocument = new pdfkit
-pdfdocument.pipe(fss.createWriteStream("billpdf.pdf"))
+pdfdocument.pipe(fs.createWriteStream("billpdf.pdf"))
 
 pdfdocument.image("/image/purpllelogo.svg", {
     fit:[200, 200],
