@@ -14,8 +14,7 @@ const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
 const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
 const Razorpay = require('razorpay');
 const crypto = require("crypto");
-const pdfkit = require("pdfkit")
-const fs = require("fs")
+const pdfService = require('../service/gstInvoicePdf')
 
 // CREATED APP
 const app = express()
@@ -479,19 +478,17 @@ app.post("/verifyPayment", async (req, res) => {
 
 // PDF GENERATE OF PAYMENT & ORDER
 
-const pdfdocument = new pdfkit
-pdfdocument.pipe(fs.createWriteStream("billpdf.pdf"))
+app.get('/gstInvoicePdf', async (req, res) => {
+    const stream = res.writeHead(200, {
+        'Content-Type' : 'application/pdf',
+        'Content-Disposition' : 'attachment:filename = gstInvoice.pdf'
+    })
 
-// pdfdocument.image("/image/purpllelogo.svg", {
-//     fit:[200, 200],
-//     align:'left',
-//     valign: 'left'
-// })
-
-pdfdocument.text('Welcome to Purplle Website Billing PDf')
-    .fontSize(25)
-
-pdfdocument.end()
+    pdfService.gstInvoicePdf(
+        (chunk) => stream.write(chunk),
+        () => stream.end()
+    )
+})
 
 //Server running
 app.listen(PORT, () => {
