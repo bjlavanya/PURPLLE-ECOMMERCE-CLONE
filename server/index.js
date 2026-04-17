@@ -244,7 +244,7 @@ app.get('/products/:id', async (req, res) => {
 // PLACE AN ORDER
 
 app.post('/placeAnOrder', async (req, res) => {
-    const { userId, products, totalAmount, paymentMode, paymentId, paymentStatus } = req.body
+    const { userId, products, totalAmount, paymentMode } = req.body
 
     console.log("userId received:", userId);
 
@@ -448,7 +448,8 @@ app.post("/verifyPayment", async (req, res) => {
             products,
             totalAmount,
             paymentId: razorpay_payment_id,
-            paymentStatus: "Success"
+            paymentStatus: "Success",
+            paymentMode: 'Net Bankking / Online Payment'
         });
 
         res.status(200).json({
