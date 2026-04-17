@@ -14,7 +14,7 @@ const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
 const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
 const Razorpay = require('razorpay');
 const crypto = require("crypto");
-const pdfService = require('../service/gstInvoicePdf')
+const pdfService = require('./service/gstInvoicePdf')
 
 // CREATED APP
 const app = express()
