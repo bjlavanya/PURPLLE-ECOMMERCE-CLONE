@@ -14,10 +14,6 @@ const gstInvoicePdf = () => {
         doc
             .fontSize(20)
             .text('Thank you for your orders!!!', 100, 100)
-            .movedown()
-
-        doc
-            .text("Team purplle")
 
         doc.end()
     })
