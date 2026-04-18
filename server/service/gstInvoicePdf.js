@@ -1,14 +1,24 @@
 const PDFDocument = require('pdfkit');
 
-function gstInvoicePdf(dataCallBack, endCallBack) {
-    const doc = new PDFDocument()
-    doc.on('data', dataCallBack)
-    doc.on('data', endCallBack)
-    doc
-        .fontSize(25)
-        .text('Some text with an embedded font!', 100, 100);
+function gstInvoicePdf() {
+    return new Promise((resolve) => {
+        const doc = new PDFDocument()
+        const buffers = []
+        doc.on('data', buffers.push.bind(buffers))
+        doc.on('end', () => {
+            resolve(Buffer.concat(buffers))
+        })
 
-    doc.end()
+        doc
+            .fontSize(20)
+            .text('Thank you for your orders!!!', 100, 100)
+            .movedown()
+
+        doc
+            .text("Team purplle")
+
+        doc.end()
+    })
 }
 
 module.exports = { gstInvoicePdf }

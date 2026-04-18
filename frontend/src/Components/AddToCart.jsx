@@ -212,7 +212,12 @@ function AddToCart() {
                         })
 
                         if (verify.data.success) {
-                            alert('Paynent Successfull')
+
+                            await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/sendGSTInvoice', {
+                                userId: userId
+                            })
+
+                            alert('Payment Successfull and Invoice send to mail')
                             navigate('/myOrders')
                         }
                     }

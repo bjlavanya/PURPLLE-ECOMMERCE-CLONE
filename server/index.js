@@ -8,14 +8,15 @@ const Orders = require('./models/Orders')
 const multer = require("multer")
 const path = require("path")
 const authRoutes = require('./LoginAuth/Auth')
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const OrderProcessingMail = require('./OrderMail/OrderProcessingMail');
-const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail');
+const cloudinary = require('cloudinary').v2
+const { CloudinaryStorage } = require('multer-storage-cloudinary')
+const OrderProcessingMail = require('./OrderMail/OrderProcessingMail')
+const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail')
 const Razorpay = require('razorpay');
 const crypto = require("crypto");
-const pdfService = require('./service/gstInvoicePdf')
 const fs = require('fs')
+const GSTBillMail = require('./InvoiceMail/GSTBillMail');
+const { gstInvoicePdf } = require('./service/gstInvoicePdf');
 
 // CREATED APP
 const app = express()
@@ -479,16 +480,18 @@ app.post("/verifyPayment", async (req, res) => {
 
 // PDF GENERATE OF PAYMENT & ORDER
 
-app.get('/gstInvoicePdf', async (req, res) => {
-    const stream = res.writeHead(200, {
-        'Content-Type' : 'application/pdf',
-        'Content-Disposition' : 'attachment:filename = gstInvoice.pdf'
-    })
+app.get('/sendGSTInvoice', async (req, res) => {
+    const {userId} = req.body
 
-    pdfService.gstInvoicePdf(
-        (chunk) => stream.write(chunk),
-        () => stream.end()
-    )
+    try {
+        const user = await Users.findById(userId)
+
+        await gstInvoicePdf(user.email)
+        res.json({success:true})
+    }
+    catch(err) {
+        console.log(err)
+    }
 })
 
 //Server running
