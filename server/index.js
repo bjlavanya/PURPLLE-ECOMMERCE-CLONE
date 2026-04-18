@@ -480,7 +480,7 @@ app.post("/verifyPayment", async (req, res) => {
 
 // PDF GENERATE OF PAYMENT & ORDER
 
-app.get('/sendGSTInvoice', async (req, res) => {
+app.post('/sendGSTInvoice', async (req, res) => {
     const {userId} = req.body
 
     try {
