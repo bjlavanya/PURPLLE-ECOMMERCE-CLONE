@@ -11,11 +11,12 @@ const GSTBillMail = async (email) => {
             to: `${email}`,
             from: process.env.EMAIL_USER,
             subject: 'Your Order Confirmed',
-            html: `
-            <h3>Dear Customer</h3>
-            <p>Good news! Your order has been delivered confirmed successfully. Your order details has been attached in this mail.  View attachment. Thank you for shopping with us!</p>
-            <h3>Thank You, Team Purplle</h3>
-            `,
+            // html: `
+            // <h3>Dear Customer</h3>
+            // <p>Good news! Your order has been delivered confirmed successfully. Your order details has been attached in this mail.  View attachment. Thank you for shopping with us!</p>
+            // <h3>Thank You, Team Purplle</h3>
+            // `,
+            text: 'Your Order confirmed',
             attachments: [
                 {
                     content: pdfBuffer.toString("base64"),
