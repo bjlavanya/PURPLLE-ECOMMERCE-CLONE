@@ -1,6 +1,6 @@
 const sgMail = require('@sendgrid/mail');
 
-const gstInvoicePdf = require('../service/gstInvoicePdf')
+const {gstInvoicePdf} = require('../service/gstInvoicePdf')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const GSTBillMail = async (email) => {
