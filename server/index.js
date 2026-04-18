@@ -16,7 +16,6 @@ const Razorpay = require('razorpay');
 const crypto = require("crypto");
 const fs = require('fs')
 const GSTBillMail = require('./InvoiceMail/GSTBillMail');
-const { gstInvoicePdf } = require('./service/gstInvoicePdf');
 
 // CREATED APP
 const app = express()
@@ -486,7 +485,7 @@ app.post('/sendGSTInvoice', async (req, res) => {
     try {
         const user = await Users.findById(userId)
 
-        await gstInvoicePdf(user.email)
+        await GSTBillMail(user.email)
         res.json({success:true})
     }
     catch(err) {
