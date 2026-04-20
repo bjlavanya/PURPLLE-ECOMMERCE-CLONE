@@ -29,32 +29,40 @@ const gstInvoicePdf = () => {
             .stroke();
 
         doc.font('Helvetica-Bold')
-            .fontSize(16)
+            .fontSize(14)
             .text('GST INVOICE RECEIPT', 50, 120, {align:'left'})
 
-        doc.font('Helvetica')
-            .fontSize(12)
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
             .text('Invoice No.: ', 50,150, {align:'left'})
 
         doc.font('Helvetica')
-            .fontSize(12)
+            .fontSize(10)
             .text('INV233511 ', 120,150, {align:'left'})
 
-        doc.font('Helvetica')
-            .fontSize(12)
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
             .text('Order ID: ', 50,170, {align:'left'})
 
         doc.font('Helvetica')
-            .fontSize(12)
+            .fontSize(10)
             .text('ORD45533 ', 120,170, {align:'left'})
 
-        doc.font('Helvetica')
-            .fontSize(12)
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
             .text('Order Date: ', 50,190, {align:'left'})
 
         doc.font('Helvetica')
-            .fontSize(12)
+            .fontSize(10)
             .text('INV233511 ', 120,190, {align:'left'})
+
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
+            .text('GSTIN.: ', 200,150, {align:'right'})
+
+        doc.font('Helvetica')
+            .fontSize(10)
+            .text('GSTK4698498MKJF77', 200,150, {align:'right'})
 
         doc.end()
     })
