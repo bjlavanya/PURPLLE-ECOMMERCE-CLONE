@@ -33,11 +33,11 @@ const gstInvoicePdf = () => {
 
         doc.font('Helvetica')
             .fontSize(12)
-            .text('Invoice No.: ', 50,135, {align:'left'})
+            .text('Invoice No.: ', 50,150, {align:'left'})
 
         doc.font('Helvetica')
             .fontSize(12)
-            .text('INV233511 ', 70,135, {align:'left'})
+            .text('INV233511 ', 90,135, {align:'left'})
 
         doc.end()
     })
