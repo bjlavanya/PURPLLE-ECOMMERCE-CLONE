@@ -80,6 +80,12 @@ const gstInvoicePdf = () => {
             .fontSize(10)
             .text('Success', 430,190, {align:'left'})
 
+         doc.moveTo(50, 200)
+            .lineTo(550, 200)
+            .lineWidth(1)      
+            .strokeColor('#9d9696') 
+            .stroke();
+
         doc.end()
     })
 }
