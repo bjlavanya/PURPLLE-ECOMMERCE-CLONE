@@ -112,39 +112,39 @@ const gstInvoicePdf = () => {
             .fontSize(10);
 
         // ===== Table Header =====
-doc.text('Product', 50, 325);
-doc.text('Qty', 180, 325);
-doc.text('Base Price', 240, 325);
-doc.text('CGST (9%)', 340, 325);
-doc.text('SGST (9%)', 420, 325);
-doc.text('Total', 500, 325);
+        doc.text('Product', 50, 325);
+        doc.text('Qty', 180, 325);
+        doc.text('Base Price', 240, 325);
+        doc.text('CGST (9%)', 340, 325);
+        doc.text('SGST (9%)', 420, 325);
+        doc.text('Total', 500, 325);
 
-doc.moveTo(50, 340)
-    .lineTo(550, 340)
-    .stroke();
+        doc.moveTo(50, 340)
+            .lineTo(550, 340)
+            .stroke();
 
-doc.font('Helvetica');
+        doc.font('Helvetica');
 
-doc.text('Face Wash', 50, 350);
-doc.text('2', 180, 350);
-doc.text('Rs.169', 240, 350);
-doc.text('Rs.15.5', 340, 350);
-doc.text('Rs.15.5', 420, 350);
-doc.text('Rs.200', 500, 350);
+        doc.text('Face Wash', 50, 350);
+        doc.text('2', 180, 350);
+        doc.text('Rs.169', 240, 350);
+        doc.text('Rs.15.5', 340, 350);
+        doc.text('Rs.15.5', 420, 350);
+        doc.text('Rs.200', 500, 350);
 
-doc.text('Shampoo', 50, 370);
-doc.text('1', 180, 370);
-doc.text('Rs.254', 240, 370);
-doc.text('Rs.23', 340, 370);
-doc.text('Rs.23', 420, 370);
-doc.text('Rs.300', 500, 370);
+        doc.text('Shampoo', 50, 370);
+        doc.text('1', 180, 370);
+        doc.text('Rs.254', 240, 370);
+        doc.text('Rs.23', 340, 370);
+        doc.text('Rs.23', 420, 370);
+        doc.text('Rs.300', 500, 370);
 
-doc.text('Lipstick', 50, 390);
-doc.text('1', 180, 390);
-doc.text('Rs.424', 240, 390);
-doc.text('Rs.38', 340, 390);
-doc.text('Rs.38', 420, 390);
-doc.text('Rs.500', 500, 390);
+        doc.text('Lipstick', 50, 390);
+        doc.text('1', 180, 390);
+        doc.text('Rs.424', 240, 390);
+        doc.text('Rs.38', 340, 390);
+        doc.text('Rs.38', 420, 390);
+        doc.text('Rs.500', 500, 390);
 
         doc.moveTo(50, 420)
             .lineTo(550, 420)
@@ -154,25 +154,25 @@ doc.text('Rs.500', 500, 390);
             .fontSize(10);
 
         doc.font('Helvetica')
-   .fontSize(10);
+            .fontSize(10);
 
-doc.text('Subtotal', 380, 435);
-doc.text('Rs.1000', 500, 435);
+        doc.text('Subtotal', 380, 435);
+        doc.text('Rs.1000', 500, 435);
 
-doc.text('Shipping Fee', 380, 455);
-doc.text('Rs.50', 500, 455);
+        doc.text('Shipping Fee', 380, 455);
+        doc.text('Rs.50', 500, 455);
 
-doc.text('Platform Fee', 380, 475);
-doc.text('Rs.10', 500, 475);
+        doc.text('Platform Fee', 380, 475);
+        doc.text('Rs.10', 500, 475);
 
-doc.font('Helvetica-Bold');
+        doc.font('Helvetica-Bold');
 
-doc.moveTo(50, 495)
-   .lineTo(550, 495)
-   .stroke();
+        doc.moveTo(50, 495)
+            .lineTo(550, 495)
+            .stroke();
 
-doc.text('Grand Total', 380, 505);
-doc.text('Rs.1060', 500, 505);
+        doc.text('Grand Total', 380, 505);
+        doc.text('Rs.1060', 500, 505);
 
         doc.end()
     })
