@@ -16,14 +16,10 @@ const gstInvoicePdf = () => {
         //     .text('Thank you for your orders!!!', 100, 100)
 
         doc.image('./image/purpllelogo.jpg', 50, 45, { width: 50 })
-            .fontSize(20)
-            .text('ACME Inc.', 110, 57)
             .fontSize(10)
-            .text('101-B, 1st Floor, Raheja Plaza -I, LBS Marg', 200, 65, { align: 'right' })
-            .text('Mumbai, Maharashtra, India, 400086', 200, 80, { align: 'right' })
+            .text('101-B, 1st Floor, Raheja Plaza -I, LBS Marg', 200, 50, { align: 'right' })
+            .text('Mumbai, Maharashtra, India, 400086', 200, 70, { align: 'right' })
             .moveDown();
-
-      
 
         doc.end()
     })
