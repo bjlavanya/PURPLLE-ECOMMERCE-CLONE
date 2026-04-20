@@ -80,25 +80,80 @@ const gstInvoicePdf = () => {
             .fontSize(10)
             .text('Success', 430,190, {align:'left'})
 
-         doc.moveTo(50, 230)
-            .lineTo(550, 230)
+         doc.moveTo(50, 210)
+            .lineTo(550, 210)
             .lineWidth(1)      
             .strokeColor('#9d9696') 
             .stroke();
 
          doc.font('Helvetica-Bold')
             .fontSize(14)
-            .text('Billing Address: ', 50, 240, {align:'left'})
+            .text('Billing Address: ', 50, 220, {align:'left'})
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Lava ', 50,260, {align:'left'})
+            .text('Lava ', 50,240, {align:'left'})
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Mallikatte, mangalore, Karnataka -573425 ', 50,280, {align:'left'})
+            .text('Mallikatte, mangalore, Karnataka -573425 ', 50,260, {align:'left'})
+
+        doc.moveTo(50, 280)
+            .lineTo(550, 280)
+            .lineWidth(1)      
+            .strokeColor('#9d9696') 
+            .stroke();
+
+        doc.font('Helvetica-Bold')
+            .fontSize(12)
+            .text('Product Details (GST Inclusive Taxes)', 50, 300);
+
+      
+doc.font('Helvetica-Bold')
+   .fontSize(10);
+
+doc.text('Product', 50, 300);
+doc.text('Qty', 200, 300);
+doc.text('Base Price', 260, 300);
+doc.text('GST (18%)', 360, 300);
+doc.text('Total', 460, 300);
+
+doc.moveTo(50, 315)
+   .lineTo(550, 315)
+   .stroke();
+
+doc.font('Helvetica');
+
+doc.text('Face Wash', 50, 325);
+doc.text('2', 200, 325);
+doc.text('₹169', 260, 325);
+doc.text('₹31', 360, 325);
+doc.text('₹200', 460, 325);
+
+doc.moveTo(50, 340)
+   .lineTo(550, 340)
+   .stroke();
+
+doc.text('Shampoo', 50, 350);
+doc.text('1', 200, 350);
+doc.text('₹254', 260, 350);
+doc.text('₹46', 360, 350);
+doc.text('₹300', 460, 350);
+
+doc.moveTo(50, 365)
+   .lineTo(550, 365)
+   .stroke();
+
+doc.text('Lipstick', 50, 375);
+doc.text('1', 200, 375);
+doc.text('₹424', 260, 375);
+doc.text('₹76', 360, 375);
+doc.text('₹500', 460, 375);
+
+doc.moveTo(50, 390)
+   .lineTo(550, 390)
+   .stroke();
         
-
         doc.end()
     })
 }
