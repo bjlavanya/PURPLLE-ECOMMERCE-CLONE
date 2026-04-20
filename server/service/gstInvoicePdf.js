@@ -153,23 +153,26 @@ doc.text('Rs.500', 500, 390);
         doc.font('Helvetica')
             .fontSize(10);
 
-        doc.text('Subtotal', 360, 435);
-        doc.text('Rs.1000', 460, 435);
+        doc.font('Helvetica')
+   .fontSize(10);
 
-        doc.text('Shipping Fee', 360, 455);
-        doc.text('Rs.50', 460, 455);
+doc.text('Subtotal', 380, 435);
+doc.text('Rs.1000', 500, 435);
 
-        doc.text('Platform Fee', 360, 475);
-        doc.text('rs.10', 460, 475);
+doc.text('Shipping Fee', 380, 455);
+doc.text('Rs.50', 500, 455);
 
-        doc.font('Helvetica-Bold');
+doc.text('Platform Fee', 380, 475);
+doc.text('Rs.10', 500, 475);
 
-        doc.moveTo(50, 495)
-            .lineTo(550, 495)
-            .stroke();
+doc.font('Helvetica-Bold');
 
-        doc.text('Grand Total', 360, 505);
-        doc.text('Rs.1060', 460, 505);
+doc.moveTo(300, 495)
+   .lineTo(550, 495)
+   .stroke();
+
+doc.text('Grand Total', 380, 505);
+doc.text('Rs.1060', 500, 505);
 
         doc.end()
     })
