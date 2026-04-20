@@ -1834,7 +1834,7 @@ edit-user-profile,
     width: 100%;
     padding: 18px;
     /* display: flex; */
-    border: 2px solid #f2f2f2;
+    border: 2px solid #ded7d7;
     background-color: white;
     /* justify-content: space-between; */
     border-radius: 10px;
@@ -1871,10 +1871,11 @@ edit-user-profile,
     margin-bottom: 20px;
 }
 
-.your-order-section .userorder-details .order-id-date .order-id, .your-order-section .userorder-details .order-id-date .order-date {
-    font-size: 14px;
+.your-order-section .userorder-details .order-id-date .order-id, .your-order-section .userorder-details .order-id-date .order-date, .your-order-section .user-order-status p, .your-order-section .payment-details p {
+    font-size: 13px;
     margin-bottom: 5px;
     color: #312727;
+    font-weight: 600;
 }
 
 .your-order-section .line-section {
@@ -1883,6 +1884,84 @@ edit-user-profile,
     margin-right: 10px;
     background-color: #e1dada;
     margin-bottom: 10px;
+}
+
+.your-order-section .ordered-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.your-order-section .ordered-heading .product-header p {
+    font-size: 14px;
+    color: #312727;
+    font-weight: bold;
+}
+
+.your-order-section .ordered-heading .view-details-product p {
+    font-size: 15px;
+    color: #9c00ad;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.your-order-section .ordered-heading {
+    margin-bottom: 20px;
+}
+
+.your-order-section .product-delivery-details {
+    display: flex;
+    gap: 100px;
+}
+
+.your-order-section .product-delivery-details .products-details .product-name, .your-order-section .product-delivery-details .products-details p {
+    font-size: 14px;
+    font-weight: 600;
+    word-break: break-all;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.your-order-section .deliver-address-list {
+    display: flex;
+    gap: 60px;
+}
+
+.your-order-section .product-delivery-details .products-list {
+    display: flex;
+    gap: 20px;
+}
+
+.your-order-section .products-details {
+    margin-top: 15px;
+}
+
+.your-order-section .product-delivery-details .products-details .view-all {
+    font-size: 14px;
+    color: #9c00ad;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.your-order-section .flex-line {
+    height: 130px;
+    width: 2px;
+    background-color: #999595;
+}
+
+.your-order-section .address-header {
+    font-size: 15px;
+    font-weight: bold;
+    color: #9c00ad;
+}
+
+.your-order-section .address-list {
+    margin-top: 10px;
+}
+
+.your-order-section .address-list p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 /* .your-order-section .order-product-details,

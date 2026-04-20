@@ -7,12 +7,37 @@ function ManageOrders() {
   const [orders, setOrders] = useState([])
   const [showModal, setShowModal] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
+  const [user, setUser] = useState({})
+  const [addresses, setAddresses] = useState({})
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageOrders")
       .then(orders => setOrders(orders.data))
       .catch(err => console.log(err))
   }, [])
+
+  useEffect(() => {
+    if (userId) {
+      axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
+        .then(res => setUser(res.data))
+        .catch(err => console.log(err))
+    }
+  }, [userId])
+
+  useEffect(() => {
+  orders.map((order) => {
+
+    axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageOrderAddress/${order.userEmail}`)
+      .then(res => {
+        setAddresses(prev => ({
+          ...prev,
+          [order.userEmail]: res.data.address[0]
+        }))
+      })
+      .catch(err => console.log(err))
+
+  })
+}, [orders])
 
   const viewProducts = (products) => {
     setSelectedProducts(products)
@@ -37,6 +62,7 @@ function ManageOrders() {
               <tr>
                 <th>Sl.No</th>
                 <th>User Email</th>
+                <th>User Address</th>
                 <th>Product Details</th>
                 <th>Total Amount</th>
                 <th>Status</th>
@@ -50,6 +76,7 @@ function ManageOrders() {
                   return <tr key={order._id}>
                     <td>{index+1 }</td>
                     <td>{order.userEmail}</td>
+                    <td>{addresses[order.userEmail].location}</td>
                     <td className='click' onClick={() => viewProducts(order.products)}>Click to View Products</td>
                     <td>{order.totalAmount}</td>
                     <td>{order.orderStatus}</td>

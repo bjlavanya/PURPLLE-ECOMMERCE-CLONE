@@ -111,13 +111,17 @@ const gstInvoicePdf = () => {
         doc.font('Helvetica-Bold')
             .fontSize(10);
 
-        // ===== Table Header =====
         doc.text('Product', 50, 325);
         doc.text('Qty', 180, 325);
         doc.text('Base Price', 240, 325);
         doc.text('CGST (9%)', 340, 325);
         doc.text('SGST (9%)', 420, 325);
         doc.text('Total', 500, 325);
+        doc.text('Product', 50, 325);
+        doc.text('Qty', 200, 325);
+        doc.text('Base Price', 260, 325);
+        doc.text('GST (18%)', 360, 325);
+        doc.text('Total', 460, 325);
 
         doc.moveTo(50, 340)
             .lineTo(550, 340)
@@ -145,6 +149,22 @@ const gstInvoicePdf = () => {
         doc.text('Rs.38', 340, 390);
         doc.text('Rs.38', 420, 390);
         doc.text('Rs.500', 500, 390);
+        doc.text('2', 200, 350);
+        doc.text('Rs.169', 260, 350);
+        doc.text('Rs.31', 360, 350);
+        doc.text('Rs.200', 460, 350);
+
+        doc.text('Shampoo', 50, 370);
+        doc.text('1', 200, 370);
+        doc.text('Rs.254', 260, 370);
+        doc.text('Rs46', 360, 370);
+        doc.text('Rs.300', 460, 370);
+
+        doc.text('Lipstick', 50, 390);
+        doc.text('1', 200, 390);
+        doc.text('Rs.424', 260, 390);
+        doc.text('Rs.76', 360, 390);
+        doc.text('Rs.500', 460, 390);
 
         doc.moveTo(50, 420)
             .lineTo(550, 420)
@@ -164,6 +184,14 @@ const gstInvoicePdf = () => {
 
         doc.text('Platform Fee', 380, 475);
         doc.text('Rs.10', 500, 475);
+        doc.text('Subtotal', 360, 435);
+        doc.text('Rs.1000', 460, 435);
+
+        doc.text('Shipping Fee', 360, 455);
+        doc.text('Rs.50', 460, 455);
+
+        doc.text('Platform Fee', 360, 475);
+        doc.text('rs.10', 460, 475);
 
         doc.font('Helvetica-Bold');
 
@@ -173,6 +201,8 @@ const gstInvoicePdf = () => {
 
         doc.text('Grand Total', 380, 505);
         doc.text('Rs.1060', 500, 505);
+        doc.text('Grand Total', 360, 505);
+        doc.text('Rs.1060', 460, 505);
 
         doc.end()
     })

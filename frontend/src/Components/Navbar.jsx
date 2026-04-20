@@ -63,7 +63,6 @@ function Navbar() {
                             <li>
                                 <a href="">SHOP CATEGORIES</a>
                             </li>
-                            <li><a href="#">BRANDS</a></li>
                             <li>
                                 <Link to="/offer">OFFERS</Link>
                             </li>

@@ -10,7 +10,8 @@ function MyOrders() {
   const [showModal, setShowModal] = useState(false)
   const [selectedProducts, setSelectedProducts] = useState([])
   const navigate = useNavigate()
-
+  const [user, setUser] = useState({})
+  const address = user?.address?.[0]
   const userId = localStorage.getItem("userId");
 
 
@@ -18,6 +19,14 @@ function MyOrders() {
     if (userId) {
       axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageOrders/${userId}`)
         .then(res => setOrders(res.data))
+        .catch(err => console.log(err))
+    }
+  }, [userId])
+
+  useEffect(() => {
+    if (userId) {
+      axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
+        .then(res => setUser(res.data))
         .catch(err => console.log(err))
     }
   }, [userId])
@@ -70,54 +79,76 @@ function MyOrders() {
                     const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
 
                     return (
-                      <div className="your-order-section" key={order._id}>
-                        <div className="product-details-img">
+                      <>
+                        <div className="your-order-section" key={order._id}>
+                          <div className="product-details-img">
 
-                          <div className="userorder-details">
-                            <div className="order-id-date">
-                              <p className="order-id">ORDER ID : <b>ORD49846</b> </p>
-                              <p className="order-date">ORDER DATE: 25-01-2023</p>
+                            <div className="userorder-details">
+                              <div className="order-id-date">
+                                <p className="order-id">Order ID : <b>ORD{order._id.substr(15,)}</b> </p>
+                                <p className="order-date">Order Date:{formattedOrderDate}</p>
+                              </div>
+
+                              <div className="user-order-status">
+                                <p className="orderstatus">Order Status:</p>
+                                <p>{order.orderStatus}</p>
+                              </div>
+
+                              <div className="payment-details">
+                                <p className="total">Total Amount: {order.totalAmount}</p>
+                                <p className="payment-mode">Payment: {order.paymentMode}</p>
+                              </div>
                             </div>
 
-                            <div className="user-order-status">
-                              <p className="orderstatus">Order Status:</p>
-                              <p>Order Processing</p>
+                            <div className="line-section"></div>
+
+                            <div className="products-ordered-list">
+                              <div className="ordered-heading">
+                                <div className="product-header">
+                                  <p>Prodcuts ({order.products.length} items)</p>
+                                </div>
+                                <div className="view-details-product">
+                                  <p onClick={() => viewProducts(order.products)}>View Details</p>
+                                </div>
+                              </div>
+
+                              <div className="product-delivery-details">
+                                <div className="products-list">
+                                  <div className="product-image">
+                                    <img src={order.products[0].productImage} alt="" />
+                                  </div>
+
+                                  <div className="products-details">
+                                    <p className='product-name'>{order.products[0].productName}</p>
+                                    <p>Qty: {order.products[0].quantity}</p>
+                                    <p className="view-all" onClick={() => viewProducts(order.products)}>View All</p>
+                                  </div>
+                                </div>
+
+
+
+                                <div className="deliver-address-list">
+                                  <div className="flex-line"></div>
+                                  <div className="address-list">
+                                    <p className="address-header">Delivery Address</p>
+                                    <p className="name">{user?.username}</p>
+                                    <p className="number">MOB: {user?.phonenumber}</p>
+                                    <p className="address">{address.location}, {address.city}, {address.state} - {address.pincode}</p>
+                                  </div>
+
+                                </div>
+                              </div>
+
                             </div>
 
-                            <div className="payment-details">
-                              <p className="total">Total Amount: 5000</p>
-                              <p className="payment-mode">Payement: COD</p>
-                            </div>
                           </div>
-
-                          <div className="line-section"></div>
-
-                          {/* <div className="order-products-section">
-                            <img src={order.products[0].productImage} alt="" />
-
-                            <div className="order-product-details">
-                              <p className="order-id" style={{ fontWeight: '500' }}> Order ID: ORD{order._id.substr(15,)} </p>
-
-                              <p className="productname"> {order.products[0].productName} (+{order.products.length - 1} items) </p>
-
-                              <p className="order-date"> Order Date: {formattedOrderDate} </p>
-
-                              <button onClick={() => viewProducts(order.products)}> View All </button>
-                            </div>
-                          </div> */}
-
                         </div>
-
-                        <p className="total-amount">₹{order.totalAmount}</p>
-
-                        <div className="order-status">
-                          <p className="status">Order Status:</p>
-                          <p>{order.orderStatus}</p>
-                        </div>
-                      </div>
+                        <div className="line"><hr /></div>
+                      </>
                     )
                   })
                 }
+
 
               </>
             )}

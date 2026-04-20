@@ -133,6 +133,17 @@ app.get('/manageUsers/:id', async (req, res) => {
     }
 })
 
+//user email to get address 
+app.get("/manageOrderAddress/:email", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email })
+    res.json(user)
+
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // DELETE PRODUCTS
 
 app.delete('/deleteProducts/:id', async (req, res) => {
