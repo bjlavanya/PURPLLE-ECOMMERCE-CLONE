@@ -80,11 +80,24 @@ const gstInvoicePdf = () => {
             .fontSize(10)
             .text('Success', 430,190, {align:'left'})
 
-         doc.moveTo(50, 200)
-            .lineTo(550, 200)
+         doc.moveTo(50, 230)
+            .lineTo(550, 230)
             .lineWidth(1)      
             .strokeColor('#9d9696') 
             .stroke();
+
+         doc.font('Helvetica-Bold')
+            .fontSize(14)
+            .text('Billing Address: ', 50, 260, {align:'left'})
+
+        doc.font('Helvetica')
+            .fontSize(10)
+            .text('Lava ', 120,260, {align:'left'})
+
+        doc.font('Helvetica')
+            .fontSize(10)
+            .text('Mallikatte, mangalore, Karnataka -573425 ', 120,180, {align:'left'})
+        
 
         doc.end()
     })
