@@ -23,6 +23,8 @@ const gstInvoicePdf = () => {
             .text('Mumbai, Maharashtra, India, 400086', 200, 80, { align: 'right' })
             .moveDown();
 
+      
+
         doc.end()
     })
 }

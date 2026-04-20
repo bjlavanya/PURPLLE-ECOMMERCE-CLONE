@@ -19,6 +19,8 @@ router.post('/sendOtp', async (req, res) => {
             digits: true
         });
 
+        console.log(otp)
+
         const otpExpiry = new Date(Date.now() + 15 * 60 * 1000);
 
         //check user already exists
