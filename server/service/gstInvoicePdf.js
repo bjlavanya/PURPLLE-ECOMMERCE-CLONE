@@ -24,161 +24,148 @@ const gstInvoicePdf = () => {
 
         doc.moveTo(50, 105)
             .lineTo(550, 105)
-            .lineWidth(1)      
-            .strokeColor('#9d9696') 
+            .lineWidth(1)
+            .strokeColor('#9d9696')
             .stroke();
 
         doc.font('Helvetica-Bold')
             .fontSize(14)
-            .text('GST INVOICE RECEIPT', 50, 120, {align:'left'})
+            .text('GST INVOICE RECEIPT', 50, 120, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('Invoice No.: ', 50,150, {align:'left'})
+            .text('Invoice No.: ', 50, 150, { align: 'left' })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('INV233511 ', 120,150, {align:'left'})
+            .text('INV233511 ', 120, 150, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('Order ID: ', 50,170, {align:'left'})
+            .text('Order ID: ', 50, 170, { align: 'left' })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('ORD45533 ', 120,170, {align:'left'})
+            .text('ORD45533 ', 120, 170, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('Order Date: ', 50,190, {align:'left'})
+            .text('Order Date: ', 50, 190, { align: 'left' })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('INV233511 ', 120,190, {align:'left'})
+            .text('INV233511 ', 120, 190, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('GSTIN.: ', 320,150, {align:'right',  width:100})
+            .text('GSTIN.: ', 320, 150, { align: 'right', width: 100 })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('GSTK4698498MKJF77', 430,150, {align:'left'})
+            .text('GSTK4698498MKJF77', 430, 150, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('Payment: ', 330,170, {align:'right',  width:100})
+            .text('Payment: ', 330, 170, { align: 'right', width: 100 })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Online payment', 430,170, {align:'left'})
+            .text('Online payment', 430, 170, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('Status: ', 320,190, {align:'right',  width:100})
+            .text('Status: ', 320, 190, { align: 'right', width: 100 })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Success', 430,190, {align:'left'})
+            .text('Success', 430, 190, { align: 'left' })
 
-         doc.moveTo(50, 210)
+        doc.moveTo(50, 210)
             .lineTo(550, 210)
-            .lineWidth(1)      
-            .strokeColor('#9d9696') 
+            .lineWidth(1)
+            .strokeColor('#9d9696')
             .stroke();
 
-         doc.font('Helvetica-Bold')
+        doc.font('Helvetica-Bold')
             .fontSize(14)
-            .text('Billing Address: ', 50, 220, {align:'left'})
+            .text('Billing Address: ', 50, 220, { align: 'left' })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Lava ', 50,240, {align:'left'})
+            .text('Lava ', 50, 240, { align: 'left' })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Mallikatte, mangalore, Karnataka -573425 ', 50,260, {align:'left'})
+            .text('Mallikatte, mangalore, Karnataka -573425 ', 50, 260, { align: 'left' })
 
         doc.moveTo(50, 280)
             .lineTo(550, 280)
-            .lineWidth(1)      
-            .strokeColor('#9d9696') 
+            .lineWidth(1)
+            .strokeColor('#9d9696')
             .stroke();
 
-       // ===== Product Details Heading =====
-doc.font('Helvetica-Bold')
-   .fontSize(12)
-   .text('Product Details (GST Inclusive Taxes)', 50, 300);
+        doc.font('Helvetica-Bold')
+            .fontSize(12)
+            .text('Product Details (GST Inclusive Taxes)', 50, 300);
 
+        doc.font('Helvetica-Bold')
+            .fontSize(10);
 
-// ===== Table Header =====
-doc.font('Helvetica-Bold')
-   .fontSize(10);
+        doc.text('Product', 50, 325);
+        doc.text('Qty', 200, 325);
+        doc.text('Base Price', 260, 325);
+        doc.text('GST (18%)', 360, 325);
+        doc.text('Total', 460, 325);
 
-doc.text('Product', 50, 325);
-doc.text('Qty', 200, 325);
-doc.text('Base Price', 260, 325);
-doc.text('GST (18%)', 360, 325);
-doc.text('Total', 460, 325);
+        doc.moveTo(50, 340)
+            .lineTo(550, 340)
+            .stroke();
 
-doc.moveTo(50, 340)
-   .lineTo(550, 340)
-   .stroke();
+        doc.font('Helvetica');
 
+        doc.text('Face Wash', 50, 350);
+        doc.text('2', 200, 350);
+        doc.text('Rs.169', 260, 350);
+        doc.text('Rs.31', 360, 350);
+        doc.text('Rs.200', 460, 350);
 
-// ===== Row 1 =====
-doc.font('Helvetica');
+        doc.text('Shampoo', 50, 370);
+        doc.text('1', 200, 370);
+        doc.text('Rs.254', 260, 370);
+        doc.text('Rs46', 360, 370);
+        doc.text('Rs.300', 460, 370);
 
-doc.text('Face Wash', 50, 350);
-doc.text('2', 200, 350);
-doc.text('Rs.169', 260, 350);
-doc.text('Rs.31', 360, 350);
-doc.text('Rs.200', 460, 350);
+        doc.text('Lipstick', 50, 390);
+        doc.text('1', 200, 390);
+        doc.text('Rs.424', 260, 390);
+        doc.text('Rs.76', 360, 390);
+        doc.text('Rs.500', 460, 390);
 
+        doc.moveTo(50, 420)
+            .lineTo(550, 420)
+            .stroke();
 
-// ===== Row 2 =====
-doc.text('Shampoo', 50, 370);
-doc.text('1', 200, 370);
-doc.text('₹254', 260, 370);
-doc.text('₹46', 360, 370);
-doc.text('₹300', 460, 370);
+        doc.font('Helvetica')
+            .fontSize(10);
 
+        doc.text('Subtotal', 360, 435);
+        doc.text('Rs.1000', 460, 435);
 
-// ===== Row 3 =====
-doc.text('Lipstick', 50, 390);
-doc.text('1', 200, 390);
-doc.text('₹424', 260, 390);
-doc.text('₹76', 360, 390);
-doc.text('₹500', 460, 390);
+        doc.text('Shipping Fee', 360, 455);
+        doc.text('Rs.50', 460, 455);
 
+        doc.text('Platform Fee', 360, 475);
+        doc.text('rs.10', 460, 475);
 
-// ===== Total Amount Section =====
-doc.moveTo(300, 420)
-   .lineTo(550, 420)
-   .stroke();
+        doc.font('Helvetica-Bold');
 
-doc.font('Helvetica')
-   .fontSize(10);
+        doc.moveTo(50, 495)
+            .lineTo(550, 495)
+            .stroke();
 
-doc.text('Subtotal', 360, 435);
-doc.text('₹1000', 460, 435);
+        doc.text('Grand Total', 360, 505);
+        doc.text('Rs.1060', 460, 505);
 
-doc.text('Shipping Fee', 360, 455);
-doc.text('₹50', 460, 455);
-
-doc.text('Platform Fee', 360, 475);
-doc.text('₹10', 460, 475);
-
-
-// ===== Grand Total =====
-doc.font('Helvetica-Bold');
-
-doc.moveTo(300, 495)
-   .lineTo(550, 495)
-   .stroke();
-
-doc.text('Grand Total', 360, 505);
-doc.text('₹1060', 460, 505);
-        
         doc.end()
     })
 }
