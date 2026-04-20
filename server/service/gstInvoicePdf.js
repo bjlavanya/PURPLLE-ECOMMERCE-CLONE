@@ -130,9 +130,9 @@ doc.font('Helvetica');
 
 doc.text('Face Wash', 50, 350);
 doc.text('2', 200, 350);
-doc.text('₹169', 260, 350);
-doc.text('₹31', 360, 350);
-doc.text('₹200', 460, 350);
+doc.text('Rs.169', 260, 350);
+doc.text('Rs.31', 360, 350);
+doc.text('Rs.200', 460, 350);
 
 
 // ===== Row 2 =====
