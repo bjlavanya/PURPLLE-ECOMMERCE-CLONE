@@ -21,11 +21,15 @@ const gstInvoicePdf = () => {
             .text('Mumbai, Maharashtra, India, 400086', 200, 70, { align: 'right' })
             .moveDown();
 
-        doc.moveTo(50, 120)
-            .lineTo(550, 120)
+        doc.moveTo(50, 105)
+            .lineTo(550, 105)
             .lineWidth(1)      
-            .strokeColor('#343434') 
+            .strokeColor('#9d9696') 
             .stroke();
+
+        doc.font('Helvetica-Bold')
+            .fontSize(16)
+            .text('GST Invoice receipt', 620, 120, {align:'left'})
 
         doc.end()
     })
