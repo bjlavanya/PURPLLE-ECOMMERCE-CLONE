@@ -16,6 +16,7 @@ const Razorpay = require('razorpay');
 const crypto = require("crypto");
 const fs = require('fs')
 const GSTBillMail = require('./InvoiceMail/GSTBillMail');
+const {gstInvoicePdf} = require('./service/gstInvoicePdf')
 
 // CREATED APP
 const app = express()
