@@ -493,6 +493,27 @@ app.post('/sendGSTInvoice', async (req, res) => {
     }
 })
 
+
+app.get("/downloadGSTInvoice", async (req, res) => {
+    try {
+
+        const pdfBuffer = await gstInvoicePdf();
+
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader(
+            "Content-Disposition",
+            "attachment; filename=gst-invoice.pdf"
+        );
+
+        res.send(pdfBuffer);
+
+        console.log("GST Invoice downloaded");
+
+    } catch (error) {
+        console.log("Error generating PDF", error);
+    }
+});
+
 //Server running
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`)
