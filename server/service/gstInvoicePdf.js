@@ -104,55 +104,80 @@ const gstInvoicePdf = () => {
             .strokeColor('#9d9696') 
             .stroke();
 
-        doc.font('Helvetica-Bold')
-            .fontSize(12)
-            .text('Product Details (GST Inclusive Taxes)', 50, 300);
+       // ===== Product Details Heading =====
+doc.font('Helvetica-Bold')
+   .fontSize(12)
+   .text('Product Details (GST Inclusive Taxes)', 50, 300);
 
-      
+
+// ===== Table Header =====
 doc.font('Helvetica-Bold')
    .fontSize(10);
 
-doc.text('Product', 50, 300);
-doc.text('Qty', 200, 300);
-doc.text('Base Price', 260, 300);
-doc.text('GST (18%)', 360, 300);
-doc.text('Total', 460, 300);
-
-doc.moveTo(50, 315)
-   .lineTo(550, 315)
-   .stroke();
-
-doc.font('Helvetica');
-
-doc.text('Face Wash', 50, 325);
-doc.text('2', 200, 325);
-doc.text('₹169', 260, 325);
-doc.text('₹31', 360, 325);
-doc.text('₹200', 460, 325);
+doc.text('Product', 50, 325);
+doc.text('Qty', 200, 325);
+doc.text('Base Price', 260, 325);
+doc.text('GST (18%)', 360, 325);
+doc.text('Total', 460, 325);
 
 doc.moveTo(50, 340)
    .lineTo(550, 340)
    .stroke();
 
-doc.text('Shampoo', 50, 350);
-doc.text('1', 200, 350);
-doc.text('₹254', 260, 350);
-doc.text('₹46', 360, 350);
-doc.text('₹300', 460, 350);
 
-doc.moveTo(50, 365)
-   .lineTo(550, 365)
+// ===== Row 1 =====
+doc.font('Helvetica');
+
+doc.text('Face Wash', 50, 350);
+doc.text('2', 200, 350);
+doc.text('₹169', 260, 350);
+doc.text('₹31', 360, 350);
+doc.text('₹200', 460, 350);
+
+
+// ===== Row 2 =====
+doc.text('Shampoo', 50, 370);
+doc.text('1', 200, 370);
+doc.text('₹254', 260, 370);
+doc.text('₹46', 360, 370);
+doc.text('₹300', 460, 370);
+
+
+// ===== Row 3 =====
+doc.text('Lipstick', 50, 390);
+doc.text('1', 200, 390);
+doc.text('₹424', 260, 390);
+doc.text('₹76', 360, 390);
+doc.text('₹500', 460, 390);
+
+
+// ===== Total Amount Section =====
+doc.moveTo(300, 420)
+   .lineTo(550, 420)
    .stroke();
 
-doc.text('Lipstick', 50, 375);
-doc.text('1', 200, 375);
-doc.text('₹424', 260, 375);
-doc.text('₹76', 360, 375);
-doc.text('₹500', 460, 375);
+doc.font('Helvetica')
+   .fontSize(10);
 
-doc.moveTo(50, 390)
-   .lineTo(550, 390)
+doc.text('Subtotal', 360, 435);
+doc.text('₹1000', 460, 435);
+
+doc.text('Shipping Fee', 360, 455);
+doc.text('₹50', 460, 455);
+
+doc.text('Platform Fee', 360, 475);
+doc.text('₹10', 460, 475);
+
+
+// ===== Grand Total =====
+doc.font('Helvetica-Bold');
+
+doc.moveTo(300, 495)
+   .lineTo(550, 495)
    .stroke();
+
+doc.text('Grand Total', 360, 505);
+doc.text('₹1060', 460, 505);
         
         doc.end()
     })
