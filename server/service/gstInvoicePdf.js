@@ -66,11 +66,11 @@ const gstInvoicePdf = () => {
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('Payment: ', 320,170, {align:'right',  width:100})
+            .text('Payment: ', 330,170, {align:'right',  width:100})
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Online payment', 440,170, {align:'left'})
+            .text('Online payment', 430,170, {align:'left'})
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
