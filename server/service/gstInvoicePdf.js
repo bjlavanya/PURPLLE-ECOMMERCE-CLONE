@@ -58,7 +58,7 @@ const gstInvoicePdf = () => {
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
-            .text('GSTIN.: ', 350,150, {align:'right',  width:100})
+            .text('GSTIN.: ', 320,150, {align:'right',  width:100})
 
         doc.font('Helvetica')
             .fontSize(10)
