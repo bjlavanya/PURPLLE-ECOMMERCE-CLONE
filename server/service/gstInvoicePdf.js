@@ -88,15 +88,15 @@ const gstInvoicePdf = () => {
 
          doc.font('Helvetica-Bold')
             .fontSize(14)
-            .text('Billing Address: ', 50, 260, {align:'left'})
+            .text('Billing Address: ', 50, 240, {align:'left'})
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Lava ', 120,260, {align:'left'})
+            .text('Lava ', 50,260, {align:'left'})
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Mallikatte, mangalore, Karnataka -573425 ', 120,180, {align:'left'})
+            .text('Mallikatte, mangalore, Karnataka -573425 ', 50,280, {align:'left'})
         
 
         doc.end()
