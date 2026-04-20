@@ -111,35 +111,40 @@ const gstInvoicePdf = () => {
         doc.font('Helvetica-Bold')
             .fontSize(10);
 
-        doc.text('Product', 50, 325);
-        doc.text('Qty', 200, 325);
-        doc.text('Base Price', 260, 325);
-        doc.text('GST (18%)', 360, 325);
-        doc.text('Total', 460, 325);
+        // ===== Table Header =====
+doc.text('Product', 50, 325);
+doc.text('Qty', 180, 325);
+doc.text('Base Price', 240, 325);
+doc.text('CGST (9%)', 340, 325);
+doc.text('SGST (9%)', 420, 325);
+doc.text('Total', 500, 325);
 
-        doc.moveTo(50, 340)
-            .lineTo(550, 340)
-            .stroke();
+doc.moveTo(50, 340)
+    .lineTo(550, 340)
+    .stroke();
 
-        doc.font('Helvetica');
+doc.font('Helvetica');
 
-        doc.text('Face Wash', 50, 350);
-        doc.text('2', 200, 350);
-        doc.text('Rs.169', 260, 350);
-        doc.text('Rs.31', 360, 350);
-        doc.text('Rs.200', 460, 350);
+doc.text('Face Wash', 50, 350);
+doc.text('2', 180, 350);
+doc.text('Rs.169', 240, 350);
+doc.text('Rs.15.5', 340, 350);
+doc.text('Rs.15.5', 420, 350);
+doc.text('Rs.200', 500, 350);
 
-        doc.text('Shampoo', 50, 370);
-        doc.text('1', 200, 370);
-        doc.text('Rs.254', 260, 370);
-        doc.text('Rs46', 360, 370);
-        doc.text('Rs.300', 460, 370);
+doc.text('Shampoo', 50, 370);
+doc.text('1', 180, 370);
+doc.text('Rs.254', 240, 370);
+doc.text('Rs.23', 340, 370);
+doc.text('Rs.23', 420, 370);
+doc.text('Rs.300', 500, 370);
 
-        doc.text('Lipstick', 50, 390);
-        doc.text('1', 200, 390);
-        doc.text('Rs.424', 260, 390);
-        doc.text('Rs.76', 360, 390);
-        doc.text('Rs.500', 460, 390);
+doc.text('Lipstick', 50, 390);
+doc.text('1', 180, 390);
+doc.text('Rs.424', 240, 390);
+doc.text('Rs.38', 340, 390);
+doc.text('Rs.38', 420, 390);
+doc.text('Rs.500', 500, 390);
 
         doc.moveTo(50, 420)
             .lineTo(550, 420)
