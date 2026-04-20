@@ -64,6 +64,22 @@ const gstInvoicePdf = () => {
             .fontSize(10)
             .text('GSTK4698498MKJF77', 430,150, {align:'left'})
 
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
+            .text('Payment: ', 320,170, {align:'right',  width:100})
+
+        doc.font('Helvetica')
+            .fontSize(10)
+            .text('Online payment', 450,170, {align:'left'})
+
+        doc.font('Helvetica-Bold')
+            .fontSize(10)
+            .text('Status: ', 320,190, {align:'right',  width:100})
+
+        doc.font('Helvetica')
+            .fontSize(10)
+            .text('Success', 450,190, {align:'left'})
+
         doc.end()
     })
 }
