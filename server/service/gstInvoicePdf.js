@@ -167,7 +167,7 @@ doc.text('Rs.10', 500, 475);
 
 doc.font('Helvetica-Bold');
 
-doc.moveTo(300, 495)
+doc.moveTo(50, 495)
    .lineTo(550, 495)
    .stroke();
 
