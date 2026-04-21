@@ -496,8 +496,7 @@ app.post('/sendGSTInvoice', async (req, res) => {
 
     try {
         const user = await Users.findById(userId)
-        const order = await Orders.findById(userId)
-
+        const order = await Orders.findOne({ userId: userId })
         await GSTBillMail(user.email, order.products)
         res.json({success:true})
     }
