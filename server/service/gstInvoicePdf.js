@@ -45,7 +45,7 @@ const gstInvoicePdf = (orders, user) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text( `ORD${orders._id.substr(15,)}`, 120, 170, { align: 'left' })
+            .text( `ORD${orders._id.toString().slice(-6)}`, 120, 170, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
