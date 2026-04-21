@@ -160,6 +160,10 @@ function AddToCart() {
                 paymentStatus: 'Pending'
             })
 
+            await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/sendGSTInvoice', {
+                userId: userId
+            })
+
             alert("Order placed successfully")
             navigate('/myOrders')
         }

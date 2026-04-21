@@ -77,7 +77,7 @@ const gstInvoicePdf = (orders, user) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text(orders.orderStatus, 430, 190, { align: 'left' })
+            .text(orders.paymentStatus, 430, 190, { align: 'left' })
 
         doc.moveTo(50, 210)
             .lineTo(550, 210)
