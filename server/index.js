@@ -463,7 +463,7 @@ app.post("/verifyPayment", async (req, res) => {
             totalAmount,
             paymentId: razorpay_payment_id,
             paymentStatus: "Success",
-            paymentMode: 'Net Bankking / Online Payment'
+            paymentMode: 'Online Payment'
         });
 
         res.status(200).json({
