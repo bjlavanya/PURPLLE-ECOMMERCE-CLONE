@@ -146,7 +146,7 @@ const gstInvoicePdf = (products) => {
             y += 25
         })
 
-        y += 20;
+        y += 10;
 
         doc.moveTo(50, y)
             .lineTo(550, y)
@@ -182,8 +182,13 @@ const gstInvoicePdf = (products) => {
         doc.text(`Rs.${shipping}`, 500, y);
 
         y += 15;
+        doc.moveTo(50, y+20) 
+            .lineTo(550, y+20) 
+            .stroke();
 
         doc.font('Helvetica-Bold');
+
+        y += 15
 
         doc.text('Grand Total', 380, y);
         doc.text(`Rs.${grandTotal}`, 500, y);
