@@ -492,12 +492,12 @@ app.post("/verifyPayment", async (req, res) => {
 // PDF GENERATE OF PAYMENT & ORDER
 
 app.post('/sendGSTInvoice', async (req, res) => {
-    const { email, products } = req.body;
+    const { userId } = req.body;
 
     try {
-        // const user = await Users.findById(userId)
-        // const order = await Orders.findOne({ userId: userId })
-        await GSTBillMail(email, products)
+        const user = await Users.findById(userId)
+        const order = await Orders.findOne({ userEmail: user.email }).sort({orderDate: -1})
+        await GSTBillMail(order.userEmail, order, user)
         res.json({success:true})
     }
     catch(err) {

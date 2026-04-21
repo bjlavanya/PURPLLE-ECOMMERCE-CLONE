@@ -2,7 +2,7 @@ const PDFDocument = require('pdfkit');
 
 // function gstInvoicePdf() {
 
-const gstInvoicePdf = (products) => {
+const gstInvoicePdf = (orders, user) => {
     return new Promise((resolve) => {
         const doc = new PDFDocument()
         const buffers = []
@@ -10,6 +10,9 @@ const gstInvoicePdf = (products) => {
         doc.on('end', () => {
             resolve(Buffer.concat(buffers))
         })
+
+        const date = new Date(orders.orderDate)
+        const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
 
         doc.image('./image/purpllelogo.jpg', 50, 45, { width: 100 })
             .fontSize(10)
@@ -34,7 +37,7 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('INV233511 ', 120, 150, { align: 'left' })
+            .text(`INV${Math.floor(Math.random() * (1000000 - 100000)) + 100000}`, 120, 150, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
@@ -42,7 +45,7 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('ORD45533 ', 120, 170, { align: 'left' })
+            .text( `ORD${orders._id.substr(15,)}`, 120, 170, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
@@ -50,7 +53,7 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('INV233511 ', 120, 190, { align: 'left' })
+            .text(formattedOrderDate, 120, 190, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
@@ -58,7 +61,7 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('GSTK4698498MKJF77', 430, 150, { align: 'left' })
+            .text(Math.random().toString(36).substring(2, 12).toUpperCase(), 430, 150, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
@@ -66,7 +69,7 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Online payment', 430, 170, { align: 'left' })
+            .text(orders.paymentMode, 430, 170, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)
@@ -74,7 +77,7 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Success', 430, 190, { align: 'left' })
+            .text(orders.orderStatus, 430, 190, { align: 'left' })
 
         doc.moveTo(50, 210)
             .lineTo(550, 210)
@@ -88,11 +91,11 @@ const gstInvoicePdf = (products) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Lava ', 50, 240, { align: 'left' })
+            .text(user.username, 50, 240, { align: 'left' })
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text('Mallikatte, mangalore, Karnataka -573425 ', 50, 260, { align: 'left' })
+            .text(`${user.address[0].location},${user.address[0].city}, ${user.address[0].state} - ${user.address[0].pincode}`, 50, 260, { align: 'left' })
 
         doc.moveTo(50, 280)
             .lineTo(550, 280)
@@ -125,11 +128,14 @@ const gstInvoicePdf = (products) => {
         const gst = 18
         let y = 350
 
+        const products = orders.products
+
         products.forEach((product) => {
 
-            const totalProductPrice = Number(product.newPrice)
+            const totalPrice = Number(product.newPrice)
             const productQuantity = Number(product.quantity)
 
+            const totalProductPrice = totalPrice * productQuantity
             const gstAmount = (totalProductPrice * gst) / (100 + gst)
             const basePrice = totalProductPrice - gstAmount
 
@@ -141,7 +147,7 @@ const gstInvoicePdf = (products) => {
             doc.text(`Rs.${basePrice.toFixed(2)}`, 240, y);
             doc.text(`Rs.${cgst.toFixed(2)}`, 340, y);
             doc.text(`Rs.${sgst.toFixed(2)}`, 420, y);
-            doc.text(`Rs.${totalProductPrice * productQuantity}`, 500, y);
+            doc.text(`Rs.${totalProductPrice}`, 500, y);
 
             y += 25
         })

@@ -3,10 +3,10 @@ const sgMail = require('@sendgrid/mail');
 const {gstInvoicePdf} = require('../service/gstInvoicePdf')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const GSTBillMail = async (email, products) => {
+const GSTBillMail = async (email, orders, user) => {
 
     try {
-        const pdfBuffer = await gstInvoicePdf(products)
+        const pdfBuffer = await gstInvoicePdf(orders, user)
         const msg = {
             to: `${email}`,
             from: process.env.EMAIL_USER,
