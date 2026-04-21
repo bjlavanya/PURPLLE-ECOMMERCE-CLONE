@@ -506,10 +506,13 @@ app.post('/sendGSTInvoice', async (req, res) => {
 })
 
 
-app.get("/downloadGSTInvoice", async (req, res) => {
-    try {
+app.get("/downloadGSTInvoice/:orderId", async (req, res) => {
+    const { orderId } = req.params;
 
-        const pdfBuffer = await gstInvoicePdf();
+    try {
+                const order = await Orders.findById(orderId);
+
+        const pdfBuffer = await gstInvoicePdf(order.products);
 
         res.setHeader("Content-Type", "application/pdf");
         res.setHeader(
