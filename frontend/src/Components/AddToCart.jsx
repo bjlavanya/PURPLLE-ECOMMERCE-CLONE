@@ -214,7 +214,8 @@ function AddToCart() {
                         if (verify.data.success) {
 
                             await axios.post('https://purplle-ecommerce-clone-backend.onrender.com/sendGSTInvoice', {
-                                userId: userId
+                                email: user.email,
+                                products: cartItems
                             })
 
                             alert('Payment Successfull and Invoice send to mail')
