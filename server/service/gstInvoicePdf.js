@@ -2,7 +2,7 @@ const PDFDocument = require('pdfkit');
 
 // function gstInvoicePdf() {
 
-const gstInvoicePdf = () => {
+const gstInvoicePdf = (products) => {
     return new Promise((resolve) => {
         const doc = new PDFDocument()
         const buffers = []
@@ -10,10 +10,6 @@ const gstInvoicePdf = () => {
         doc.on('end', () => {
             resolve(Buffer.concat(buffers))
         })
-
-        // doc
-        //     .fontSize(20)
-        //     .text('Thank you for your orders!!!', 100, 100)
 
         doc.image('./image/purpllelogo.jpg', 50, 45, { width: 100 })
             .fontSize(10)
@@ -108,6 +104,8 @@ const gstInvoicePdf = () => {
             .fontSize(12)
             .text('Product Details (GST Inclusive Taxes)', 50, 300);
 
+        //Products items
+
         doc.font('Helvetica-Bold')
             .fontSize(10);
 
@@ -124,29 +122,32 @@ const gstInvoicePdf = () => {
 
         doc.font('Helvetica');
 
-        doc.text('Face Wash', 50, 350);
-        doc.text('2', 180, 350);
-        doc.text('Rs.169', 240, 350);
-        doc.text('Rs.15.5', 340, 350);
-        doc.text('Rs.15.5', 420, 350);
-        doc.text('Rs.200', 500, 350);
+        const gst = 18
+        let y = 350
 
-        doc.text('Shampoo', 50, 370);
-        doc.text('1', 180, 370);
-        doc.text('Rs.254', 240, 370);
-        doc.text('Rs.23', 340, 370);
-        doc.text('Rs.23', 420, 370);
-        doc.text('Rs.300', 500, 370);
+        products.forEach((product) => {
 
-        doc.text('Lipstick', 50, 390);
-        doc.text('1', 180, 390);
-        doc.text('Rs.424', 240, 390);
-        doc.text('Rs.38', 340, 390);
-        doc.text('Rs.38', 420, 390);
-        doc.text('Rs.500', 500, 390);
+            const totalProductPrice = Number(product.newPrice)
+            const productQuantity = Number(product.quantity)
 
-        doc.moveTo(50, 420)
-            .lineTo(550, 420)
+            const gstAmount = (totalProductPrice * gst) / (100 + gst)
+            const basePrice = totalProductPrice - gstAmount
+
+            const cgst = gstAmount / 2
+            const sgst = gstAmount / 2
+            
+            doc.text(product.productName, 50, y);
+            doc.text(productQuantity, 180, y);
+            doc.text(`Rs.${basePrice.toFixed(2)}`, 240, y);
+            doc.text(`Rs.${cgst.toFixed(2)}`, 340, y);
+            doc.text(`Rs.${sgst.toFixed(2)}`, 420, y);
+            doc.text(`Rs.${totalProductPrice * productQuantity}`, 500, y);
+            
+            y+=20
+        })
+
+        doc.moveTo(50, y+10)
+            .lineTo(550, y+10)
             .stroke();
 
         doc.font('Helvetica')
@@ -155,23 +156,32 @@ const gstInvoicePdf = () => {
         doc.font('Helvetica')
             .fontSize(10);
 
-        doc.text('Subtotal', 380, 435);
-        doc.text('Rs.1000', 500, 435);
+        const subTotal = products.reduce((total, item) => {
+            return total + Number(item.newPrice) * Number(item.quantity)
+        }, 0)
 
-        doc.text('Shipping Fee', 380, 455);
-        doc.text('Rs.50', 500, 455);
+        const platformFee = 5
+        const shipping = 25
 
-        doc.text('Platform Fee', 380, 475);
-        doc.text('Rs.10', 500, 475);
+        const grandTotal = subTotal + platformFee + shipping
+
+        doc.text('Subtotal', 380, y+15);
+        doc.text(`Rs.${subTotal}`, 500, y+15);
+
+        doc.text('Platform Fee', 380, y+20);
+        doc.text(`Rs.${platformFee}`, 500, y+20);
+
+        doc.text('Shipping & other charges', 380, y+20);
+        doc.text(`Rs.${shipping}`, 500, y+20);
 
         doc.font('Helvetica-Bold');
 
-        doc.moveTo(50, 495)
-            .lineTo(550, 495)
+        doc.moveTo(50, y+20)
+            .lineTo(550, y+20)
             .stroke();
 
-        doc.text('Grand Total', 380, 505);
-        doc.text('Rs.1060', 500, 505);
+        doc.text('Grand Total', 380, y+20);
+        doc.text(`Rs.${grandTotal}`, 500, y+20);
 
 
         doc.end()

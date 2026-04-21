@@ -55,6 +55,7 @@ function ManageOrders() {
                 <th>Sl.No</th>
                 <th>User Email</th>
                 <th>User Address</th>
+                <th>Order Date</th>
                 <th>Product Details</th>
                 <th>Total Amount</th>
                 <th>Status</th>
@@ -65,10 +66,13 @@ function ManageOrders() {
             <tbody>
               {
                 orders.map((order, index) => {
+                  const date = new Date(order.orderDate)
+                  const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
                   return <tr key={order._id}>
                     <td>{index + 1}</td>
                     <td>{order.userEmail}</td>
                     <td>{addresses[order.userEmail]?.location}</td>
+                    <td>{formattedOrderDate }</td>
                     <td className='click' onClick={() => viewProducts(order.products)}>Click to View Products</td>
                     <td>{order.totalAmount}</td>
                     <td>{order.orderStatus}</td>
