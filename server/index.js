@@ -16,7 +16,7 @@ const Razorpay = require('razorpay');
 const crypto = require("crypto");
 const fs = require('fs')
 const GSTBillMail = require('./InvoiceMail/GSTBillMail');
-const {gstInvoicePdf} = require('./service/gstInvoicePdf')
+const { gstInvoicePdf } = require('./service/gstInvoicePdf')
 
 // CREATED APP
 const app = express()
@@ -135,13 +135,13 @@ app.get('/manageUsers/:id', async (req, res) => {
 
 //user email to get address 
 app.get("/manageOrderAddress/:email", async (req, res) => {
-  try {
-    const user = await Users.findOne({ email: req.params.email })
-    res.json(user)
+    try {
+        const user = await Users.findOne({ email: req.params.email })
+        res.json(user)
 
-  } catch (err) {
-    console.log(err)
-  }
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 // DELETE PRODUCTS
@@ -496,11 +496,11 @@ app.post('/sendGSTInvoice', async (req, res) => {
 
     try {
         const user = await Users.findById(userId)
-        const order = await Orders.findOne({ userEmail: user.email }).sort({orderDate: -1})
+        const order = await Orders.findOne({ userEmail: user.email }).sort({ orderDate: -1 })
         await GSTBillMail(order.userEmail, order, user)
-        res.json({success:true})
+        res.json({ success: true })
     }
-    catch(err) {
+    catch (err) {
         console.log(err)
     }
 })
@@ -508,11 +508,10 @@ app.post('/sendGSTInvoice', async (req, res) => {
 
 app.get("/downloadGSTInvoice/:orderId", async (req, res) => {
     const { orderId } = req.params;
-
     try {
-                const order = await Orders.findById(orderId);
-
-        const pdfBuffer = await gstInvoicePdf(order.products);
+        const order = await Orders.findById(orderId);
+        const user = await Users.findOne({ email: order.userEmail })
+        const pdfBuffer = await gstInvoicePdf(order, user);
 
         res.setHeader("Content-Type", "application/pdf");
         res.setHeader(
