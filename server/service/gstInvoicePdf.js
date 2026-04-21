@@ -182,8 +182,8 @@ const gstInvoicePdf = (products) => {
         doc.text(`Rs.${shipping}`, 500, y);
 
         y += 15;
-        doc.moveTo(50, y+20) 
-            .lineTo(550, y+20) 
+        doc.moveTo(50, y) 
+            .lineTo(550, y) 
             .stroke();
 
         doc.font('Helvetica-Bold');
