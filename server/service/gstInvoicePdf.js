@@ -135,19 +135,21 @@ const gstInvoicePdf = (products) => {
 
             const cgst = gstAmount / 2
             const sgst = gstAmount / 2
-            
+
             doc.text(product.productName, 50, y);
             doc.text(productQuantity, 180, y);
             doc.text(`Rs.${basePrice.toFixed(2)}`, 240, y);
             doc.text(`Rs.${cgst.toFixed(2)}`, 340, y);
             doc.text(`Rs.${sgst.toFixed(2)}`, 420, y);
             doc.text(`Rs.${totalProductPrice * productQuantity}`, 500, y);
-            
-            y+=20
+
+            y += 25
         })
 
-        doc.moveTo(50, y+10)
-            .lineTo(550, y+10)
+        y += 20;
+
+        doc.moveTo(50, y)
+            .lineTo(550, y)
             .stroke();
 
         doc.font('Helvetica')
@@ -163,26 +165,27 @@ const gstInvoicePdf = (products) => {
         const platformFee = 5
         const shipping = 25
 
-        const grandTotal = subTotal + platformFee + shipping
+        y += 10;
 
-        doc.text('Subtotal', 380, y+15);
-        doc.text(`Rs.${subTotal}`, 500, y+15);
+        doc.text('Subtotal', 380, y);
+        doc.text(`Rs.${subTotal}`, 500, y);
 
-        doc.text('Platform Fee', 380, y+20);
-        doc.text(`Rs.${platformFee}`, 500, y+20);
+        y += 15;
 
-        doc.text('Shipping & other charges', 380, y+20);
-        doc.text(`Rs.${shipping}`, 500, y+20);
+        doc.text('Platform Fee', 380, y);
+        doc.text(`Rs.${platformFee}`, 500, y);
+
+        y += 15;
+
+        doc.text('Shipping & Other Charges', 380, y);
+        doc.text(`Rs.${shipping}`, 500, y);
+
+        y += 15;
 
         doc.font('Helvetica-Bold');
 
-        doc.moveTo(50, y+20)
-            .lineTo(550, y+20)
-            .stroke();
-
-        doc.text('Grand Total', 380, y+20);
-        doc.text(`Rs.${grandTotal}`, 500, y+20);
-
+        doc.text('Grand Total', 380, y);
+        doc.text(`Rs.${grandTotal}`, 500, y);
 
         doc.end()
     })
