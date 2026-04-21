@@ -136,7 +136,7 @@ app.get('/manageUsers/:id', async (req, res) => {
 //user email to get address 
 app.get("/manageOrderAddress/:email", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.params.email })
+    const user = await Users.findOne({ email: req.params.email })
     res.json(user)
 
   } catch (err) {
