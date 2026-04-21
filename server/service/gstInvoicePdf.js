@@ -164,6 +164,7 @@ const gstInvoicePdf = (products) => {
 
         const platformFee = 5
         const shipping = 25
+        const grandTotal = subTotal + platformFee + shipping
 
         y += 10;
 
