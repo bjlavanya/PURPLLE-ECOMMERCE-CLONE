@@ -58,7 +58,9 @@ function ManageOrders() {
                 <th>Order Date</th>
                 <th>Product Details</th>
                 <th>Total Amount</th>
-                <th>Status</th>
+                <th>Payment Mode</th>
+                <th>Payment Status</th>
+                <th>Order Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -72,12 +74,14 @@ function ManageOrders() {
                     <td>{index + 1}</td>
                     <td>{order.userEmail}</td>
                     <td>{addresses[order.userEmail]?.location}</td>
-                    <td>{formattedOrderDate }</td>
+                    <td>{formattedOrderDate}</td>
                     <td className='click' onClick={() => viewProducts(order.products)}>Click to View Products</td>
                     <td>{order.totalAmount}</td>
+                    <td>{order.paymentMode}</td>
+                    <td>{order.paymentStatus}</td>
                     <td>{order.orderStatus}</td>
                     <td className='action-btn'>
-                      <Link to={`/admin/editStatus/` + order._id} ><i className="fas fa-edit edit"></i></Link>
+                      <Link to={`/admin/editStatus/` + order._id} ><i className="fas fa-edit edit"></i></Link> <br />
                       <button onClick={() => deleteOrders(order._id)}><i className="fas fa-trash-alt delete"></i></button>
                     </td>
                   </tr>
@@ -98,40 +102,42 @@ function ManageOrders() {
               </button>
 
               <h3>Ordered Products</h3>
-              <table border="1">
+              <div className="table-scroll">
+                <table border="1">
 
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                  </tr>
-                </thead>
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Product Name</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
 
-                <tbody>
+                  <tbody>
 
-                  {
-                    selectedProducts.map((product, index) => (
-                      <tr key={index}>
+                    {
+                      selectedProducts.map((product, index) => (
+                        <tr key={index}>
 
-                        <td>
-                          <img
-                            src={product.productImage}
-                            width="50"
-                          />
-                        </td>
+                          <td>
+                            <img
+                              src={product.productImage}
+                              width="50"
+                            />
+                          </td>
 
-                        <td>{product.productName}</td>
-                        <td>₹{product.newPrice}</td>
-                        <td>{product.quantity}</td>
+                          <td>{product.productName}</td>
+                          <td>₹{product.newPrice}</td>
+                          <td>{product.quantity}</td>
 
-                      </tr>
-                    ))
-                  }
+                        </tr>
+                      ))
+                    }
 
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
 
             </div>
 

@@ -2524,11 +2524,66 @@ select {
     margin-top: -650px;
 }
 
+/* DASHBOARD */
+
+.admin-dashboard {
+    margin-left: 70px;
+}
+
+.admin-dashboard .dashboard {
+    font-size: 26px;
+    color: #312727;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.admin-dashboard .subtitle {
+    font-size: 14px;
+    color: #9c00ad;
+    font-weight: 500;
+}
+
 .admin-dashboard img {
     width: 95%;
     height: 610px;
     position: relative;
     left: 60px;
+}
+
+.admin-dashboard .dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+.admin-dashboard .card-size {
+    min-height: 120px;
+    width: 250px;
+    border-radius: 10px;
+    background-color: #9c00ad;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.admin-dashboard .admin-icon .icon {
+    font-size: 25px;
+    color: white;
+}
+
+.admin-dashboard .admin-content .heading {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.admin-dashboard .admin-content .number {
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 /* ------------------------------------------------ADD PRODUCTS ------------------------------------------- */
@@ -2693,8 +2748,14 @@ select {
     z-index: 2002;
 }
 
-.modal-product-details table {
-    overflow-y: scroll;
+.table-scroll {
+  max-height: 300px;   
+  overflow-y: auto;    
+}
+
+.table-scroll table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .modal-content {
