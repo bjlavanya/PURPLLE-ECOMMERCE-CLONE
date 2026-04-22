@@ -2693,6 +2693,10 @@ select {
     z-index: 2002;
 }
 
+.modal-product-details table {
+    overflow-y: scroll;
+}
+
 .modal-content {
     background: white;
     padding: 30px;
