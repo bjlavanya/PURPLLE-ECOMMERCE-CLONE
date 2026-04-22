@@ -110,10 +110,6 @@ function AddToCart() {
     }
 
     const removeCartItem = (index) => {
-        // const cart = cartItems.filter((item, i) => i !== index)
-        // setCartItems(cart)
-        // localStorage.setItem("cart", JSON.stringify(cart))
-
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         const updatedCart = cart.filter((item, i) => i !== index);
         localStorage.setItem("cart", JSON.stringify(updatedCart));

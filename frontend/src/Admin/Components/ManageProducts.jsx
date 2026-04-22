@@ -62,7 +62,7 @@ function ManageProducts() {
 
           <div className="table-container">
             <table border="1">
-              <thead>
+              <thead style={{position:'sticky', top:0, zIndex:1}}>
                 <tr>
                   <th>Product Image</th>
                   <th>Product Name</th>

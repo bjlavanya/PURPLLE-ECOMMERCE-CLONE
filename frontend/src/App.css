@@ -343,7 +343,7 @@ nav .navbar ul li a:hover {
 .handpickedImage .sponsored strike,
 .new-featured .goodvibesImages strike {
     color: #00000080;
-
+    font-size: 14px;
 }
 
 .handpickedImage .sponsored .offers {
@@ -442,6 +442,25 @@ nav .navbar ul li a:hover {
 
 .handpickedImage .sponsored .cart h3:hover {
     color: #63016e;
+}
+
+.cart-btn {
+  display: block;
+  text-align: center;
+  padding: 5px 0;
+  border: 2px solid #9c00ad;   
+  color: #9c00ad;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  width: 90%;
+  transition: 0.3s;
+}
+
+.cart-btn:hover {
+  color: #8f059e;
 }
 
 hr {
@@ -2746,6 +2765,11 @@ select {
     justify-content: center;
     align-items: flex-start;
     z-index: 2002;
+}
+
+.table-container {
+    max-height: 480px;
+    overflow-y: auto;
 }
 
 .table-scroll {
