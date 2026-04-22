@@ -7,7 +7,7 @@ import { editorPickProducts, } from "./AllProducts";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios'
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NextArrow({ onClick }) {
   return (
@@ -34,17 +34,6 @@ function EditorPickProducts() {
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
   }, [])
-
-  const { id } = useParams()
-  const navigate = useNavigate()
-
-  const [product, setProduct] = useState({})
-
-  useEffect(() => {
-    axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/products/${id}`)
-      .then(res => setProduct(res.data))
-      .catch(err => console.log(err))
-  }, [id])
 
   const addToCart = () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -93,7 +82,7 @@ function EditorPickProducts() {
                 <h4>₹{product.newPrice} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
               </div>
 
-              <Link className="cart-btn" to="/addToCart" onClick={addToCart} >
+              <Link className="cart-btn" onClick={addToCart} >
                 <h3>Add to Cart</h3>
               </Link>
             </div>
