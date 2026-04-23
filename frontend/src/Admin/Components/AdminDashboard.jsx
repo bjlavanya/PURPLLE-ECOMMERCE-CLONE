@@ -30,44 +30,51 @@ function AdminDashboard() {
 
   useEffect(() => {
 
-    if (orders.length === 0) return;
-
     const revenueMap = {};
-
     const today = new Date();
-    const lastWeek = new Date();
-    lastWeek.setDate(today.getDate() - 6);
 
+    // Step 1: create last 7 days with 0 revenue
+    for (let i = 6; i >= 0; i--) {
+
+      const d = new Date();
+      d.setDate(today.getDate() - i);
+
+      const date =
+        `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+
+      revenueMap[date] = 0;
+
+    }
+
+    // Step 2: add revenue from successful orders
     orders.forEach(order => {
 
       if (order.paymentStatus === "Success") {
 
         const orderDate = new Date(order.orderDate);
 
-        if (orderDate >= lastWeek && orderDate <= today) {
+        const date =
+          `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
 
-          const date =
-            `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
-
-          if (!revenueMap[date]) {
-            revenueMap[date] = 0;
-          }
-
+        if (revenueMap[date] !== undefined) {
           revenueMap[date] += order.totalAmount;
-
         }
+
       }
 
     });
 
+    // Step 3: convert to chart format
     const data = Object.keys(revenueMap).map(date => ({
-      date: date,
+      date,
       amount: revenueMap[date]
     }));
 
     setChartData(data);
 
   }, [orders]);
+
+  
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
@@ -183,7 +190,7 @@ function AdminDashboard() {
 
           <div className="admin-chart">
             <div className="revenue-chart" >
-              <h1 style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Revenue</h1>
+              <h1>Revenue Details(last 7 days)</h1>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart
                   data={chartData}
@@ -198,34 +205,30 @@ function AdminDashboard() {
 
                   <XAxis
                     dataKey="date"
-                    axisLine={{ stroke: "#d1d5db" }}   // bottom line only
+                    axisLine={{ stroke: "#d1d5db" }}  
+                    interval={0} 
                     tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
                   <YAxis
-                    axisLine={{ stroke: "#d1d5db" }}   // left line only
+                    axisLine={{ stroke: "#d1d5db" }}   
                     tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
-                  <Tooltip content={CustomTooltip} cursor={{ stroke: "#ddd" }} isAnimationActive={false}  />
+                  <Tooltip content={CustomTooltip} cursor={{ stroke: "#ddd" }} isAnimationActive={false} />
 
                   <Line
                     type="monotone"
                     dataKey="amount"
                     stroke="#8e24aa"
-                    strokeWidth={3}
+                    strokeWidth={2}
                     dot={{
                       r: 4,
                       fill: "#fff",
                       stroke: "#8e24aa",
-                      strokeWidth: 3
+                      strokeWidth: 1
                     }}
-                    activeDot={{
-                      r: 6,
-                      fill: "#fff",
-                      stroke: "#8e24aa",
-                      strokeWidth: 3
-                    }}
+                    
                   />
 
                 </LineChart>

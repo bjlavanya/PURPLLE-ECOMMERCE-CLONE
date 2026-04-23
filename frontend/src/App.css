@@ -2661,7 +2661,7 @@ select {
 .admin-dashboard .admin-chart {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .admin-dashboard .admin-chart div {
@@ -2673,6 +2673,16 @@ select {
     border: 2px solid #b3afaf;
     border-radius: 10px;
     padding: 10px;
+    
+}
+
+.admin-chart .revenue-chart h1 {
+    font-size: 16px;
+    color: #9c00ad;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 .admin-dashboard .admin-chart .order-details {
