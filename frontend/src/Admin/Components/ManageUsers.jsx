@@ -31,6 +31,7 @@ function ManageUsers() {
             <thead>
               <tr>
                 <th>User Email</th>
+                <th>Phone Number</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -40,6 +41,7 @@ function ManageUsers() {
                 users.map(user => {
                   return <tr key={user._id}>
                     <td>{user.email}</td>
+                    <td>{user.phonenumber}</td>
                     <td className='action-btn'>
                       <button onClick={() => deleteUser(user._id)}><i className="fas fa-trash-alt delete"></i></button>
                     </td>

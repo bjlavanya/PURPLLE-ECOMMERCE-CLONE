@@ -5,6 +5,16 @@ import { LuPackage } from "react-icons/lu";
 import { HiUsers } from "react-icons/hi";
 import { FaBagShopping } from "react-icons/fa6";
 import axios from 'axios'
+import {
+  LineChart,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid
+} from "recharts";
 
 function AdminDashboard() {
   const [products, setProducts] = useState([])
@@ -65,7 +75,7 @@ function AdminDashboard() {
 
             <div className="total-orders-card card-size">
               <div className="admin-icon">
-                <FaBagShopping className='icon' style={{fontSize:'35px'}} />
+                <FaBagShopping className='icon' style={{ fontSize: '35px' }} />
               </div>
               <div className="admin-content">
                 <p className="heading">Total Orders</p>
@@ -75,7 +85,7 @@ function AdminDashboard() {
 
             <div className="total-users-card card-size">
               <div className="admin-icon">
-                <HiUsers className='icon' style={{fontSize:'45px'}} />
+                <HiUsers className='icon' style={{ fontSize: '45px' }} />
               </div>
               <div className="admin-content">
                 <p className="heading">Total Users</p>
@@ -85,7 +95,7 @@ function AdminDashboard() {
 
             <div className="total-products-card card-size">
               <div className="admin-icon">
-                <LuPackage className='icon' style={{fontSize:'35px'}}  />
+                <LuPackage className='icon' style={{ fontSize: '35px' }} />
               </div>
               <div className="admin-content">
                 <p className="heading">Total Products</p>
@@ -96,8 +106,36 @@ function AdminDashboard() {
 
           <div className="admin-chart">
             <div className="revenue-chart">
+              <ResponsiveContainer width="100%" height={300}>
 
+                <LineChart
+                  data={chartData}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+
+                  <CartesianGrid strokeDasharray="3 3" />
+
+                  <XAxis dataKey="date" />
+
+                  <YAxis />
+
+                  <Tooltip />
+
+                  <Legend />
+
+                  <Line
+                    type="monotone"
+                    dataKey="amount"
+                    stroke="#8e44ad"
+                    strokeWidth={3}
+                    name="Revenue"
+                  />
+
+                </LineChart>
+
+              </ResponsiveContainer>
             </div>
+            
             <div className="order-details">
 
             </div>
