@@ -59,7 +59,7 @@ function AdminDashboard() {
               </div>
               <div className="admin-content">
                 <p className="heading">Total Revenue</p>
-                <p className="number">₨.2000</p>
+                <p className="number">₨.{revenue}</p>
               </div>
             </div>
 
