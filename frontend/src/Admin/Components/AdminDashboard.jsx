@@ -26,6 +26,49 @@ function AdminDashboard() {
     document.title = "Purplle Admin"
   }, [])
 
+  const [chartData, setChartData] = useState([]);
+
+  useEffect(() => {
+
+    if (orders.length === 0) return;
+
+    const revenueMap = {};
+
+    const today = new Date();
+    const lastWeek = new Date();
+    lastWeek.setDate(today.getDate() - 6);
+
+    orders.forEach(order => {
+
+      if (order.paymentStatus === "Success") {
+
+        const orderDate = new Date(order.orderDate);
+
+        if (orderDate >= lastWeek && orderDate <= today) {
+
+          const date =
+            `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
+
+          if (!revenueMap[date]) {
+            revenueMap[date] = 0;
+          }
+
+          revenueMap[date] += order.totalAmount;
+
+        }
+      }
+
+    });
+
+    const data = Object.keys(revenueMap).map(date => ({
+      date: date,
+      amount: revenueMap[date]
+    }));
+
+    setChartData(data);
+
+  }, [orders]);
+
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
       .then(res => setProducts(res.data))
@@ -106,36 +149,49 @@ function AdminDashboard() {
 
           <div className="admin-chart">
             <div className="revenue-chart">
+              <h1>Revenue</h1>
               <ResponsiveContainer width="100%" height={300}>
-
                 <LineChart
                   data={chartData}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
-
                   <CartesianGrid strokeDasharray="3 3" />
 
-                  <XAxis dataKey="date" />
+                  <XAxis
+                    dataKey="date"
+                    axisLine={false}
+                    tickLine={false}
+                  />
 
-                  <YAxis />
+                  <YAxis
+                    axisLine={false}
+                    tickLine={false}
+                  />
 
-                  <Tooltip />
-
-                  <Legend />
+                  <Tooltip
+  contentStyle={{
+    backgroundColor: "#fff",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    fontSize: "12px"
+  }}
+  labelStyle={{ fontSize: "12px", marginBottom: "2px" }}
+  itemStyle={{ fontSize: "12px" }}
+/>
 
                   <Line
                     type="monotone"
                     dataKey="amount"
-                    stroke="#8e44ad"
-                    strokeWidth={3}
-                    name="Revenue"
+                    stroke="#9c00ad"
+                    strokeWidth={2}
+                    dot={{ r: 4 }}
+                    activeDot={{ r: 6 }}
                   />
-
                 </LineChart>
-
               </ResponsiveContainer>
+
             </div>
-            
+
             <div className="order-details">
 
             </div>
