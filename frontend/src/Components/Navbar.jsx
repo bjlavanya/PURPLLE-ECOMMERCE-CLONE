@@ -9,6 +9,7 @@ import { CiLocationOn } from "react-icons/ci";
 
 function Navbar() {
     const [showModal, setShowModal] = useState(false)
+    const [showShopCategories, setShowShopCategories] = useState(false)
     //submenu
     const [open, setOpen] = useState(false);
     const subMenuRef = useRef()
@@ -18,6 +19,7 @@ function Navbar() {
         let handler = (e) => {
             if (menuRef.current && subMenuRef.current && !menuRef.current.contains(e.target) && !subMenuRef.current.contains(e.target)) {
                 setOpen(false)
+                setShowShopCategories(false)
             }
         }
 
@@ -61,7 +63,7 @@ function Navbar() {
                     <div className="url">
                         <ul>
                             <li>
-                                <a href="">SHOP CATEGORIES</a>
+                                <Link ref={menuRef} onClick={() => setShowShopCategories(!showShopCategories)}>SHOP CATEGORIES</Link>
                             </li>
                             <li>
                                 <Link to="/offer">OFFERS</Link>
@@ -79,6 +81,27 @@ function Navbar() {
                                 <Link to="/eliteoffers">ELITE OFFERS</Link>
                             </li>
                         </ul>
+
+                        {
+                            showShopCategories &&
+                            <div className="shop-categories" ref={subMenuRef}>
+                                <Link to="/shopCategories/skincare" className="skincare" style={{textDecorationLine:'none'}}>
+                                    <p>Skincare</p>
+                                </Link>
+
+                                <Link to="/shopCategories/makeup" className="skincare" style={{textDecorationLine:'none'}}>
+                                    <p>Makeup</p>
+                                </Link>
+
+                                <Link to="/shopCategories/haircare" className="skincare" style={{textDecorationLine:'none'}}>
+                                    <p>Hair Care</p>
+                                </Link>
+
+                                <Link to="/shopCategories/fragrance" className="skincare" style={{textDecorationLine:'none'}}>
+                                    <p>Fragrance</p>
+                                </Link>
+                            </div>
+                        }
                     </div>
 
                     <div className="nav-icons">
@@ -108,7 +131,7 @@ function Navbar() {
                                         <p>My Account</p>
                                     </Link>
 
-                                    { userId ? (
+                                    {userId ? (
                                         <Link to='/userProfile/myAddress/manage' className="sub-menu-link" style={{ paddingTop: '8px' }} >
                                             <i><CiLocationOn /></i>
                                             <p>My Address</p>

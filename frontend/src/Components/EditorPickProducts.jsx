@@ -7,7 +7,7 @@ import { editorPickProducts, } from "./AllProducts";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NextArrow({ onClick }) {
   return (
@@ -28,6 +28,7 @@ function PrevArrow({ onClick }) {
 function EditorPickProducts() {
 
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
@@ -35,7 +36,7 @@ function EditorPickProducts() {
       .catch(err => console.log(err))
   }, [])
 
-  const addToCart = () => {
+  const addToCart = (product) => {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let userId = localStorage.getItem("userId")
     const existing = cart.find(
@@ -72,9 +73,9 @@ function EditorPickProducts() {
         <Slider {...settings}>
           {products && products.filter((product) => product.category === 'Editors pick').map((product) => (
             <div className="sponsored" key={product._id}>
-              <a href="#">
+              <Link to={`/singleProductPage/${product._id}`}>
                 <img src={product.productImage} alt={product.productName} />
-              </a>
+              </Link>
 
               <div className="productInfos" style={{ marginTop: '-30px' }}>
                 <h5 style={{ marginTop: '-10px' }}>{product.productName} </h5>
@@ -82,7 +83,7 @@ function EditorPickProducts() {
                 <h4>₹{product.newPrice} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
               </div>
 
-              <Link className="cart-btn" onClick={addToCart} >
+              <Link className="cart-btn" onClick={() => addToCart(product)} to="/addToCart" >
                 <h3>Add to Cart</h3>
               </Link>
             </div>

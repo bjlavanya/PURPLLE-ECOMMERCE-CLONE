@@ -3,7 +3,11 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {budgetBeautyProducts, } from "./AllProducts";
+import { budgetBeautyProducts, } from "./AllProducts";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
 
 function NextArrow({ onClick }) {
   return (
@@ -23,6 +27,31 @@ function PrevArrow({ onClick }) {
 
 function BudgetBeautyProducts() {
 
+  const [products, setProducts] = useState([])
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+      .then(res => setProducts(res.data))
+      .catch(err => console.log(err))
+  }, [])
+
+  const addToCart = (product) => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let userId = localStorage.getItem("userId")
+    const existing = cart.find(
+      item => item.productId === product._id && item.userId === userId
+    );
+    if (existing) {
+      navigate("/addToCart");
+    }
+    else {
+      cart.push({ userId: userId, productId: product._id, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    navigate("/addToCart");
+  }
+
   const settings = {
     dots: false,
     infinite: false,
@@ -37,32 +66,28 @@ function BudgetBeautyProducts() {
   return (
     <main className="handpicked">
       <section className="headings">
-        <h4 className="handpickedHeading" style={{paddingBottom:'40px'}}>BUDGET BEAUTY BUNDLES</h4>
+        <h4 className="handpickedHeading" style={{ paddingBottom: '40px' }}>BUDGET BEAUTY BUNDLES</h4>
       </section>
 
       <section className="handpickedImage">
         <Slider {...settings}>
-            {budgetBeautyProducts.map((product) => (
-                <div className="sponsored" key={product.id}>
-                    <a href="#">
-                        <img src={product.image} alt={product.title} />
-                    </a>
+          {products && products.filter((product) => product.category === 'Budget Beauty').map((product) => (
+            <div className="sponsored" key={product._id}>
+              <Link to={`/singleProductPage/${product._id}`}>
+                <img src={product.productImage} alt={product.productName} />
+              </Link>
 
-                    <div className="offers">
-                        <h3>{product.offers} offers</h3>
-                    </div>
-                    
-                    <div className="productInfos">
-                        <h5 style={{marginTop:'-10px'}}>{product.title} </h5>
-                        <h5 style={{marginTop:'-22px'}}>{product.subtitle}</h5>
-                        <h4>₹{product.price} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
-                    </div>
+              <div className="productInfos" style={{ marginTop: '-30px' }}>
+                <h5 style={{ marginTop: '-10px' }}>{product.productName} </h5>
+                <h5 style={{ marginTop: '-22px', width: '225px' }}>{product.productDescription.substr(0, 50) + "...."}</h5>
+                <h4>₹{product.newPrice} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
+              </div>
 
-                    <div className="cart">
-                        <h3>Add to Cart</h3>
-                    </div>
-                </div>
-            ))}
+              <Link className="cart-btn" onClick={() => addToCart(product)} to="/addToCart" >
+                <h3>Add to Cart</h3>
+              </Link>
+            </div>
+          ))}
 
         </Slider>
       </section>

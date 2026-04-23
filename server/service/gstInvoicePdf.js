@@ -61,7 +61,7 @@ const gstInvoicePdf = (orders, user) => {
 
         doc.font('Helvetica')
             .fontSize(10)
-            .text(Math.random().toString(36).substring(2, 16).toUpperCase(), 430, 150, { align: 'left' })
+            .text('2ACC4455KL57231', 430, 150, { align: 'left' })
 
         doc.font('Helvetica-Bold')
             .fontSize(10)

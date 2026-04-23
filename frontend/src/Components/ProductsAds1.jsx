@@ -1,33 +1,42 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
 
 function ProductAds1() {
-    return(
-    < >
-        <main className="livepics">
-            <section className="home">
-                <img src="images/livepics.webp" alt="LivePic1" />
-                <img src="images/livepics2.webp" alt="LivePic2" />
-                <img src="images/livepics3.webp" alt="LivePic3" />
-            </section>
-        </main>
+    const [products, setProducts] = useState([])
 
-        <main className="prodcutslides">
-            <section className="home">
-                <img src="images/productslides.webp" alt="Home1" />
-            </section>
-        </main>
+    useEffect(() => {
+        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+            .then(res => setProducts(res.data))
+            .catch(err => console.log(err))
+    }, [])
+    return (
+        < >
+            <main className="livepics">
+                <section className="home">
+                    <img src="images/livepics.webp" alt="LivePic1" />
+                    <img src="images/livepics2.webp" alt="LivePic2" />
+                    <img src="images/livepics3.webp" alt="LivePic3" />
+                </section>
+            </main>
 
-        <section className="productadsFirst">
-            <img src="images/productad1.webp" alt="" />
-            <img src="images/productad2.webp" alt="" />
-            <img src="images/productad3.webp" alt="" />
-            <img src="images/productad4.webp" alt="" />
-            <img src="images/productad5.webp" alt="" />
-            <img src="images/productad6.webp" alt="" />
-            <img src="images/productad7.webp" alt="" />
-            <img src="images/productad8.webp" alt="" />
-        </section>
-    </>
+            <main className="prodcutslides">
+                <section className="home">
+                    <img src="images/productslides.webp" alt="Home1" />
+                </section>
+            </main>
+
+            <section className="productadsFirst">
+                {products && products.filter((product) => product.category === 'Product Ads1').map((product) => (
+                    <Link to={`/singleProductPage/${product._id}`}>
+                        <img src={product.productImage} alt={product.productName} />
+                    </Link>
+
+                ))}
+            </section>
+        </>
     );
 }
 

@@ -3,6 +3,8 @@ import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
+import PurplleNotices from "./PurplleNotices";
+import Footer from "./Footer";
 
 function SearchPage() {
     const [products, setProducts] = useState([])
@@ -56,6 +58,9 @@ function SearchPage() {
 
                 </div>
             </div>
+
+            <PurplleNotices />
+            <Footer />
         </>
     )
 }

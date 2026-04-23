@@ -89,6 +89,44 @@ nav .navbar .url:hover {
     color: #9c00ad;
 }
 
+/* SHOP CATEGORIES */
+
+.shop-categories {
+    width: 60%;
+    border: 1px solid #b8b3b3;
+    background-color: white;
+    padding: 30px;
+    height: 50px;
+    position: absolute;
+    top: 60px;
+    left: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.shop-categories div {
+    cursor: pointer;
+}
+
+.shop-categories p {
+    color: #6a6666;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.shop-categories p:hover {
+    color: #9c00ad;
+}
+
+.shop-skincare p {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 26px;
+    font-weight: bolder;
+    color: #312727;
+}
+
 nav .navbar .sub-menu-wrap {
     position: absolute;
     top: 120%;
@@ -445,22 +483,22 @@ nav .navbar ul li a:hover {
 }
 
 .cart-btn {
-  display: block;
-  text-align: center;
-  padding: 5px 0;
-  border: 2px solid #9c00ad;   
-  color: #9c00ad;
-  border-radius: 12px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: 10px;
-  width: 90%;
-  transition: 0.3s;
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+    border: 2px solid #9c00ad;
+    color: #9c00ad;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+    width: 90%;
+    transition: 0.3s;
 }
 
 .cart-btn:hover {
-  color: #8f059e;
+    color: #8f059e;
 }
 
 hr {
@@ -1573,6 +1611,7 @@ footer .footer-links a:hover {
     width: 200px;
     text-decoration-line: none;
     color: inherit;
+    margin-bottom: 20px;
 }
 
 .search-page .search-product-list .product-image img {
@@ -1639,7 +1678,8 @@ footer .footer-links a:hover {
 .user-profile,
 .my-orders-section,
 edit-user-profile,
-.user-my-address, .user-orders-section {
+.user-my-address,
+.user-orders-section {
     background-color: #f3eaf5;
     width: 100%;
     min-height: 629px;
@@ -1793,7 +1833,8 @@ edit-user-profile,
     margin-top: 20px;
 }
 
-.my-orders button, .user-orders-section .user-orders-details button {
+.my-orders button,
+.user-orders-section .user-orders-details button {
     background: none;
     outline: none;
     border: none;
@@ -1803,13 +1844,15 @@ edit-user-profile,
     margin-top: 5px;
 }
 
-.my-orders h2, .user-orders-section .my-orders-heading {
+.my-orders h2,
+.user-orders-section .my-orders-heading {
     font-size: 16px;
     font-weight: 600;
     color: #2c414c;
 }
 
-.my-order-details .line, .user-orders-details .line {
+.my-order-details .line,
+.user-orders-details .line {
     height: 1px;
     width: 950px;
     margin: 20px 0;
@@ -1889,7 +1932,10 @@ edit-user-profile,
     margin-bottom: 20px;
 }
 
-.your-order-section .userorder-details .order-id-date .order-id, .your-order-section .userorder-details .order-id-date .order-date, .your-order-section .user-order-status p, .your-order-section .payment-details p {
+.your-order-section .userorder-details .order-id-date .order-id,
+.your-order-section .userorder-details .order-id-date .order-date,
+.your-order-section .user-order-status p,
+.your-order-section .payment-details p {
     font-size: 13px;
     margin-bottom: 5px;
     color: #312727;
@@ -1931,7 +1977,8 @@ edit-user-profile,
     gap: 100px;
 }
 
-.your-order-section .product-delivery-details .products-details .product-name, .your-order-section .product-delivery-details .products-details p {
+.your-order-section .product-delivery-details .products-details .product-name,
+.your-order-section .product-delivery-details .products-details p {
     font-size: 14px;
     font-weight: 600;
     word-break: break-all;
@@ -2047,8 +2094,9 @@ edit-user-profile,
 .order-products .product-qty {
     margin: 2px 0;
     font-size: 14px;
-} */
+}
 
+*/
 /* ---------------------------- EDIT PROFILE -------------------------- */
 
 .edit-user-details .edit-user h2 {
@@ -2276,18 +2324,25 @@ edit-user-profile,
     padding: 5px;
 }
 
-.checkout-section .deliver-head-icon, .checkout-section .order-summary-heading, .checkout-section .payment-mode-heading, .checkout-section .cash-on-delivery .COD-heading {
+.checkout-section .deliver-head-icon,
+.checkout-section .order-summary-heading,
+.checkout-section .payment-mode-heading,
+.checkout-section .cash-on-delivery .COD-heading {
     display: flex;
     gap: 10px;
 }
 
-.checkout-section .deliver-head-icon p, .checkout-section .order-summary-heading p, .checkout-section .payment-mode-heading p {
+.checkout-section .deliver-head-icon p,
+.checkout-section .order-summary-heading p,
+.checkout-section .payment-mode-heading p {
     font-size: 16px;
     font-weight: 600;
     color: #9c00ad;
 }
 
-.checkout-section .deliver-head-icon .location-icon, .checkout-section .order-summary-heading .package-icon, .checkout-section .payment-mode-heading .payment-icon {
+.checkout-section .deliver-head-icon .location-icon,
+.checkout-section .order-summary-heading .package-icon,
+.checkout-section .payment-mode-heading .payment-icon {
     color: #9c00ad;
     font-size: 18px;
 }
@@ -2319,12 +2374,14 @@ edit-user-profile,
 }
 
 .checkout-section .address-details .username,
-.checkout-section .address-details .phonenumber, .checkout-section .address-details .location {
+.checkout-section .address-details .phonenumber,
+.checkout-section .address-details .location {
     font-size: 15px;
     margin-bottom: 4px;
 }
 
-.checkout-section .order-summary, .checkout-section .payment-mode {
+.checkout-section .order-summary,
+.checkout-section .payment-mode {
     margin-top: 25px;
 }
 
@@ -2375,7 +2432,8 @@ edit-user-profile,
 
 /* User orders */
 
-.user-orders-details, .my-order-details {
+.user-orders-details,
+.my-order-details {
     width: 65%;
     display: flex;
     justify-content: space-between;
@@ -2773,13 +2831,13 @@ select {
 }
 
 .table-scroll {
-  max-height: 300px;   
-  overflow-y: auto;    
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .table-scroll table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .modal-content {

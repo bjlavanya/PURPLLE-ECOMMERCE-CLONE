@@ -36,7 +36,6 @@ function Home() {
             <ProductAds3 />
             <EssentialProducts />
             <ProductSlide />
-            <CuratedProducts />
             <GetFreeGifts />
             <ProductAds4 />
             <TopBrands />
