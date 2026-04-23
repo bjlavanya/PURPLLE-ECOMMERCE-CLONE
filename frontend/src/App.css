@@ -2665,10 +2665,14 @@ select {
 }
 
 .admin-dashboard .admin-chart div {
-    border: 2px solid #b6b5b8;
     min-height: 120px;
     width: 45%;
+}
+
+.admin-chart .revenue-chart {
+    border: 2px solid #b3afaf;
     border-radius: 10px;
+    padding: 10px;
 }
 
 .admin-dashboard .admin-chart .order-details {

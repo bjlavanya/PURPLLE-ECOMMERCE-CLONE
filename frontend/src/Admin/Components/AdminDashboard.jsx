@@ -93,7 +93,41 @@ function AdminDashboard() {
       .catch(err => console.log(err))
   }, [])
 
-
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            background: "#fff",
+            padding: '4px 4px',
+            border: "1px solid #e0e0e0",
+            borderRadius: "8px",
+            boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+            textAlign: "left",
+            width: '120px',
+          }}
+        >
+          <p style={{
+            margin: 0,
+            fontSize: "11px",
+            color: "#888",
+            fontWeight: "400"
+          }}>
+            {label}
+          </p>
+          <p style={{
+            margin: 0,
+            fontSize: "13px",
+            fontWeight: "bold",
+            color: "#9c00ad"
+          }}>
+            Amount: ₹{payload[0].value}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <>
@@ -148,52 +182,54 @@ function AdminDashboard() {
           </div>
 
           <div className="admin-chart">
-            <div className="revenue-chart">
-              <h1>Revenue</h1>
+            <div className="revenue-chart" >
+              <h1 style={{ fontSize: '1.5rem', marginBottom: '20px' }}>Revenue</h1>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart
                   data={chartData}
-                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                  margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
+
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    vertical={false}
+                    stroke="#e5e7eb"
+                  />
 
                   <XAxis
                     dataKey="date"
-                    axisLine={false}
-                    tickLine={false}
+                    axisLine={{ stroke: "#d1d5db" }}   // bottom line only
+                    tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
                   <YAxis
-                    axisLine={false}
-                    tickLine={false}
+                    axisLine={{ stroke: "#d1d5db" }}   // left line only
+                    tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
-                  <Tooltip
-  contentStyle={{
-    backgroundColor: "#fff",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    fontSize: "12px"
-  }}
-  labelStyle={{ fontSize: "12px", marginBottom: "2px" }}
-  itemStyle={{ fontSize: "12px" }}
-/>
+                  <Tooltip content={CustomTooltip} cursor={{ stroke: "#ddd" }} isAnimationActive={false}  />
 
                   <Line
                     type="monotone"
                     dataKey="amount"
-                    stroke="#9c00ad"
-                    strokeWidth={2}
-                    dot={{ r: 4 }}
-                    activeDot={{ r: 6 }}
+                    stroke="#8e24aa"
+                    strokeWidth={3}
+                    dot={{
+                      r: 4,
+                      fill: "#fff",
+                      stroke: "#8e24aa",
+                      strokeWidth: 3
+                    }}
+                    activeDot={{
+                      r: 6,
+                      fill: "#fff",
+                      stroke: "#8e24aa",
+                      strokeWidth: 3
+                    }}
                   />
+
                 </LineChart>
               </ResponsiveContainer>
-
-            </div>
-
-            <div className="order-details">
-
             </div>
           </div>
         </div>
