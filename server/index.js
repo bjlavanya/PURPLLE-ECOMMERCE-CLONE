@@ -526,7 +526,26 @@ app.get("/downloadGSTInvoice/:orderId", async (req, res) => {
     } catch (error) {
         console.log("Error generating PDF", error);
     }
-});
+})
+
+app.get("/admin/revenue", async (req, res) => {
+    try {
+        const orders = await Orders.find()
+        let revenue = 0
+
+        orders.forEach(order => {
+            if(order.paymentStatus === "Success") {
+                revenue += order.totalAmount
+            }
+        })
+
+        res.json({revenue})
+    }
+
+    catch(err) {
+        console.log(err)
+    }
+})
 
 //Server running
 app.listen(PORT, () => {

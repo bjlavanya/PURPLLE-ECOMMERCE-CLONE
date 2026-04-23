@@ -66,7 +66,6 @@ function EssentialProducts() {
     <main className="handpicked">
       <section className="headings">
         <h4 className="handpickedHeading" style={{ paddingBottom: '40px' }}>ESSENTIALS FOR YOU</h4>
-        <h5 className="view-all">View ALL <i className="fa-solid fa-arrow-right"></i></h5>
         <p className="sponsored">Sponsored</p>
       </section>
 

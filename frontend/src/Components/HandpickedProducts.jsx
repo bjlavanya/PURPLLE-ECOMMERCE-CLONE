@@ -48,8 +48,7 @@ function HandpickedProducts() {
     <main className="handpicked">
       <section className="headings">
         <h4 className="handpickedHeading">HANDPICKED FOR YOU</h4>
-        <h5 className="view-all">View ALL <i className="fa-solid fa-arrow-right"></i></h5>
-        <p className="sponsored">Sponsored</p>
+        <p className="sponsored" style={{marginTop:'10px'}}>Sponsored</p>
       </section>
 
       <section className="handpickedImage">
