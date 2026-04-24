@@ -105,6 +105,12 @@ nav .navbar .url:hover {
     align-items: center;
 }
 
+.skincare-herosection img {
+    width: 86%;
+    margin-left: 100px;
+    margin-top: -20px;
+}
+
 .shop-categories div {
     cursor: pointer;
 }
@@ -186,22 +192,6 @@ nav .navbar #heart,
 nav .navbar #search {
     color: #424242;
     font-weight: 500;
-}
-
-nav .navbar #smile .tooltiptext {
-    visibility: hidden;
-    width: 130px;
-    background-color: #9c00ad;
-    color: #ffffff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 3px;
-    position: absolute;
-    z-index: 1;
-    top: 80%;
-    left: 95%;
-    margin-left: -65px;
-    font-size: 14px;
 }
 
 nav .navbar #bars {
@@ -555,8 +545,98 @@ hr {
     margin-left: 120px;
     margin-top: 50px;
     width: 85%;
-    height: 350px;
+    min-height: 350px;
 }
+
+.imp-links .contact-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #424242;
+    padding-top: 25px;
+    margin-left: 25px;
+}
+
+.imp-links .subtitle {
+    font-size: 14px;
+    color: #6c7a6c;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.imp-links .contact-data {
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-right: 60px;
+    gap: 40px;
+}
+
+.imp-links .contact-details, .imp-links .message-details {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #bebcbc;
+    border-radius: 10px;
+}
+
+.imp-links .message-details {
+    width: 54%;
+    margin-left: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.imp-links .message-details textarea {
+    outline: none;
+    border: none;
+    margin-top: 10px;
+    background: none;
+}
+
+.imp-links .contact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.imp-links .contact-details label, .imp-links .message-details label {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #424242;
+}
+
+.imp-links .contact-details input {
+    border: none;
+    outline: none;
+    background: none;
+    margin-top: 4px;
+}
+
+.imp-links .message-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.imp-links .send-message button {
+    padding: 15px;
+    width: 54%;
+    margin-left: 25px;
+    background-color: #9c00ad;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.imp-links .send-message button:hover {
+    background-color: #c407d9;
+}
+
+
 
 .imp-links .link-infos {
     display: flex;
@@ -1673,7 +1753,7 @@ footer .footer-links a:hover {
     color: white;
 }
 
-/* --------------------------- USER PROFILE -------------------------------- */
+/* ---------------------------  PROFILE -------------------------------- */
 
 .user-profile,
 .my-orders-section,
@@ -2109,6 +2189,12 @@ edit-user-profile,
     width: 725px;
     margin: 20px 0;
     background-color: #ece9e9;
+}
+
+.edit-form-details textarea {
+    outline: none;
+    border: none;
+    background: none;
 }
 
 .edit-user-details .edit-user-form .edit-form-details,

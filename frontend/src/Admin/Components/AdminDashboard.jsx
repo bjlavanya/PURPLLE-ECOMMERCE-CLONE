@@ -33,26 +33,17 @@ function AdminDashboard() {
     const revenueMap = {};
     const today = new Date();
 
-    // Step 1: create last 7 days with 0 revenue
     for (let i = 6; i >= 0; i--) {
-
       const d = new Date();
       d.setDate(today.getDate() - i);
-
-      const date =
-        `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
-
+      const date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
       revenueMap[date] = 0;
 
     }
 
-    // Step 2: add revenue from successful orders
     orders.forEach(order => {
-
       if (order.paymentStatus === "Success") {
-
         const orderDate = new Date(order.orderDate);
-
         const date =
           `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
 
@@ -64,7 +55,6 @@ function AdminDashboard() {
 
     });
 
-    // Step 3: convert to chart format
     const data = Object.keys(revenueMap).map(date => ({
       date,
       amount: revenueMap[date]
@@ -74,7 +64,6 @@ function AdminDashboard() {
 
   }, [orders]);
 
-  
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
@@ -100,41 +89,41 @@ function AdminDashboard() {
       .catch(err => console.log(err))
   }, [])
 
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div
-          style={{
-            background: "#fff",
-            padding: '4px 4px',
-            border: "1px solid #e0e0e0",
-            borderRadius: "8px",
-            boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
-            textAlign: "left",
-            width: '120px',
-          }}
-        >
-          <p style={{
-            margin: 0,
-            fontSize: "11px",
-            color: "#888",
-            fontWeight: "400"
-          }}>
-            {label}
-          </p>
-          <p style={{
-            margin: 0,
-            fontSize: "13px",
-            fontWeight: "bold",
-            color: "#9c00ad"
-          }}>
-            Amount: ₹{payload[0].value}
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
+  // const CustomTooltip = ({ active, payload, label }) => {
+  //   if (active && payload && payload.length) {
+  //     return (
+  //       <div
+  //         style={{
+  //           background: "#fff",
+  //           padding: '4px 4px',
+  //           border: "1px solid #e0e0e0",
+  //           borderRadius: "8px",
+  //           boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
+  //           textAlign: "left",
+  //           width: '120px',
+  //         }}
+  //       >
+  //         <p style={{
+  //           margin: 0,
+  //           fontSize: "11px",
+  //           color: "#888",
+  //           fontWeight: "400"
+  //         }}>
+  //           {label}
+  //         </p>
+  //         <p style={{
+  //           margin: 0,
+  //           fontSize: "13px",
+  //           fontWeight: "bold",
+  //           color: "#9c00ad"
+  //         }}>
+  //           Amount: ₹{payload[0].value}
+  //         </p>
+  //       </div>
+  //     );
+  //   }
+  //   return null;
+  // };
 
   return (
     <>
@@ -215,7 +204,7 @@ function AdminDashboard() {
                     tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
-                  <Tooltip content={CustomTooltip} cursor={{ stroke: "#ddd" }} isAnimationActive={false} />
+                  <Tooltip />
 
                   <Line
                     type="monotone"

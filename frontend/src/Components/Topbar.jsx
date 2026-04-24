@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Topbar() {
     return(
@@ -10,10 +11,10 @@ function Topbar() {
                     &nbsp;DOWNLOAD APP
                 </a>   
                      |
-                <a href="#">
+                <Link to='/supportContactForm'>
                     <i className="fa-solid fa-circle-info"></i>
                      &nbsp; SUPPORT
-                </a>    
+                </Link>    
                       |
                 <a href="#" id="tractOrder" style={{ marginRight: "90px" }}>
                     <i className="fa-solid fa-truck"></i>  

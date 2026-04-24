@@ -1,7 +1,7 @@
 import React from 'react'
 import Topbar from './Topbar'
 import Navbar from './Navbar'
-import {curatedProducts, } from "./AllProducts";
+import { makeup, } from "./AllProducts";
 import { Link } from "react-router-dom";
 import PurplleNotices from './PurplleNotices';
 import Footer from './Footer';
@@ -12,14 +12,25 @@ function Makeup() {
             <Topbar />
             <Navbar />
 
+            <section className="breadcrumbs" style={{ marginTop: '5px' }}>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li>Makeup</li>
+                </ul>
+            </section>
+
             <div className="shop-category-skincare search-page">
+                <div className="skincare-herosection">
+                    <img src="/images/herosection5.webp" alt="" />
+                </div>
+
                 <div className="shop-skincare">
                     <p>Makeup</p>
                 </div>
 
                 <div className="search-product-list ">
-                    {curatedProducts.map((product) => (
-                        <Link  className="product-list" >
+                    {makeup.map((product) => (
+                        <Link className="product-list" >
                             <div className="product-image">
                                 <img src={product.image} alt={product.title} />
                             </div>

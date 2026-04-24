@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {curatedProducts, } from "./AllProducts";
+import {fragrance, } from "./AllProducts";
 
 function NextArrow({ onClick }) {
   return (
@@ -44,7 +44,7 @@ function CuratedProducts() {
 
       <section className="handpickedImage">
         <Slider {...settings}>
-            {curatedProducts.map((product) => (
+            {fragrance.map((product) => (
                 <div className="sponsored" key={product.id}>
                     <a href="#">
                         <img src={product.image} alt={product.title} />

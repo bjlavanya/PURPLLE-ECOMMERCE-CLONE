@@ -1,10 +1,54 @@
 import React from "react";
 
 function Footer() {
-    return(
+    return (
         <>
             <section className="imp-links">
-                <div className="link-infos" style={{ paddingTop: '50px' }}>
+
+                <p className="contact-heading">
+                    Contact Form
+                </p>
+
+                <p className="subtitle">
+                    For any help, send the message through contact form
+                </p>
+
+                <div className="contact-form">
+                    <div className="contact-data">
+                        <div className="contact-details">
+                            <label htmlFor="">Full Name</label>
+                            <input type="text" name="username" id="username" />
+                        </div>
+
+                        <div className="contact-details">
+                            <label htmlFor="">Email</label>
+                            <input type="email" name="email" id="email" />
+                        </div>
+                    </div>
+                    
+                    <div className="contact-data">
+                        <div className="contact-details">
+                            <label htmlFor="">Phone Number</label>
+                            <input type="text" name="username" id="username" />
+                        </div>
+
+                        <div className="contact-details">
+                            <label htmlFor="">Location</label>
+                            <input type="email" name="email" id="email" />
+                        </div>
+                    </div>
+
+                    <div className="message-details">
+                        <label htmlFor="">Message</label>
+                        <textarea name="" id="" cols={30} rows={5}></textarea>
+                    </div>
+
+                    <div className="send-message">
+                        <button>Send Message</button>
+                    </div>
+                </div>
+
+                {/* <div className="link-infos" style={{ paddingTop: '50px' }}>
                     <div className="link-heading"><a href="#" >Discover:</a></div>
                     <div className="link-details">
                         <a href="" className="product-links">Nail Art /</a>  <a href="" className="product-links">Eye Makeup /</a>  <a href="" className="product-links">Bridal Makeup /</a>  <a href="" className="product-links">How To Do makeup /</a>  <a href="" className="product-links">pimples /</a>  <a href="" className="product-links">Stretchmark removal /</a>  <a href="" className="product-links">best eye creams /</a>  <a href="" className="product-links">hairstyles /</a> <a href="" className="product-links"> bets facewashes for men /</a>  <a href="" className="product-links">burgundy hair colors</a> <a href="" className="product-links">Best perfumes for men /</a> <a href="" className="product-links">Skincare tips</a>
@@ -41,7 +85,7 @@ function Footer() {
                     <div className="link-details">
                         <a href="" className="product-links">Philips /</a>  <a href="" className="product-links">wahl /</a>  <a href="" className="product-links">braun /</a>  <a href="" className="product-links">remington </a>  
                     </div>
-                </div>
+                </div> */}
             </section>
             <br /><br /><br />
 
@@ -71,9 +115,9 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-            
+
             <div className="footer-line"></div>
-            
+
             <div className="footer-bottom">
                 <div className="footer-bottom-details">
                     <div className="footer-bottom-heading">

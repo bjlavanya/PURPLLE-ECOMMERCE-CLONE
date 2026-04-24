@@ -22,6 +22,7 @@ import Skincare from './Components/Skincare';
 import Makeup from './Components/Makeup';
 import Haircare from './Components/Haircare';
 import Fragrance from './Components/Fragrance';
+import SupportContact from './Components/SupportContact';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/shopCategories/makeup" element={<Makeup />} />
           <Route path="/shopCategories/haircare" element={<Haircare />} />
           <Route path="/shopCategories/fragrance" element={<Fragrance />} />
+          <Route path="/supportContactForm" element={<SupportContact />} />
       </Routes>
       
     </>
