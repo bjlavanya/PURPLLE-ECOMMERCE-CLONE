@@ -27,7 +27,7 @@ function Login({ closeModal, loginFromCheckout  }) {
 
         } catch (err) {
             console.log("Send OTP Error:", err.response?.data || err.message);
-            alert("Failed to send OTP. Check console for details.");
+            alert("Failed to send OTP.");
         }
     };
   return (

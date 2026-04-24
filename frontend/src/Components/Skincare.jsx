@@ -21,7 +21,7 @@ function Skincare() {
 
             <div className="shop-category-skincare search-page">
                 <div className="skincare-herosection">
-                    <img src="/images/herosection11.webp" alt="" />
+                    <img src="/images/skinHero.webp" alt="" />
                 </div>
 
                 <div className="shop-skincare">

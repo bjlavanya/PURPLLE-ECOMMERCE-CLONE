@@ -91,7 +91,6 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheck
 
             localStorage.setItem("userId", userId);
 
-            // merge guest cart with logged-in user
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
             cart = cart.map(item => {
@@ -105,12 +104,6 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheck
 
             console.log("Response:", response.data);
             alert("Login Successfully")
-
-            // if (loginFromCheckout) {
-            //     navigate('/userprofile/myAddressForm');
-            // } else {
-            //    window.location.reload();
-            // }
 
             if (loginFromCheckout) {
 

@@ -1,19 +1,30 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
 
 function ProductAds2() {
-    return(
-    <>
-        <section className="productadsSecond">
-                <img src="images/productad9.webp" alt="" />
-                <img src="images/productad10.webp" alt="" />
-        
-                <img src="images/productad11.webp" alt="" />
-                <img src="images/productad12.webp" alt="" />
-            
-                <img src="images/productad13.webp" alt="" />
-                <img src="images/productad14.jpeg" alt="" />
-        </section>
-    </>
+
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+            .then(res => setProducts(res.data))
+            .catch(err => console.log(err))
+    }, [])
+
+    return (
+        <>
+            <section className="productadsSecond">
+                {products && products.filter((product) => product.category === 'Product Ads2').map((product) => (
+                    <Link>
+                        <img src={product.productImage} alt={product.productName} />
+                    </Link>
+
+                ))}
+            </section>
+        </>
     );
 }
 

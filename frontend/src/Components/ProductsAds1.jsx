@@ -12,6 +12,7 @@ function ProductAds1() {
             .then(res => setProducts(res.data))
             .catch(err => console.log(err))
     }, [])
+    
     return (
         < >
             <main className="livepics">
