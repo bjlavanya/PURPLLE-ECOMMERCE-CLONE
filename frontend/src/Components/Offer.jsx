@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { editorPickProducts, } from "./AllProducts";
+import { fragnance, } from "./AllProducts";
 import BudgetBeautyProducts from "./BudgetBeautyProducts";
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
@@ -71,7 +71,7 @@ function Offer() {
             <main className="handpicked">
                 <section className="handpickedImage">
                     <Slider {...settings}>
-                        {editorPickProducts.map((product) => (
+                        {fragrance.map((product) => (
                             <div className="sponsored" key={product.id}>
                                 <a href="#">
                                     <img src={product.image} alt={product.title} />
