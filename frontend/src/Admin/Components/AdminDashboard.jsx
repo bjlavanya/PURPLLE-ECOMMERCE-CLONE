@@ -13,7 +13,7 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid
+  CartesianGrid, PieChart, Pie, Cell
 } from "recharts";
 
 function AdminDashboard() {
@@ -21,7 +21,8 @@ function AdminDashboard() {
   const [orders, setOrders] = useState([])
   const [users, setUsers] = useState([])
   const [revenue, setRevenue] = useState([])
-
+  const [statusData, setStatusData] = useState([]);
+  const COLORS = ["#FFC20A", "#17BECF", "#4caf50"];
   useEffect(() => {
     document.title = "Purplle Admin"
   }, [])
@@ -64,6 +65,40 @@ function AdminDashboard() {
 
   }, [orders]);
 
+  useEffect(() => {
+
+    const statusCount = {
+      Pending: 0,
+      Processing: 0,
+      Delivered: 0
+    };
+
+    orders.forEach(order => {
+
+      if (order.orderStatus === "Pending") {
+        statusCount.Pending += 1;
+      }
+
+      else if (order.orderStatus === "Order Processing") {
+        statusCount.Processing += 1;
+      }
+
+      else if (order.orderStatus === "Order Delivered") {
+        statusCount.Delivered += 1;
+      }
+
+    });
+
+    const data = [
+      { name: "Pending", value: statusCount.Pending },
+      { name: "Processing", value: statusCount.Processing },
+      { name: "Delivered", value: statusCount.Delivered }
+    ];
+
+    setStatusData(data);
+
+  }, [orders]);
+
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
@@ -89,41 +124,56 @@ function AdminDashboard() {
       .catch(err => console.log(err))
   }, [])
 
-  // const CustomTooltip = ({ active, payload, label }) => {
-  //   if (active && payload && payload.length) {
-  //     return (
-  //       <div
-  //         style={{
-  //           background: "#fff",
-  //           padding: '4px 4px',
-  //           border: "1px solid #e0e0e0",
-  //           borderRadius: "8px",
-  //           boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
-  //           textAlign: "left",
-  //           width: '120px',
-  //         }}
-  //       >
-  //         <p style={{
-  //           margin: 0,
-  //           fontSize: "11px",
-  //           color: "#888",
-  //           fontWeight: "400"
-  //         }}>
-  //           {label}
-  //         </p>
-  //         <p style={{
-  //           margin: 0,
-  //           fontSize: "13px",
-  //           fontWeight: "bold",
-  //           color: "#9c00ad"
-  //         }}>
-  //           Amount: ₹{payload[0].value}
-  //         </p>
-  //       </div>
-  //     );
-  //   }
-  //   return null;
-  // };
+  const LineTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            background: "transparent",
+            padding: '4px 4px',
+            borderRadius: "8px",
+          }}
+        >
+          <p style={{
+            margin: 0,
+            fontSize: "11px",
+            color: "#888",
+            fontWeight: "400"
+          }}>
+            {label}
+          </p>
+          <p style={{
+            margin: 0,
+            fontSize: "13px",
+            fontWeight: "bold",
+            color: "#9c00ad"
+          }}>
+            Amount: ₹{payload[0].value}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const PieTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            background: "transparent",
+            padding: "4px 6px",
+            fontSize: "12px",
+          }}
+        >
+          <p style={{ margin: 0, color: '#9c00ad' }}>
+            {payload[0].name}: <b>{payload[0].value}</b>
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
     <>
@@ -181,30 +231,23 @@ function AdminDashboard() {
             <div className="revenue-chart" >
               <h1>Revenue Details(last 7 days)</h1>
               <ResponsiveContainer width="100%" height={300}>
-                <LineChart
-                  data={chartData}
-                  margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
-                >
+                <LineChart data={chartData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }} >
 
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    vertical={false}
-                    stroke="#e5e7eb"
-                  />
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
 
                   <XAxis
                     dataKey="date"
-                    axisLine={{ stroke: "#d1d5db" }}  
-                    interval={0} 
+                    axisLine={{ stroke: "#d1d5db" }}
+                    interval={0}
                     tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
                   <YAxis
-                    axisLine={{ stroke: "#d1d5db" }}   
+                    axisLine={{ stroke: "#d1d5db" }}
                     tick={{ fontSize: 12, fill: "#6b7280" }}
                   />
 
-                  <Tooltip />
+                  <Tooltip content={LineTooltip} cursor={{ stroke: "#ddd" }} isAnimationActive={false} />
 
                   <Line
                     type="monotone"
@@ -217,11 +260,43 @@ function AdminDashboard() {
                       stroke: "#8e24aa",
                       strokeWidth: 1
                     }}
-                    
+
                   />
 
                 </LineChart>
               </ResponsiveContainer>
+            </div>
+
+            <div className="revenue-chart" >
+              <h1>Pie Chart of Order Status</h1>
+              <ResponsiveContainer width="100%" height={380} margin={30}>
+                <PieChart margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+
+                  <Pie
+                    data={statusData}
+                    cx="50%"
+                    cy="42%"
+                    outerRadius={80}
+                    innerRadius={50}
+                    paddingAngle={5}
+                    dataKey="value"
+                    label
+                  >
+                    {statusData.map((entry, index) => (
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+
+                  <Legend
+                    verticalAlign="bottom"
+                    align="center"
+                  />
+
+                  <Tooltip content={<PieTooltip />} />
+
+                </PieChart>
+              </ResponsiveContainer>
+
             </div>
           </div>
         </div>
