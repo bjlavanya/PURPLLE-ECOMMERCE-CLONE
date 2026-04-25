@@ -353,6 +353,19 @@ app.get('/search', async (req, res) => {
     }
 })
 
+app.get('/products/:category', async (req, res) => {
+    try {
+        const { category } = req.query
+        const filteredProducts = Products.filter(
+            (product) => product.category === category
+        )
+        res.status(200).json({filteredProducts})
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 //USER PROFILE DATA
 app.get('/userData/:id', async (req, res) => {
     try {
@@ -534,15 +547,15 @@ app.get("/admin/revenue", async (req, res) => {
         let revenue = 0
 
         orders.forEach(order => {
-            if(order.paymentStatus === "Success") {
+            if (order.paymentStatus === "Success") {
                 revenue += order.totalAmount
             }
         })
 
-        res.json({revenue})
+        res.json({ revenue })
     }
 
-    catch(err) {
+    catch (err) {
         console.log(err)
     }
 })

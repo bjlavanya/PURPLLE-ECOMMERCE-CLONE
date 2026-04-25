@@ -283,14 +283,12 @@ function AdminDashboard() {
             background: "transparent",
             padding: '4px 4px',
             borderRadius: "8px",
-            marginTop:'-40px',
-            marginLeft:'40px'
           }}
         >
           <p style={{
             margin: 0,
             fontSize: "11px",
-            color: "#888",
+            color: "#000",
             fontWeight: "400"
           }}>
             {label}
@@ -299,7 +297,7 @@ function AdminDashboard() {
             margin: 0,
             fontSize: "13px",
             fontWeight: "bold",
-            color: "#9c00ad"
+            color: "#000"
           }}>
             Orders: {payload[0].value}
           </p>

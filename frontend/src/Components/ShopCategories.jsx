@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Topbar from './Topbar'
 import Navbar from './Navbar'
 import { allProducts, categoryImages } from "./AllProducts";
@@ -6,14 +6,21 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PurplleNotices from './PurplleNotices';
 import Footer from './Footer';
+import axios from 'axios'
+
 
 function ShopCategories() {
     const { category } = useParams();
     const heroImage = categoryImages[category];
 
-    const filteredProducts = allProducts.filter(
-        (product) => product.category === category
-    );
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+    axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/products/${category}`)
+          .then(res => setProducts(res.data))
+          .catch(err => console.log(err))
+  }, [category])
+
 
     return (
         <>
@@ -37,7 +44,7 @@ function ShopCategories() {
                 </div>
 
                 <div className="search-product-list ">
-                    {filteredProducts.map((product) => (
+                    {products && products.map((product) => (
                         <Link className="product-list" key={product.id} >
                             <div className="product-image">
                                 <img src={product.image} alt={product.title} />
