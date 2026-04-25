@@ -18,11 +18,8 @@ import MyAddressForm from './Components/MyAddressForm';
 import MyAddressView from './Components/MyAddressView';
 import EditMyAddress from './Components/EditMyAddress';
 import UserOrders from './Components/UserOrders';
-import Skincare from './Components/Skincare';
-import Makeup from './Components/Makeup';
-import Haircare from './Components/Haircare';
-import Fragrance from './Components/Fragrance';
 import SupportContact from './Components/SupportContact';
+import ShopCategories from './Components/ShopCategories';
 
 function App() {
   return (
@@ -44,10 +41,7 @@ function App() {
           <Route path="/userProfile/myAddressForm" element={<MyAddressForm />} />
           <Route path="/userProfile/myAddress/manage" element={<MyAddressView />} />
           <Route path="/userProfile/myAddress/edit" element={<EditMyAddress />} />
-          <Route path="/shopCategories/skincare" element={<Skincare />} />
-          <Route path="/shopCategories/makeup" element={<Makeup />} />
-          <Route path="/shopCategories/haircare" element={<Haircare />} />
-          <Route path="/shopCategories/fragrance" element={<Fragrance />} />
+          <Route path="/shopCategories/:category" element={<ShopCategories />} />
           <Route path="/supportContactForm" element={<SupportContact />} />
       </Routes>
       

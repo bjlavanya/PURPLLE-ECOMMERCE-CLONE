@@ -33,6 +33,7 @@ export const heroSectionSlider = [
     },
 ];
 
+
 export const skincare = [
     {
         id: 1,
@@ -43,6 +44,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     {
         id: 2,
@@ -53,6 +55,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     {
         id: 3,
@@ -63,6 +66,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     {
         id: 4,
@@ -73,6 +77,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     {
         id: 5,
@@ -83,6 +88,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 0,
+        category: 'skincare'
     },
     {
         id: 6,
@@ -93,6 +99,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     {
         id: 7,
@@ -103,6 +110,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     {
         id: 8,
@@ -113,6 +121,7 @@ export const skincare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'skincare'
     },
     
 ];
@@ -127,6 +136,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     {
         id: 2,
@@ -137,6 +147,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     {
         id: 3,
@@ -147,6 +158,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     {
         id: 4,
@@ -157,6 +169,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     {
         id: 5,
@@ -167,6 +180,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 0,
+        category: 'makeup'
     },
     {
         id: 6,
@@ -177,6 +191,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     {
         id: 7,
@@ -187,6 +202,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     {
         id: 8,
@@ -197,6 +213,7 @@ export const makeup = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'makeup'
     },
     
 ];
@@ -211,6 +228,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     {
         id: 2,
@@ -221,6 +239,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     {
         id: 3,
@@ -231,6 +250,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     {
         id: 4,
@@ -241,6 +261,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     {
         id: 5,
@@ -251,6 +272,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 0,
+        category: 'haircare'
     },
     {
         id: 6,
@@ -261,6 +283,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     {
         id: 7,
@@ -271,6 +294,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     {
         id: 8,
@@ -281,6 +305,7 @@ export const haircare = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'haircare'
     },
     
 ];
@@ -295,6 +320,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     {
         id: 2,
@@ -305,6 +331,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     {
         id: 3,
@@ -315,6 +342,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     {
         id: 4,
@@ -325,6 +353,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     {
         id: 5,
@@ -335,6 +364,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 0,
+        category: 'fragrance'
     },
     {
         id: 6,
@@ -345,6 +375,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     {
         id: 7,
@@ -355,6 +386,7 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     {
         id: 8,
@@ -365,9 +397,24 @@ export const fragrance = [
         oldPrice: 435,
         discount: 33,
         offers: 3,
+        category: 'fragrance'
     },
     
 ];
+
+export const allProducts = [
+    ...skincare,
+    ...makeup,
+    ...haircare,
+    ...fragrance
+]
+
+export const categoryImages = {
+    skincare: "/images/skinHero.webp",
+    makeup: "/images/herosection5.webp",
+    haircare: "/images/herosection7.webp",
+    fragrance: "/images/fragrancehero.webp"
+};
 
 export const getfreegifts = [
     {

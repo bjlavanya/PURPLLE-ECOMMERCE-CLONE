@@ -12,7 +12,6 @@ import BudgetBeautyProducts from './BudgetBeautyProducts'
 import ProductAds3 from './ProductAds3'
 import EssentialProducts from './EssentialProducts'
 import ProductSlide from './ProductSlide'
-import CuratedProducts from './CuratedProducts'
 import GetFreeGifts from './GetFreeGifts'
 import ProductAds4 from './ProductAds4'
 import TopBrands from './TopBrands'
@@ -30,8 +29,8 @@ function Home() {
             <ProductAds1 />
             <BestSellerProducts />
             <ElitePro />
-            <EditorPickProducts />
-            <ProductAds2 />
+            {/* <EditorPickProducts />
+            <ProductAds2 /> */}
             <BudgetBeautyProducts />
             <ProductAds3 />
             <EssentialProducts />

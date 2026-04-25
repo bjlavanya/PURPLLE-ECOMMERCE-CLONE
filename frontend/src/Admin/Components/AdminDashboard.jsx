@@ -13,21 +13,39 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid, PieChart, Pie, Cell
+  CartesianGrid, PieChart, Pie, Cell,
+  BarChart,
+  Bar, AreaChart,
+  Area,
 } from "recharts";
 
 function AdminDashboard() {
+
+  const data = [
+    { name: "A", x: 30, y: 70 },
+    { name: "B", x: 12, y: 88 },
+    { name: "C", x: 15, y: 85 },
+    { name: "D", x: 35, y: 65 },
+    { name: "E", x: 54, y: 46 },
+    { name: "F", x: 72, y: 28 },
+    { name: "G", x: 32, y: 68 },
+  ];
+
+
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
   const [users, setUsers] = useState([])
   const [revenue, setRevenue] = useState([])
   const [statusData, setStatusData] = useState([]);
+  const [barData, setBarData] = useState([])
+
   const COLORS = ["#FFC20A", "#17BECF", "#4caf50"];
   useEffect(() => {
     document.title = "Purplle Admin"
   }, [])
 
   const [chartData, setChartData] = useState([]);
+  const [areaChart, setAreaChart] = useState([])
 
   useEffect(() => {
 
@@ -39,7 +57,6 @@ function AdminDashboard() {
       d.setDate(today.getDate() - i);
       const date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
       revenueMap[date] = 0;
-
     }
 
     orders.forEach(order => {
@@ -62,6 +79,40 @@ function AdminDashboard() {
     }));
 
     setChartData(data);
+
+  }, [orders]);
+
+  useEffect(() => {
+
+    const revenueMap = {};
+    const today = new Date();
+
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(today.getDate() - i);
+      const date = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+      revenueMap[date] = 0;
+    }
+
+    orders.forEach(order => {
+      
+        const orderDate = new Date(order.orderDate);
+        const date =
+          `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
+
+        if (revenueMap[date] !== undefined) {
+          revenueMap[date] += 1;
+        }
+      
+
+    });
+
+    const data = Object.keys(revenueMap).map(date => ({
+      date,
+      amount: revenueMap[date]
+    }));
+
+    setAreaChart(data);
 
   }, [orders]);
 
@@ -99,6 +150,30 @@ function AdminDashboard() {
 
   }, [orders]);
 
+  useEffect(() => {
+    const monthlyOrders = {};
+
+    orders.forEach(order => {
+      const month = new Date(order.orderDate).toLocaleString(
+        "default",
+        { month: "short" }
+      );
+
+      if (!monthlyOrders[month]) {
+        monthlyOrders[month] = 0;
+      }
+
+      monthlyOrders[month] += 1;
+    });
+
+    const formattedData = Object.keys(monthlyOrders).map(month => ({
+      month,
+      orders: monthlyOrders[month]
+    }));
+
+    setBarData(formattedData);
+
+  }, [orders]);
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
@@ -156,6 +231,31 @@ function AdminDashboard() {
     return null;
   };
 
+  const AreaTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            background: "transparent",
+            padding: '4px 4px',
+            borderRadius: "8px",
+          }}
+        >
+          
+          <p style={{
+            margin: 0,
+            fontSize: "13px",
+            fontWeight: "bold",
+            color: "#9c00ad"
+          }}>
+            Orders: {payload[0].value}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   const PieTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -168,6 +268,40 @@ function AdminDashboard() {
         >
           <p style={{ margin: 0, color: '#9c00ad' }}>
             {payload[0].name}: <b>{payload[0].value}</b>
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const BarTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            background: "transparent",
+            padding: '4px 4px',
+            borderRadius: "8px",
+            marginTop:'-40px',
+            marginLeft:'40px'
+          }}
+        >
+          <p style={{
+            margin: 0,
+            fontSize: "11px",
+            color: "#888",
+            fontWeight: "400"
+          }}>
+            {label}
+          </p>
+          <p style={{
+            margin: 0,
+            fontSize: "13px",
+            fontWeight: "bold",
+            color: "#9c00ad"
+          }}>
+            Orders: {payload[0].value}
           </p>
         </div>
       );
@@ -295,6 +429,44 @@ function AdminDashboard() {
                   <Tooltip content={<PieTooltip />} />
 
                 </PieChart>
+              </ResponsiveContainer>
+
+            </div>
+          </div>
+
+          <div className="admin-chart">
+            <div className="revenue-chart" >
+              <h1>Total Orders each Month</h1>
+              <ResponsiveContainer width="100%" height={360}>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={barData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip content={BarTooltip}/>
+                    <Legend />
+                    <Bar dataKey="orders" fill="#bb26cb" radius={[5, 5, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="revenue-chart" >
+              <h1>Total orders each day</h1>
+              <ResponsiveContainer width="100%" height={280} margin={20}>
+                <AreaChart width={500} height={600} data={areaChart}>
+                  <CartesianGrid />
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Tooltip content={AreaTooltip} />
+                  <Area
+                    dataKey="amount"
+                    stackId="1"
+                    stroke="green"
+                    fill="#9c00ad"
+                  />
+                  
+                </AreaChart>
               </ResponsiveContainer>
 
             </div>

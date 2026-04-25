@@ -1,12 +1,20 @@
 import React from 'react'
 import Topbar from './Topbar'
 import Navbar from './Navbar'
-import { fragrance, } from "./AllProducts";
+import { allProducts, categoryImages } from "./AllProducts";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PurplleNotices from './PurplleNotices';
 import Footer from './Footer';
 
-function Fragrance() {
+function ShopCategories() {
+    const { category } = useParams();
+    const heroImage = categoryImages[category];
+
+    const filteredProducts = allProducts.filter(
+        (product) => product.category === category
+    );
+
     return (
         <>
             <Topbar />
@@ -15,22 +23,22 @@ function Fragrance() {
             <section className="breadcrumbs" style={{ marginTop: '5px' }}>
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li>Fragrance</li>
+                    <li>{category}</li>
                 </ul>
             </section>
 
             <div className="shop-category-skincare search-page">
                 <div className="skincare-herosection">
-                    <img src="/images/fragnancehero.webp" alt="" />
+                    <img src={heroImage} alt="" />
                 </div>
 
                 <div className="shop-skincare">
-                    <p>Fragrance</p>
+                    <p style={{textTransform:'capitalize'}}>{category}</p>
                 </div>
 
                 <div className="search-product-list ">
-                    {fragrance.map((product) => (
-                        <Link className="product-list" >
+                    {filteredProducts.map((product) => (
+                        <Link className="product-list" key={product.id} >
                             <div className="product-image">
                                 <img src={product.image} alt={product.title} />
                             </div>
@@ -62,4 +70,4 @@ function Fragrance() {
     )
 }
 
-export default Fragrance
+export default ShopCategories
