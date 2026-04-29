@@ -186,7 +186,7 @@ app.delete('/deleteUsers/:id', async (req, res) => {
 })
 
 // Category
-app.get('/products/:category', async (req, res) => {
+app.get('/products/category/:category', async (req, res) => {
     try {
         const { category } = req.params;
 

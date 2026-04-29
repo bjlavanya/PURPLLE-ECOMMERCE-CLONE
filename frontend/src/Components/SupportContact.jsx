@@ -35,7 +35,7 @@ function SupportContact() {
                 }
             );
 
-            alert('Sent Successfully');
+            alert('Message Sent Successfully');
 
             setFullName("");
             setEmail("");
@@ -110,7 +110,7 @@ function SupportContact() {
 
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Message *</label>
-                                    <textarea name="" id="" cols={30} rows={5} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
+                                    <textarea name="" id="" cols={30} rows={5} style={{paddingLeft:'7px', paddingTop:'5px'}} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
                                 </div>
 
                                 <button type='submit' className="update-btn">

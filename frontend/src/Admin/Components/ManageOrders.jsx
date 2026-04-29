@@ -49,46 +49,49 @@ function ManageOrders() {
       <div className="admin-all-content-space">
         <div className="manage-table">
           <h3>Manage Order Details</h3>
-          <table border="1">
-            <thead>
-              <tr>
-                <th>Sl.No</th>
-                <th>User Email</th>
-                <th>User Address</th>
-                <th>Order Date</th>
-                <th>Product Details</th>
-                <th>Total Amount</th>
-                <th>Payment Mode</th>
-                <th>Payment Status</th>
-                <th>Order Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              {
-                orders.map((order, index) => {
-                  const date = new Date(order.orderDate)
-                  const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
-                  return <tr key={order._id}>
-                    <td>{index + 1}</td>
-                    <td>{order.userEmail}</td>
-                    <td>{addresses[order.userEmail]?.location}</td>
-                    <td>{formattedOrderDate}</td>
-                    <td className='click' onClick={() => viewProducts(order.products)}>Click to View Products</td>
-                    <td>{order.totalAmount}</td>
-                    <td>{order.paymentMode}</td>
-                    <td>{order.paymentStatus}</td>
-                    <td>{order.orderStatus}</td>
-                    <td className='action-btn'>
-                      <Link to={`/admin/editStatus/` + order._id} ><i className="fas fa-edit edit"></i></Link> <br />
-                      <button onClick={() => deleteOrders(order._id)}><i className="fas fa-trash-alt delete"></i></button>
-                    </td>
-                  </tr>
-                })
-              }
-            </tbody>
-          </table>
+          <div className="table-container">
+            <table border="1">
+              <thead style={{position:'sticky', top:0, zIndex:1000}}>
+                <tr>
+                  <th>Sl.No</th>
+                  <th>User Email</th>
+                  <th>User Address</th>
+                  <th>Order Date</th>
+                  <th>Product Details</th>
+                  <th>Total Amount</th>
+                  <th>Payment Mode</th>
+                  <th>Payment Status</th>
+                  <th>Order Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {
+                  orders.map((order, index) => {
+                    const date = new Date(order.orderDate)
+                    const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
+                    return <tr key={order._id}>
+                      <td>{index + 1}</td>
+                      <td>{order.userEmail}</td>
+                      <td>{addresses[order.userEmail]?.location}</td>
+                      <td>{formattedOrderDate}</td>
+                      <td className='click' onClick={() => viewProducts(order.products)}>Click to View Products</td>
+                      <td>{order.totalAmount}</td>
+                      <td>{order.paymentMode}</td>
+                      <td>{order.paymentStatus}</td>
+                      <td>{order.orderStatus}</td>
+                      <td className='action-btn'>
+                        <Link to={`/admin/editStatus/` + order._id} ><i className="fas fa-edit edit"></i></Link> <br />
+                        <button onClick={() => deleteOrders(order._id)}><i className="fas fa-trash-alt delete"></i></button>
+                      </td>
+                    </tr>
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

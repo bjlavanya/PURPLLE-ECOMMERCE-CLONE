@@ -16,7 +16,7 @@ function ShopCategories() {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-    axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/products/${category}`)
+    axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/products/category/${category}`)
           .then(res => setProducts(res.data))
           .catch(err => console.log(err))
   }, [category])

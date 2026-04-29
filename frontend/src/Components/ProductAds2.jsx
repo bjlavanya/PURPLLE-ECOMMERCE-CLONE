@@ -18,7 +18,7 @@ function ProductAds2() {
         <>
             <section className="productadsSecond">
                 {products && products.filter((product) => product.category === 'Product Ads2').map((product) => (
-                    <Link>
+                    <Link key={product._id}>
                         <img src={product.productImage} alt={product.productName} />
                     </Link>
 

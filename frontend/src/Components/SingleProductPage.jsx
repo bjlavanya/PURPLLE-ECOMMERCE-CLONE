@@ -48,7 +48,7 @@ function SingleProductPage() {
                         </ul>
                     </section>
                 </div>
-                {product && (
+                {product._id && (
                     <div className="single-product-details">
                         <div className="single-product-image">
                             <img src={product.productImage} alt="" />
