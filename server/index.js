@@ -566,37 +566,31 @@ app.get("/admin/revenue", async (req, res) => {
 
 app.get("/top-products", async (req, res) => {
   try {
-    const topProducts = await Orders.aggregate([
+    const topProducts = await Order.aggregate([
       {
-        $match: {
-          products: { $exists: true, $ne: [] }
-        }
+        $unwind: "$products"
       },
-
-      { $unwind: "$products" },
-
-      {
-        $match: {
-          "products.productName": { $exists: true, $ne: null },
-          "products.quantity": { $exists: true, $ne: null }
-        }
-      },
-
       {
         $group: {
           _id: "$products.productName",
-          totalSold: { $sum: "$products.quantity" }
+          sales: {
+            $sum: "$products.quantity"
+          }
         }
       },
-
-      { $sort: { totalSold: -1 } },
-      { $limit: 5 },
-
+      {
+        $sort: {
+          sales: -1
+        }
+      },
+      {
+        $limit: 5
+      },
       {
         $project: {
           _id: 0,
           productName: "$_id",
-          sales: "$totalSold"
+          sales: 1
         }
       }
     ]);
@@ -604,7 +598,7 @@ app.get("/top-products", async (req, res) => {
     res.json(topProducts);
 
   } catch (err) {
-    console.log("Aggregation error:", err);
+    console.log(err);
     res.status(500).json({
       message: err.message
     });
