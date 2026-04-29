@@ -1646,29 +1646,43 @@ footer .footer-links a:hover {
     margin: -10px 30px;
 }
 
-.search-modal .search-contents .search-productname {
+/* .search-modal .search-contents .search-productname {
+    color: #2c414c;
+    font-size: 14px;
+} */
+
+.search-head {
+    font-weight: 500;
+    
+    text-decoration: none;
     color: #2c414c;
     font-size: 14px;
 }
 
-.search-modal .search-contents .search-productname .heading {
+/* .search-modal .search-contents .heading {
     font-weight: 500;
-}
+    margin-bottom: 10px;
+    margin-right: 200px;
+    text-decoration: none;
+    color: #2c414c;
+    font-size: 14px;
+} */
 
-.search-modal .search-contents .search-productname p {
+/* .search-modal .search-contents .search-productname p {
     margin-bottom: 10px;
     margin-right: 200px;
     cursor: pointer;
     text-decoration: none;
 }
 
-.search-modal .search-contents .search-productname p:hover {
+.search-modal .search-contents  p:hover {
     font-weight: bold;
-}
+} */
 
 .search-modal .search-contents .search-products {
     cursor: pointer;
     text-decoration-line: none;
+    margin-left: 25px;
 }
 
 .search-modal .search-contents .search-products:hover {
