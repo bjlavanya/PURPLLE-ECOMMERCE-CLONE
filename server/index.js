@@ -629,7 +629,12 @@ app.post("/contact", async (req, res) => {
       message
     });
 
-    await newContact.save();
+    await newContact.save()
+
+    res.status(201).json({
+      success: true,
+      message: "Message sent successfully"
+    })
 
   } catch (err) {
     console.log(err);

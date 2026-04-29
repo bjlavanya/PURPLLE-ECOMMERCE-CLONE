@@ -113,7 +113,7 @@ function SupportContact() {
                                     <textarea name="" id="" cols={30} rows={5} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
                                 </div>
 
-                                <button className="update-btn">
+                                <button type='submit' className="update-btn">
                                     Send Message
                                 </button>
                             </div>
