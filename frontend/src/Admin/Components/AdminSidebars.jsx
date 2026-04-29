@@ -43,6 +43,11 @@ function AdminSidebars() {
                                 manage users
                             </Link>
 
+                            <Link to='/admin/manageContacts' className="admin-manage-users admin-tasks">
+                                <FaUsers className="admin-icons" />
+                                manage users
+                            </Link>
+
                             <Link to='/admin/dashboard' className="admin-manage-users admin-tasks">
                                 <MdLogout className="admin-icons" />
                                 logout

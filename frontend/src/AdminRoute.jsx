@@ -8,6 +8,7 @@ import ManageUsers from './Admin/Components/ManageUsers'
 import EditProducts from './Admin/Components/EditProducts'
 import ManageOrders from './Admin/Components/ManageOrders'
 import EditStatus from './Admin/Components/EditStatus'
+import ManageContacts from './Admin/ManageContacts'
 
 function AdminRoute() {
         useEffect(() => {
@@ -25,6 +26,7 @@ function AdminRoute() {
                 <Route path='manageOrders' element={<ManageOrders />} />
                 <Route path='editStatus/:id' element={<EditStatus />} />
                 <Route path='manageUsers' element={<ManageUsers />} />
+                <Route path='manageContacts' element={<ManageContacts />} />
             </Routes>
         </>
     )
