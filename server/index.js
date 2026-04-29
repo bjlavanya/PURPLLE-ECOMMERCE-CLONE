@@ -573,7 +573,9 @@ app.get("/top-products", async (req, res) => {
       },
       {
         $group: {
-          _id: "$products.productName",
+           _id: {
+            $toLower: "$products.productName"
+          },
           sales: {
             $sum: "$products.quantity"
           }
@@ -590,10 +592,7 @@ app.get("/top-products", async (req, res) => {
       {
         $project: {
           _id: 0,
-           productName: {
-            $toLower: "$_id"
-          },
-          
+          productName: "$_id",
           sales: 1
         }
       }
