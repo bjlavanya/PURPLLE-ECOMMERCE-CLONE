@@ -15,9 +15,9 @@ function SupportContact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const userId = JSON.parse(localStorage.getItem("userId"));
+        const userId = localStorage.getItem("userId")
 
-        if (!user) {
+        if (!userId) {
             alert("Please login first");
             return;
         }
