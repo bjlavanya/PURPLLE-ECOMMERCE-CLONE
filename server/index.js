@@ -184,6 +184,23 @@ app.delete('/deleteUsers/:id', async (req, res) => {
     }
 })
 
+// Category
+app.get('/products/:category', async (req, res) => {
+    try {
+        const { category } = req.params;
+
+        const filteredProducts = await Products.find({
+            category: category
+        });
+
+        res.status(200).json(filteredProducts);
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
 app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
 
@@ -352,22 +369,6 @@ app.get('/search', async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 })
-
-app.get('/products/:category', async (req, res) => {
-    try {
-        const { category } = req.params;
-
-        const filteredProducts = await Products.find({
-            category: category
-        });
-
-        res.status(200).json(filteredProducts);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(500).json({ message: "Server Error" });
-    }
-});
 
 //USER PROFILE DATA
 app.get('/userData/:id', async (req, res) => {
