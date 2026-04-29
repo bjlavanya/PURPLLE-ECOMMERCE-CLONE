@@ -8,7 +8,7 @@ import ManageUsers from './Admin/Components/ManageUsers'
 import EditProducts from './Admin/Components/EditProducts'
 import ManageOrders from './Admin/Components/ManageOrders'
 import EditStatus from './Admin/Components/EditStatus'
-import ManageContacts from './Admin/ManageContacts'
+import ManageContacts from './Admin/Components/ManageContacts'
 
 function AdminRoute() {
         useEffect(() => {
