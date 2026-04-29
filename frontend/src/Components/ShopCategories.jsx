@@ -47,16 +47,16 @@ function ShopCategories() {
                     {products.map((product) => (
                         <Link className="product-list" key={product.id} >
                             <div className="product-image">
-                                <img src={product.image} alt={product.title} />
+                                <img src={product.productImage} alt={product.title} />
                             </div>
 
                             <div className="product-details">
-                                <p className="product-name">{product.title}  </p>
+                                <p className="product-name">{product.productName}  </p>
 
-                                <p className="product-descriptiom">{product.subtitle}</p>
+                                <p className="product-descriptiom">{product.productDescription.substr(0,50)+"...."}</p>
 
                                 <div className="price-section">
-                                    <span className="price">₹{product.price} </span>
+                                    <span className="price">₹{product.newPrice} </span>
                                     <span className="old-price">₹{product.oldPrice} </span>
                                     <span className="discount">{product.discount}% off</span>
                                 </div>

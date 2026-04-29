@@ -21,31 +21,28 @@ import {
 
 function AdminDashboard() {
 
-  const data = [
-    { name: "A", x: 30, y: 70 },
-    { name: "B", x: 12, y: 88 },
-    { name: "C", x: 15, y: 85 },
-    { name: "D", x: 35, y: 65 },
-    { name: "E", x: 54, y: 46 },
-    { name: "F", x: 72, y: 28 },
-    { name: "G", x: 32, y: 68 },
-  ];
-
-
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
   const [users, setUsers] = useState([])
   const [revenue, setRevenue] = useState([])
   const [statusData, setStatusData] = useState([]);
   const [barData, setBarData] = useState([])
+  const [topProducts, setTopProducts] = useState([]);
 
   const COLORS = ["#FFC20A", "#17BECF", "#4caf50"];
+
   useEffect(() => {
     document.title = "Purplle Admin"
   }, [])
 
   const [chartData, setChartData] = useState([]);
   const [areaChart, setAreaChart] = useState([])
+
+  useEffect(() => {
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/top-products")
+      .then(res => setTopProducts(res.data))
+      .catch(err => console.log(err));
+  }, [])
 
   useEffect(() => {
 
@@ -95,14 +92,14 @@ function AdminDashboard() {
     }
 
     orders.forEach(order => {
-      
-        const orderDate = new Date(order.orderDate);
-        const date =
-          `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
 
-        if (revenueMap[date] !== undefined) {
-          revenueMap[date] += 1;
-        }
+      const orderDate = new Date(order.orderDate);
+      const date =
+        `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
+
+      if (revenueMap[date] !== undefined) {
+        revenueMap[date] += 1;
+      }
 
     });
 
@@ -240,7 +237,7 @@ function AdminDashboard() {
             borderRadius: "8px",
           }}
         >
-          
+
           <p style={{
             margin: 0,
             fontSize: "13px",
@@ -436,7 +433,7 @@ function AdminDashboard() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
-                    <Tooltip content={BarTooltip}/>
+                    <Tooltip content={BarTooltip} />
                     <Legend />
                     <Bar dataKey="orders" fill="#bb26cb" radius={[5, 5, 0, 0]} />
                   </BarChart>
@@ -458,7 +455,7 @@ function AdminDashboard() {
                     stroke="black"
                     fill="#9c00ad"
                   />
-                  
+
                 </AreaChart>
               </ResponsiveContainer>
 

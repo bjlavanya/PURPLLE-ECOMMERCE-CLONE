@@ -199,7 +199,7 @@ app.get('/products/:category', async (req, res) => {
         console.log(err);
         res.status(500).json({ message: "Server Error" });
     }
-});
+})
 
 app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
@@ -563,6 +563,35 @@ app.get("/admin/revenue", async (req, res) => {
         console.log(err)
     }
 })
+
+// Admin Dashboard
+
+app.get("/top-products", async (req, res) => {
+  try {
+    const topProducts = await Order.aggregate([
+      { $unwind: "$products" },
+      {
+        $group: {
+          _id: "$products.productName",
+          totalSold: { $sum: "$products.quantity" }
+        }
+      },
+      { $sort: { totalSold: -1 } },
+      { $limit: 5 },
+      {
+        $project: {
+          _id: 0,
+          productName: "$_id",
+          sales: "$totalSold"
+        }
+      }
+    ]);
+
+    res.json(topProducts);
+  } catch (err) {
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 
 //Server running
 app.listen(PORT, () => {
