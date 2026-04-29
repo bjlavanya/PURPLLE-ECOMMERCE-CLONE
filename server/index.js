@@ -590,7 +590,10 @@ app.get("/top-products", async (req, res) => {
       {
         $project: {
           _id: 0,
-          productName: "$_id",
+           productName: {
+            $toLower: "$_id"
+          },
+          
           sales: 1
         }
       }
