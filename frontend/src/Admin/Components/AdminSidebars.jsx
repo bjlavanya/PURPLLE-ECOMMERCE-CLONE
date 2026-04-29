@@ -45,7 +45,7 @@ function AdminSidebars() {
 
                             <Link to='/admin/manageContacts' className="admin-manage-users admin-tasks">
                                 <FaUsers className="admin-icons" />
-                                manage users
+                                manage contacts
                             </Link>
 
                             <Link to='/admin/dashboard' className="admin-manage-users admin-tasks">
