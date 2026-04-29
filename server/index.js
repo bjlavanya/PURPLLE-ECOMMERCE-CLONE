@@ -355,16 +355,19 @@ app.get('/search', async (req, res) => {
 
 app.get('/products/:category', async (req, res) => {
     try {
-        const { category } = req.query
-        const filteredProducts = Products.filter(
-            (product) => product.category === category
-        )
-        res.status(200).json({filteredProducts})
+        const { category } = req.params;
+
+        const filteredProducts = await Products.find({
+            category: category
+        });
+
+        res.status(200).json(filteredProducts);
     }
     catch (err) {
-        console.log(err)
+        console.log(err);
+        res.status(500).json({ message: "Server Error" });
     }
-})
+});
 
 //USER PROFILE DATA
 app.get('/userData/:id', async (req, res) => {

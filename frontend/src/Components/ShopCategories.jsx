@@ -44,7 +44,7 @@ function ShopCategories() {
                 </div>
 
                 <div className="search-product-list ">
-                    {products && products.map((product) => (
+                    {products.map((product) => (
                         <Link className="product-list" key={product.id} >
                             <div className="product-image">
                                 <img src={product.image} alt={product.title} />

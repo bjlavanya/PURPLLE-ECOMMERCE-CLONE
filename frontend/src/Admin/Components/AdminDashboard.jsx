@@ -103,7 +103,6 @@ function AdminDashboard() {
         if (revenueMap[date] !== undefined) {
           revenueMap[date] += 1;
         }
-      
 
     });
 
@@ -419,11 +418,7 @@ function AdminDashboard() {
                     ))}
                   </Pie>
 
-                  <Legend
-                    verticalAlign="bottom"
-                    align="center"
-                  />
-
+                  <Legend verticalAlign="bottom" align="center" />
                   <Tooltip content={<PieTooltip />} />
 
                 </PieChart>
@@ -460,7 +455,7 @@ function AdminDashboard() {
                   <Area
                     dataKey="amount"
                     stackId="1"
-                    stroke="green"
+                    stroke="black"
                     fill="#9c00ad"
                   />
                   
