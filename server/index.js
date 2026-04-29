@@ -123,6 +123,12 @@ app.get('/manageUsers', (req, res) => {
         .catch(err => res.json(err))
 })
 
+app.get('/manageContacts', (req, res) => {
+    Contacts.find()
+        .then(contacts => res.json(contacts))
+        .catch(err => res.json(err))
+})
+
 //user side address data
 app.get('/manageUsers/:id', async (req, res) => {
     try {
@@ -178,6 +184,18 @@ app.delete('/deleteUsers/:id', async (req, res) => {
         const { id } = req.params
 
         const deleteUser = await Users.findByIdAndDelete(id)
+        res.status(200).json(deleteUser)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
+app.delete('/deleteContacts/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const deleteContacts = await Users.findByIdAndDelete(id)
         res.status(200).json(deleteUser)
     }
     catch (err) {

@@ -6,20 +6,20 @@ import { Link } from "react-router-dom";
 
 function ManageContacts() {
 
-  const [users, setUsers] = useState([])
+  const [contacts, setContacts] = useState([])
 
   useEffect(() => {
-    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageUsers")
-      .then(users => setUsers(users.data))
+    axios.get("https://purplle-ecommerce-clone-backend.onrender.com/manageContacts")
+      .then(users => setContacts(users.data))
       .catch(err => console.log(err))
   }, [])
 
-  const deleteUser = async (id) => {
+  const deleteContact = async (id) => {
      try {
       await axios.delete(
-        `https://purplle-ecommerce-clone-backend.onrender.com/deleteUsers/${id}`
+        `https://purplle-ecommerce-clone-backend.onrender.com/deleteContacts/${id}`
       )
-      alert("User Deleted")
+      alert("Contact details Deleted")
       window.location.reload()
     } catch (err) {
       console.log(err)
@@ -32,24 +32,30 @@ function ManageContacts() {
 
       <div className="admin-all-content-space">
         <div className="manage-table">
-          <h3>Manage Users</h3>
+          <h3>Manage Contacts</h3>
           <table border="1">
             <thead>
               <tr>
+                <th>Full Name</th>
                 <th>User Email</th>
                 <th>Phone Number</th>
+                <th>Location</th>
+                <th>Message</th>
                 <th>Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {
-                users.map(user => {
-                  return <tr key={user._id}>
-                    <td>{user.email}</td>
-                    <td>{user.phonenumber}</td>
+                contacts.map(contact => {
+                  return <tr key={contact._id}>
+                    <td>{contact.fullname}</td>
+                    <td>{contact.email}</td>
+                    <td>{contact.phoneNumber}</td>
+                    <td>{contact.location}</td>
+                    <td>{contact.message}</td>
                     <td className='action-btn'>
-                      <button onClick={() => deleteUser(user._id)}><i className="fas fa-trash-alt delete"></i></button>
+                      <button onClick={() => deleteContact(contact._id)}><i className="fas fa-trash-alt delete"></i></button>
                     </td>
                   </tr>
                 })
