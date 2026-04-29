@@ -566,7 +566,7 @@ app.get("/admin/revenue", async (req, res) => {
 
 app.get("/top-products", async (req, res) => {
   try {
-    const topProducts = await Order.aggregate([
+    const topProducts = await Orders.aggregate([
       {
         $unwind: "$products"
       },
