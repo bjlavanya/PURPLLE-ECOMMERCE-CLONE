@@ -2,8 +2,50 @@ import React from 'react'
 import { FaArrowLeft } from "react-icons/fa6";
 import Topbar from './Topbar';
 import Navbar from './Navbar';
+import { useState } from 'react';
 
 function SupportContact() {
+    const [fullName, setFullName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [location, setLocation] = useState("")
+    const [message, setMessage] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const user = JSON.parse(localStorage.getItem("userId"));
+
+        if (!user) {
+            alert("Please login first");
+            return;
+        }
+
+        try {
+            const res = await axios.post(
+                "https://purplle-ecommerce-clone-backend.onrender.com/contact",
+                {
+                    userId: user._id,
+                    fullName,
+                    email,
+                    phoneNumber,
+                    location,
+                    message
+                }
+            );
+
+            alert(res.data.message);
+
+            setFullName("");
+            setEmail("");
+            setPhoneNumber("");
+            setLocation("");
+            setMessage("");
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <>
             <Topbar />
@@ -25,29 +67,49 @@ function SupportContact() {
                             <div className="edit-user-form">
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Full Name *</label>
-                                    <input type="text" name="fullname" id="fullname" required />
+                                    <input
+                                        type="text"
+                                        value={fullName}
+                                        onChange={(e) => setFullName(e.target.value)}
+                                        required
+                                    />
                                 </div>
 
                                 <div className="myaddress-city-state">
                                     <div className="edit-form-details">
                                         <label htmlFor="" className="form-items">Email *</label>
-                                        <input type="text" name="email" id="email" required />
+                                        <input
+                                        type="text"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
                                     </div>
 
                                     <div className="edit-form-details">
                                         <label htmlFor="" className="form-items">Phone Number *</label>
-                                        <input type="text" name="phonenumber" id="phonenumber" required />
+                                        <input
+                                        type="text"
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        required
+                                    />
                                     </div>
                                 </div>
 
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Location *</label>
-                                    <input type="text" name="location" id="location" required />
+                                    <input
+                                        type="text"
+                                        value={location}
+                                        onChange={(e) => setLocation(e.target.value)}
+                                        required
+                                    />
                                 </div>
 
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Message *</label>
-                                    <textarea name="" id="" cols={30} rows={5}></textarea>
+                                    <textarea name="" id="" cols={30} rows={5} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
                                 </div>
 
                                 <button className="update-btn">

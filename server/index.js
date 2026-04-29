@@ -5,6 +5,7 @@ const cors = require('cors')
 const Products = require('./models/Products');
 const Users = require('./models/User');
 const Orders = require('./models/Orders')
+const Contacts = require('./models/Contact')
 const multer = require("multer")
 const path = require("path")
 const authRoutes = require('./LoginAuth/Auth')
@@ -602,6 +603,40 @@ app.get("/top-products", async (req, res) => {
     res.status(500).json({
       message: err.message
     });
+  }
+})
+
+//Contact
+
+const Contact = require("./models/Contact");
+
+app.post("/contact", async (req, res) => {
+  try {
+    const { userId, fullName, email, phoneNumber, location, message } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({
+        message: "Please login first"
+      });
+    }
+
+    const newContact = new Contact({
+      userId,
+      fullName,
+      email,
+      phoneNumber,
+      location,
+      message
+    });
+
+    await newContact.save();
+
+    res.status(201).json({
+      message: "Message sent successfully"
+    });
+
+  } catch (err) {
+    console.log(err);
   }
 });
 

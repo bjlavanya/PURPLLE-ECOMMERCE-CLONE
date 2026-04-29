@@ -301,6 +301,20 @@ function AdminDashboard() {
       );
     }
     return null;
+  }
+
+  const CustomizedAxisTick = ({ x, y, payload }) => {
+    return (
+      <text
+        x={x}
+        y={y + 10}
+        textAnchor="middle"
+        fill="#555"
+      >
+        <tspan x={x} dy="0">{payload.value.split(" ")[0]}</tspan>
+        <tspan x={x} dy="15">{payload.value.split(" ").slice(1).join(" ")}</tspan>
+      </text>
+    );
   };
 
   return (
@@ -431,7 +445,7 @@ function AdminDashboard() {
               <ResponsiveContainer width="100%" height={360}>
                 <BarChart data={topProducts}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="productName" />
+                  <XAxis dataKey="productName" interval={0} tick={<CustomizedAxisTick/>} />
                   <YAxis />
                   <Tooltip />
                   <Legend />
