@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import Topbar from './Topbar';
 import Navbar from './Navbar';
 import { useState } from 'react';
+import axios from 'axios'
 
 function SupportContact() {
     const [fullName, setFullName] = useState("")
@@ -14,7 +15,7 @@ function SupportContact() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const user = JSON.parse(localStorage.getItem("userId"));
+        const userId = JSON.parse(localStorage.getItem("userId"));
 
         if (!user) {
             alert("Please login first");
@@ -25,7 +26,7 @@ function SupportContact() {
             const res = await axios.post(
                 "https://purplle-ecommerce-clone-backend.onrender.com/contact",
                 {
-                    userId: user._id,
+                    userId,
                     fullName,
                     email,
                     phoneNumber,
@@ -34,7 +35,7 @@ function SupportContact() {
                 }
             );
 
-            alert(res.data.message);
+            alert('Sent Successfully');
 
             setFullName("");
             setEmail("");
@@ -63,7 +64,7 @@ function SupportContact() {
                         <p className="deliver-to">Get any help, regarding any doubts</p>
                         <p className="address-info">Contact Form</p>
 
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="edit-user-form">
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Full Name *</label>

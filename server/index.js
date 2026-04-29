@@ -631,14 +631,10 @@ app.post("/contact", async (req, res) => {
 
     await newContact.save();
 
-    res.status(201).json({
-      message: "Message sent successfully"
-    });
-
   } catch (err) {
     console.log(err);
   }
-});
+})
 
 //Server running
 app.listen(PORT, () => {
