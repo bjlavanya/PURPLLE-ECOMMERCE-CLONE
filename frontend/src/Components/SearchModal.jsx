@@ -63,7 +63,7 @@ function SearchModal({ closeSearchModal }) {
                     <div className="line"></div> */}
 
                     {products && products.filter((product) => product.productName.toLowerCase().includes(query.toLowerCase())).slice(0, 5).map((product) => (
-                        <Link to={`/singleProductPage/${product._id}`} className="search-products" key={product._id} >
+                        <Link to={`/singleProductPage/${product._id}`} onClick={closeSearchModal} className="search-products" key={product._id} >
                             <img src={product.productImage} alt=""  style={{height:'130px'}}/>
                             <div className="product-details">
 

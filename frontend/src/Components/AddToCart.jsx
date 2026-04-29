@@ -269,7 +269,6 @@ function AddToCart() {
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </Link>
                         {searchModal && <SearchModal closeSearchModal={closeSearchModal} />}
-                        <a href="" id="heart"><i className="fa-regular fa-heart"></i></a>
 
 
                         <Link ref={menuRef} id="smile" onClick={() => setOpen(!open)}>

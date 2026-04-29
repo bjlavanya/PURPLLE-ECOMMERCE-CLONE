@@ -110,7 +110,6 @@ function Navbar() {
                         </Link>
                         {searchModal && <SearchModal closeSearchModal={closeSearchModal} />}
 
-                        <a href="" id="heart"><i className="fa-regular fa-heart"></i></a>
                         <Link to='/addToCart' href="" id="bars">
                             <i class="fa-solid fa-cart-arrow-down"></i>
                             {cartItemsCount > 0 &&
