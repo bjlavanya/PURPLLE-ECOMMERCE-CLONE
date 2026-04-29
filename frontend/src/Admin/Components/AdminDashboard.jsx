@@ -146,30 +146,30 @@ function AdminDashboard() {
 
   }, [orders]);
 
-  useEffect(() => {
-    const monthlyOrders = {};
+  // useEffect(() => {
+  //   const monthlyOrders = {};
 
-    orders.forEach(order => {
-      const month = new Date(order.orderDate).toLocaleString(
-        "default",
-        { month: "short" }
-      );
+  //   orders.forEach(order => {
+  //     const month = new Date(order.orderDate).toLocaleString(
+  //       "default",
+  //       { month: "short" }
+  //     );
 
-      if (!monthlyOrders[month]) {
-        monthlyOrders[month] = 0;
-      }
+  //     if (!monthlyOrders[month]) {
+  //       monthlyOrders[month] = 0;
+  //     }
 
-      monthlyOrders[month] += 1;
-    });
+  //     monthlyOrders[month] += 1;
+  //   });
 
-    const formattedData = Object.keys(monthlyOrders).map(month => ({
-      month,
-      orders: monthlyOrders[month]
-    }));
+  //   const formattedData = Object.keys(monthlyOrders).map(month => ({
+  //     month,
+  //     orders: monthlyOrders[month]
+  //   }));
 
-    setBarData(formattedData);
+  //   setBarData(formattedData);
 
-  }, [orders]);
+  // }, [orders]);
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
@@ -425,19 +425,22 @@ function AdminDashboard() {
           </div>
 
           <div className="admin-chart">
-            <div className="revenue-chart" >
-              <h1>Total Orders each Month</h1>
+            <div className="revenue-chart">
+              <h1>Top 5 Selling Products</h1>
+
               <ResponsiveContainer width="100%" height={360}>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={barData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
-                    <YAxis />
-                    <Tooltip content={BarTooltip} />
-                    <Legend />
-                    <Bar dataKey="orders" fill="#bb26cb" radius={[5, 5, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
+                <BarChart data={topProducts}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="productName" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar
+                    dataKey="sales"
+                    fill="#bb26cb"
+                    radius={[5, 5, 0, 0]}
+                  />
+                </BarChart>
               </ResponsiveContainer>
             </div>
 

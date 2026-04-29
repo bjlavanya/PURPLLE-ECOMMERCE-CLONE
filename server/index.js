@@ -564,20 +564,34 @@ app.get("/admin/revenue", async (req, res) => {
     }
 })
 
-// Admin Dashboard
-
 app.get("/top-products", async (req, res) => {
   try {
     const topProducts = await Order.aggregate([
+      {
+        $match: {
+          products: { $exists: true, $ne: [] }
+        }
+      },
+
       { $unwind: "$products" },
+
+      {
+        $match: {
+          "products.productName": { $exists: true, $ne: null },
+          "products.quantity": { $exists: true, $ne: null }
+        }
+      },
+
       {
         $group: {
           _id: "$products.productName",
           totalSold: { $sum: "$products.quantity" }
         }
       },
+
       { $sort: { totalSold: -1 } },
       { $limit: 5 },
+
       {
         $project: {
           _id: 0,
@@ -588,8 +602,12 @@ app.get("/top-products", async (req, res) => {
     ]);
 
     res.json(topProducts);
+
   } catch (err) {
-    res.status(500).json({ message: "Server Error" });
+    console.log("Aggregation error:", err);
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
