@@ -3,6 +3,7 @@ import Topbar from "./Topbar";
 import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 function EliteOffers() {
     return(
@@ -21,11 +22,22 @@ function EliteOffers() {
                 </section>
             </main>
             <section className="elitetopdeals">
-                <img src="images/elitedeals1.webp" alt="" className="elitedeals" />
-                <img src="images/elitedeals2.webp" alt="" className="elitedeals" />
-        
-                <img src="images/elitedeals3.webp" alt="" className="elitedeals" />
-                <img src="images/elitedeals4.webp" alt="" className="elitedeals" />
+
+                <Link to="/shopCategories/dermaco">
+                    <img src="images/elitedeals1.webp" alt="" className="elitedeals" />
+                </Link>
+
+                <Link to="/shopCategories/minimalist">
+                    <img src="images/elitedeals2.webp" alt="" className="elitedeals" />
+                </Link>
+
+                <Link to="/shopCategories/aqualogica">
+                    <img src="images/aquabox.webp" alt="" className="elitedeals" />
+                </Link>
+
+                <Link to="/shopCategories/mamaearth">
+                    <img src="images/elitedeals4.webp" alt="" className="elitedeals" />
+                </Link>
             
             </section>
 

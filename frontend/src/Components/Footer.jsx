@@ -95,7 +95,7 @@ function Footer() {
                         <h3>Purplle</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <a href="#">About Us</a><a href="">Our Team</a><a href="">Careers</a><a href="">Press</a><a href="">Sitemap</a><a href="">Investor Realtion</a>
+                        <a href="#">About Us</a><a href="">Our Team</a><a href="https://purplle.turbohire.co/careerpage/3ed17e54-f66f-4ade-90b9-ef064dc6fbd6">Careers</a><a href="">Press</a><a href="">Sitemap</a><a href="">Investor Realtion</a>
                     </div>
                 </div>
                 <div className="footer-details">
@@ -132,11 +132,11 @@ function Footer() {
                         <h3>Connect</h3>
                     </div>
                     <div className="footer-bottom-pay-connect">
-                        <a href="#" className="facebook"><i className="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" className="twitter"><i className="fa-brands fa-twitter"></i></a>
-                        <a href="#" className="pinterest"><i className="fa-brands fa-pinterest"></i></a>
-                        <a href="#" className="youtube"><i className="fa-brands fa-youtube"></i></a>
-                        <a href="#" className="linkedin"><i className="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/letspurplle" className="facebook"><i className="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://x.com/letspurplle" className="twitter"><i className="fa-brands fa-twitter"></i></a>
+                        <a href="https://in.pinterest.com/letspurplle/" className="pinterest"><i className="fa-brands fa-pinterest"></i></a>
+                        <a href="https://www.youtube.com/channel/UCI_6AcJI1sKexCLb2NAYTOQ" className="youtube"><i className="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/company/purplle-com" className="linkedin"><i className="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>

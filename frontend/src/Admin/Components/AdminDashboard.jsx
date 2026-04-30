@@ -463,7 +463,7 @@ function AdminDashboard() {
               <ResponsiveContainer width="100%" height={280} margin={20}>
                 <AreaChart width={500} height={600} data={areaChart}>
                   <CartesianGrid />
-                  <XAxis dataKey="date" />
+                  <XAxis dataKey="date" tick={{ fontSize: 12, fill: "#6b7280" }} />
                   <YAxis />
                   <Tooltip content={AreaTooltip} />
                   <Area

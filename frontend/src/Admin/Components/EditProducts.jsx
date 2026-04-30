@@ -198,6 +198,11 @@ function EditProducts() {
                                     <option value = "haircare">haircare</option>
                                     <option value = "makeup">makeup</option>
                                     <option value = "fragrance">fragrance</option>
+                                    <option value = "sunscreen">sunscreen</option>
+                                    <option value = "dermaco">dermaco</option>
+                                    <option value = "minimalist">minimalist</option>
+                                    <option value = "aqualogica">aqualogica</option>
+                                    <option value = "mamaearth">mamaearth</option>
                                 </select>
                             </div>
 

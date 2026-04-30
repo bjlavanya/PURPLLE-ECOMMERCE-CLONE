@@ -411,9 +411,14 @@ export const allProducts = [
 
 export const categoryImages = {
     skincare: "/images/skinHero.webp",
-    makeup: "/images/herosection5.webp",
+    makeup: "/images/makeuphero1.webp",
     haircare: "/images/herosection7.webp",
-    fragrance: "/images/fragrancehero.webp"
+    fragrance: "/images/fragrancehero.webp",
+    sunscreen: "/images/gelsunscreenhero.webp",
+    dermaco: "/images/dermacohero.webp",
+    minimalist: "/images/minihero.webp",
+    aqualogica: "/images/aquahero.webp",
+    mamaearth: "/images/mamahero.webp",
 };
 
 export const getfreegifts = [

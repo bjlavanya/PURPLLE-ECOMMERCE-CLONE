@@ -3040,3 +3040,25 @@ select {
     color: #9c00ad !important;
     font-size: 1.4rem;
 }
+
+.splurge-category {
+    margin-left: 120px;
+}
+
+.splurge-category .splurge-category-data {
+    display: grid;
+    grid-template-columns: repeat(2, 0fr);
+}
+
+.splurge-category .splurge-category-data .splurge1 {
+    cursor: pointer;
+}
+
+.cart-btn {
+    padding: 10px;
+}
+
+.cart-btn:hover {
+    color: white;
+    background-color: #9c00ad;
+}

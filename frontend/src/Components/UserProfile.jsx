@@ -75,7 +75,7 @@ function UserProfile() {
           </Link>
 
           <div className="my-order-div">
-            <Link className="my-order" style={{textDecorationLine:'none'}} to='/userProfile/myOrders'>
+            <Link className="my-order" style={{textDecorationLine:'none'}} to='/supportContactForm'>
               <div className="icons">
                 <PiHeadsetLight className='userprofile-icon' />
               </div>

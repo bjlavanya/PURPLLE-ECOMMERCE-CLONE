@@ -49,7 +49,7 @@ function ManageContacts() {
               {
                 contacts.map(contact => {
                   return <tr key={contact._id}>
-                    <td>{contact.fullname}</td>
+                    <td>{contact.fullName}</td>
                     <td>{contact.email}</td>
                     <td>{contact.phoneNumber}</td>
                     <td>{contact.location}</td>

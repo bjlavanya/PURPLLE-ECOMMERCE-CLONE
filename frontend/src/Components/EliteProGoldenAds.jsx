@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function EliteProGoldenAds() {
     return(
@@ -10,9 +11,9 @@ function EliteProGoldenAds() {
             </main>
 
             <main className="elitepro">
-                <section className="home">
+                <Link to='/eliteoffers' className="home">
                     <img src="images/elitegoldenpro.webp" alt="Home1" />
-                </section>
+                </Link>
             </main>
         </>
     );

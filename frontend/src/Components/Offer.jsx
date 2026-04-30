@@ -9,6 +9,10 @@ import Topbar from "./Topbar";
 import Navbar from "./Navbar";
 import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios'
+import { Link, useNavigate } from "react-router-dom";
 
 function NextArrow({ onClick }) {
     return (
@@ -27,7 +31,12 @@ function PrevArrow({ onClick }) {
 }
 
 function Offer() {
-
+    const [products, setProducts] = useState([])
+    useEffect(() => {
+        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+            .then(res => setProducts(res.data))
+            .catch(err => console.log(err))
+    }, [])
     const settings = {
         dots: false,
         infinite: false,
@@ -71,20 +80,16 @@ function Offer() {
             <main className="handpicked">
                 <section className="handpickedImage">
                     <Slider {...settings}>
-                        {fragrance.map((product) => (
+                        {products && products.slice(50, 66).map((product) => (
                             <div className="sponsored" key={product.id}>
-                                <a href="#">
-                                    <img src={product.image} alt={product.title} />
-                                </a>
+                                <Link to={`/singleProductPage/${product._id}`}>
+                                    <img src={product.productImage} alt={product.productName} />
+                                </Link>
 
-                                <div className="offers">
-                                    <h3>{product.offers} offers</h3>
-                                </div>
-
-                                <div className="productInfos">
-                                    <h5 style={{ marginTop: '-10px' }}>{product.title} </h5>
-                                    <h5 style={{ marginTop: '-22px' }}>{product.subtitle}</h5>
-                                    <h4>₹{product.price} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
+                                <div className="productInfos"  style={{paddingTop:'20px'}}>
+                                    <h5 style={{ marginTop: '-10px' }}>{product.productName} </h5>
+                                    <h5 style={{ marginTop: '-22px' }}>{product.productDescription.substr(0,50) + "...."}</h5>
+                                    <h4>₹{product.newPrice} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
                                 </div>
 
                             </div>
