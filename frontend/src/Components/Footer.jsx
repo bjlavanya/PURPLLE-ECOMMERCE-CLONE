@@ -1,6 +1,52 @@
 import React from "react";
+import { useState } from 'react';
+import axios from 'axios'
 
 function Footer() {
+    const [fullName, setFullName] = useState("")
+    const [email, setEmail] = useState("")
+    const [phoneNumber, setPhoneNumber] = useState("")
+    const [location, setLocation] = useState("")
+    const [message, setMessage] = useState("")
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const userId = localStorage.getItem("userId")
+
+        if (!userId) {
+            alert("Please login first");
+            return;
+        }
+
+        try {
+            const res = await axios.post(
+                "https://purplle-ecommerce-clone-backend.onrender.com/contact",
+                {
+                    userId,
+                    fullName,
+                    email,
+                    phoneNumber,
+                    location,
+                    message
+                }
+            );
+
+            alert('Message Sent Successfully');
+
+            setFullName("");
+            setEmail("");
+            setPhoneNumber("");
+            setLocation("");
+            setMessage("");
+
+        }
+
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <>
             <section className="imp-links">
@@ -13,38 +59,59 @@ function Footer() {
                     For any help, send the message through contact form
                 </p>
 
+                <form onClick={handleSubmit}></form>
                 <div className="contact-form">
                     <div className="contact-data">
                         <div className="contact-details">
                             <label htmlFor="">Full Name</label>
-                            <input type="text" name="username" id="username" />
+                            <input
+                                type="text"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                required
+                            />
                         </div>
 
                         <div className="contact-details">
                             <label htmlFor="">Email</label>
-                            <input type="email" name="email" id="email" />
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
                         </div>
                     </div>
-                    
+
                     <div className="contact-data">
                         <div className="contact-details">
                             <label htmlFor="">Phone Number</label>
-                            <input type="text" name="username" id="username" />
+                            <input
+                                            type="text"
+                                            value={phoneNumber}
+                                            onChange={(e) => setPhoneNumber(e.target.value)}
+                                            required
+                                        />
                         </div>
 
                         <div className="contact-details">
                             <label htmlFor="">Location</label>
-                            <input type="email" name="email" id="email" />
+                            <input
+                                        type="text"
+                                        value={location}
+                                        onChange={(e) => setLocation(e.target.value)}
+                                        required
+                                    />
                         </div>
                     </div>
 
                     <div className="message-details">
                         <label htmlFor="">Message</label>
-                        <textarea name="" id="" cols={30} rows={5}></textarea>
+                        <textarea name="" id="" cols={30} rows={5} style={{ paddingLeft: '7px', paddingTop: '5px' }} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
                     </div>
 
                     <div className="send-message">
-                        <button>Send Message</button>
+                        <button type='submit'>Send Message</button>
                     </div>
                 </div>
 

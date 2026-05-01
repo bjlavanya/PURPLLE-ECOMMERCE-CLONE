@@ -296,8 +296,6 @@ app.get('/products/:id', async (req, res) => {
 app.post('/placeAnOrder', async (req, res) => {
     const { userId, products, totalAmount, paymentMode } = req.body
 
-    console.log("userId received:", userId);
-
     const user = await Users.findById(userId)
 
     const orderList = new Orders({

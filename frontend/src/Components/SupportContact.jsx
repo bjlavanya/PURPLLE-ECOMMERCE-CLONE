@@ -43,10 +43,13 @@ function SupportContact() {
             setLocation("");
             setMessage("");
 
-        } catch (err) {
+        }
+
+        catch (err) {
             console.log(err);
         }
-    };
+    }
+
     return (
         <>
             <Topbar />
@@ -80,21 +83,21 @@ function SupportContact() {
                                     <div className="edit-form-details">
                                         <label htmlFor="" className="form-items">Email *</label>
                                         <input
-                                        type="text"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                    />
+                                            type="text"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
                                     </div>
 
                                     <div className="edit-form-details">
                                         <label htmlFor="" className="form-items">Phone Number *</label>
                                         <input
-                                        type="text"
-                                        value={phoneNumber}
-                                        onChange={(e) => setPhoneNumber(e.target.value)}
-                                        required
-                                    />
+                                            type="text"
+                                            value={phoneNumber}
+                                            onChange={(e) => setPhoneNumber(e.target.value)}
+                                            required
+                                        />
                                     </div>
                                 </div>
 
@@ -110,7 +113,7 @@ function SupportContact() {
 
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Message *</label>
-                                    <textarea name="" id="" cols={30} rows={5} style={{paddingLeft:'7px', paddingTop:'5px'}} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
+                                    <textarea name="" id="" cols={30} rows={5} style={{ paddingLeft: '7px', paddingTop: '5px' }} value={message} onChange={(e) => setMessage(e.target.value)} required></textarea>
                                 </div>
 
                                 <button type='submit' className="update-btn">
