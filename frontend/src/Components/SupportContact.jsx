@@ -83,7 +83,7 @@ function SupportContact() {
                                     <div className="edit-form-details">
                                         <label htmlFor="" className="form-items">Email *</label>
                                         <input
-                                            type="text"
+                                            type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             required
@@ -93,8 +93,9 @@ function SupportContact() {
                                     <div className="edit-form-details">
                                         <label htmlFor="" className="form-items">Phone Number *</label>
                                         <input
-                                            type="text"
+                                            type="tel"
                                             value={phoneNumber}
+                                            pattern='[0-9]{10}' maxLength={10}
                                             onChange={(e) => setPhoneNumber(e.target.value)}
                                             required
                                         />
