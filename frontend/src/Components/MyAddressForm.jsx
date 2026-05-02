@@ -193,7 +193,7 @@ function MyAddressForm() {
                             <div className="edit-user-form">
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Pincode *</label>
-                                    <input type="text" name="pincode" id="pincode" value={pincode} pattern='[0-9]{10}' maxLength={6}
+                                    <input type="text" name="pincode" id="pincode" value={pincode} 
                                         onChange={(e) => setPincode(e.target.value)} required />
                                 </div>
 

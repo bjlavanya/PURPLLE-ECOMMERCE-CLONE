@@ -182,7 +182,7 @@ function Footer() {
                         <h3>Need Help ?</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <a href="">Contact Us</a>
+                        <Link to='/supportContactForm'>Contact Us</Link>
                     </div>
                 </div>
             </footer>
