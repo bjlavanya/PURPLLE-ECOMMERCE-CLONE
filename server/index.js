@@ -12,6 +12,7 @@ const authRoutes = require('./LoginAuth/Auth')
 const cloudinary = require('cloudinary').v2
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
 const OrderProcessingMail = require('./OrderMail/OrderProcessingMail')
+const OrderShippedMail = require('./OrderMail/OrderShippedMail')
 const OrderDeliveredMail = require('./OrderMail/OrderDeliveredMail')
 const Razorpay = require('razorpay');
 const crypto = require("crypto");
