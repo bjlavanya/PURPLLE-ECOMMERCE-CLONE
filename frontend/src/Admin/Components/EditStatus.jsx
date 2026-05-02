@@ -46,6 +46,7 @@ function EditStatus() {
                                 <select name="status" onChange={(e) => setOrderStatus(e.target.value)} value={orderStatus} required>
                                     <option value="">Select Status</option>
                                     <option value="Order Processing">Order Processing</option>
+                                    <option value="Order Shipped">Order Shipped</option>
                                     <option value="Order Delivered">Order Delivered</option>
                                 </select>
                             </div>

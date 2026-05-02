@@ -347,6 +347,11 @@ app.put('/updateOrderStatus/:id', async (req, res) => {
         await OrderProcessingMail(updateOrderStatus.userEmail)
     }
 
+    else if (status === 'order shipped') {
+        console.log("Delivered mail triggered")
+        await OrderShippedMail(updateOrderStatus.userEmail)
+    }
+
     else if (status === 'order delivered') {
         console.log("Delivered mail triggered")
         await OrderDeliveredMail(updateOrderStatus.userEmail)
