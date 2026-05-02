@@ -24,9 +24,9 @@ function ProductAds1() {
             </main>
 
             <main className="prodcutslides">
-                <section className="home">
+                <Link to='/shopCategories/facescanada' className="home">
                     <img src="images/productslides.webp" alt="Home1" />
-                </section>
+                </Link>
             </main>
 
             <section className="productadsFirst">

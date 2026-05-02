@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import axios from 'axios'
+import { Link } from "react-router-dom";
 
 function Footer() {
     const [fullName, setFullName] = useState("")
@@ -163,15 +164,17 @@ function Footer() {
                         <h3>Purplle</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <a href="#">About Us</a><a href="">Our Team</a><a href="https://purplle.turbohire.co/careerpage/3ed17e54-f66f-4ade-90b9-ef064dc6fbd6">Careers</a><a href="">Press</a><a href="">Sitemap</a><a href="">Investor Realtion</a>
+                        <Link to='/aboutUs'>About Us</Link><a href="https://purplle.turbohire.co/careerpage/3ed17e54-f66f-4ade-90b9-ef064dc6fbd6">Careers</a>
                     </div>
                 </div>
                 <div className="footer-details">
                     <div className="footer-heading">
-                        <h3>Privacy Info</h3>
+                        <h3>Quick Links</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <a href="#">Privacy Policy</a><a href="">Term of Use</a><a href="">Return & Cancellation Policy</a>
+                        <Link to='/offer'>Offers</Link>
+                        <Link to='/new'>New Featured Products</Link>
+                        <Link to='/eliteoffers'>Elite Offers</Link>
                     </div>
                 </div>
                 <div className="footer-details">
@@ -179,7 +182,7 @@ function Footer() {
                         <h3>Need Help ?</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <a href="#">FAQs</a><a href="">Contact Us</a>
+                        <a href="">Contact Us</a>
                     </div>
                 </div>
             </footer>

@@ -419,6 +419,7 @@ export const categoryImages = {
     minimalist: "/images/minihero.webp",
     aqualogica: "/images/aquahero.webp",
     mamaearth: "/images/mamahero.webp",
+    facescanada: "/images/makeuphero.webp"
 };
 
 export const getfreegifts = [
@@ -481,22 +482,7 @@ export const topBrands = [
         id: 8,
         image: "/images/topbrands8.webp",
     },
-    {
-        id: 9,
-        image: "/images/topbrands9.webp",
-    },
-    {
-        id: 10,
-        image: "/images/topbrands10.webp",
-    },
-    {
-        id: 11,
-        image: "/images/topbrands11.webp",
-    },
-    {
-        id: 12,
-        image: "/images/topbrands12.webp",
-    },
+    
 ];
 
 export const magazineBlogs = [

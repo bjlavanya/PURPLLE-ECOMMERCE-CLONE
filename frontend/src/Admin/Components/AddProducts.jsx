@@ -166,6 +166,7 @@ function AddProducts() {
                                     <option value = "Essentials">Essentials</option>
                                     <option value = "Lakme">Lakme</option>
                                     <option value = "Product Ads1">Product Ads1</option>
+                                    <option value = "Product Ads2">Product Ads2</option>
                                     <option value = "Product Ads3">Product Ads3</option>
                                     <option value = "skincare">skincare</option>
                                     <option value = "haircare">haircare</option>
@@ -176,6 +177,7 @@ function AddProducts() {
                                     <option value = "minimalist">minimalist</option>
                                     <option value = "aqualogica">aqualogica</option>
                                     <option value = "mamaearth">mamaearth</option>
+                                    <option value = "facescanada">faces canada</option>
                                 </select>
                             </div>
 

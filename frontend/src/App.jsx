@@ -20,6 +20,7 @@ import EditMyAddress from './Components/EditMyAddress';
 import UserOrders from './Components/UserOrders';
 import SupportContact from './Components/SupportContact';
 import ShopCategories from './Components/ShopCategories';
+import AboutUs from './Components/AboutUs';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/userProfile/myAddress/edit" element={<EditMyAddress />} />
           <Route path="/shopCategories/:category" element={<ShopCategories />} />
           <Route path="/supportContactForm" element={<SupportContact />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
       </Routes>
       
     </>

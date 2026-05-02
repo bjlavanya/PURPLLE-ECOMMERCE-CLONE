@@ -1819,7 +1819,7 @@ footer .footer-links a:hover {
 .my-orders-section,
 edit-user-profile,
 .user-my-address,
-.user-orders-section {
+.user-orders-section, aboutus-section {
     background-color: #f3eaf5;
     width: 100%;
     min-height: 629px;
@@ -1828,7 +1828,7 @@ edit-user-profile,
 .user-profile-details,
 .my-order-details,
 .edit-user-details,
-.user-myaddress-details {
+.user-myaddress-details, .aboutus-details {
     width: 50%;
     display: flex;
     justify-content: space-between;
@@ -3061,4 +3061,27 @@ select {
 .cart-btn:hover {
     color: white;
     background-color: #9c00ad;
+}
+
+/* About Us */
+
+.aboutus-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 40px;
+}
+
+.aboutus-details .img1 {
+    width: 100%;
+    height: 900px;
+}
+
+.aboutus-details .img2 {
+    height: 350px;
+}
+
+.aboutus-details .images {
+    display: flex;
+    flex-direction: column;
 }
