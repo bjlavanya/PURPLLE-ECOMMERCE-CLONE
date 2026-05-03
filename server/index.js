@@ -19,6 +19,7 @@ const crypto = require("crypto");
 const fs = require('fs')
 const GSTBillMail = require('./InvoiceMail/GSTBillMail');
 const { gstInvoicePdf } = require('./service/gstInvoicePdf')
+const Contact = require("./models/Contact");
 
 // CREATED APP
 const app = express()
@@ -631,8 +632,6 @@ app.get("/top-products", async (req, res) => {
 })
 
 //Contact
-
-const Contact = require("./models/Contact");
 
 app.post("/contact", async (req, res) => {
   try {

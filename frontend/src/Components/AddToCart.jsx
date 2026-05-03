@@ -49,19 +49,42 @@ function AddToCart() {
     })
 
     //showing payment modal
-    useEffect(() => {
-        if (location.state?.openPayment) {
-            setShowPaymentModal(true);
-        }
-    }, [location.state]);
+    // useEffect(() => {
+    //     if (location.state?.openPayment) {
+    //         setShowPaymentModal(true);
+    //     }
+    // }, [location.state]);
 
     useEffect(() => {
         if (userId) {
-            axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
-                .then(res => setUser(res.data))
-                .catch(err => console.log(err))
+            axios.get(
+                `https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`
+            )
+                .then(res => {
+                    setUser(res.data);
+
+                    // open payment popup only if address exists
+                    if (
+                        location.state?.openPayment &&
+                        res.data.address &&
+                        res.data.address.length > 0
+                    ) {
+                        setShowPaymentModal(true);
+                    }
+                })
+                .catch(err => console.log(err));
         }
-    }, [userId])
+    }, [userId, location.state]);
+
+
+
+    // useEffect(() => {
+    //     if (userId) {
+    //         axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
+    //             .then(res => setUser(res.data))
+    //             .catch(err => console.log(err))
+    //     }
+    // }, [userId])
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -95,7 +118,7 @@ function AddToCart() {
     }
 
     const continueShopping = () => {
-        navigate(-1)
+        navigate('/')
     }
 
     //Adding user quantity to cart - local storage
@@ -236,23 +259,42 @@ function AddToCart() {
         }
     }
 
+    // const proceedToPay = () => {
+    //     const userId = localStorage.getItem("userId")
+
+    //     if (!userId) {
+    //         if (!address?.pincode) {
+    //             setLoginFromCheckout(true)
+    //         }
+    //         setShowModal(true)
+    //         return
+    //     }
+
+    //     if (!address?.pincode) {
+    //         navigate('/userprofile/myAddressForm')
+    //         return
+    //     }
+
+    //     setShowPaymentModal(true)
+    // }
+
     const proceedToPay = () => {
-        const userId = localStorage.getItem("userId")
+        const userId = localStorage.getItem("userId");
 
         if (!userId) {
-            if (!address?.pincode) {
-                setLoginFromCheckout(true)
-            }
-            setShowModal(true)
-            return
+            setLoginFromCheckout(true);
+            setShowModal(true);
+            return;
         }
 
         if (!address?.pincode) {
-            navigate('/userprofile/myAddressForm')
-            return
+            navigate('/userprofile/myAddressForm', {
+                state: { openPayment: true }
+            });
+            return;
         }
 
-        setShowPaymentModal(true)
+        setShowPaymentModal(true);
     }
 
     return (
@@ -474,7 +516,7 @@ function AddToCart() {
                                 <div className="address-details">
                                     <p className="username">{user?.username}</p>
                                     <p className="phonenumber">{user?.phonenumber}</p>
-                                    <p className="location">{address.location}, {address.city}, {address.state} - {address.pincode}</p>
+                                    <p className="location">{address?.location}, {address?.city}, {address?.state} - {address?.pincode}</p>
                                 </div>
                             </div>
 

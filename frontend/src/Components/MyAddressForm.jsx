@@ -75,7 +75,7 @@ function MyAddressForm() {
 
             console.log(response.data)
             alert("Address added successfully")
-            navigate('/addToCart', { state: { openPayment: true } })
+            navigate('/addToCart', { replace: true, state: { openPayment: true } })
 
             setPincode("")
             setLocation("")
@@ -193,7 +193,7 @@ function MyAddressForm() {
                             <div className="edit-user-form">
                                 <div className="edit-form-details">
                                     <label htmlFor="" className="form-items">Pincode *</label>
-                                    <input type="text" name="pincode" id="pincode" value={pincode} 
+                                    <input type="text" name="pincode" id="pincode" value={pincode}
                                         onChange={(e) => setPincode(e.target.value)} required />
                                 </div>
 

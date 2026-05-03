@@ -29,7 +29,9 @@ function Login({ closeModal, loginFromCheckout  }) {
             console.log("Send OTP Error:", err.response?.data || err.message);
             alert("Failed to send OTP.");
         }
-    };
+    }
+
+    
   return (
     <>
         <div className="login-wrapper"></div>

@@ -21,7 +21,7 @@ router.post('/sendOtp', async (req, res) => {
 
         console.log(otp)
 
-        const otpExpiry = new Date(Date.now() + 15 * 60 * 1000);
+        const otpExpiry = new Date(Date.now() + 15 * 60 * 1000) //15minutes
 
         //check user already exists
         let user = await User.findOne({ email });

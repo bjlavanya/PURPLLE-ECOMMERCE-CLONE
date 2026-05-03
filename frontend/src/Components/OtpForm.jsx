@@ -83,16 +83,10 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheck
                 otp: enteredOtp
             });
 
-            // localStorage.setItem('userEmail', JSON.stringify(email)) // storing useremail at local storage - browser
-
-            // localStorage.setItem("userId", response.data.userId);
-
             const userId = response.data.userId;
-
             localStorage.setItem("userId", userId);
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
             cart = cart.map(item => {
                 if (!item.userId) {
                     return { ...item, userId: userId };
@@ -111,13 +105,15 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheck
                     `https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`
                 );
 
-                if (!res.data.address || res.data.address.length === 0) {
-                    closeModal()
-                    navigate('/userprofile/myAddressForm');
-                } else {
-                    setShowOtpForm(false)
-                    closeModal()
+                const user = res.data;
+
+                if (user.address && user.address.length > 0) {
+                    setShowOtpForm(false);
+                    closeModal();
                     navigate('/addToCart', { state: { openPayment: true } });
+                } else {
+                    closeModal();
+                    navigate('/userprofile/myAddressForm', { state: { openPayment: true } });
                 }
 
             } else {
