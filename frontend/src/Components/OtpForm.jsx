@@ -107,7 +107,7 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheck
 
                 const user = res.data;
 
-                if (user.address && user.address.length > 0) {
+                if (user.address?.[0]?.pincode) {
                     setShowOtpForm(false);
                     closeModal();
                     navigate('/addToCart', { state: { openPayment: true } });
