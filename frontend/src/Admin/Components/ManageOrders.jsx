@@ -23,7 +23,7 @@ function ManageOrders() {
         .then(res => {
           setAddresses(prev => ({
             ...prev,
-            [order.userEmail]: res.data.address[0]
+            [order.userEmail]: res.data?.address?.[0] || {}
           }))
         })
         .catch(err => console.log(err))

@@ -26,18 +26,14 @@ router.post('/sendOtp', async (req, res) => {
         //check user already exists
         let user = await User.findOne({ email });
         if (user) {
-            if (!user.username) {
-                user.username = "Guest";
-            }
+            // if (!user.username) {
+            //     user.username = "Guest";
+            // }
             user.otp = otp;
             user.otpExpiry = otpExpiry;
             await user.save();
         }
         else {
-            // user = await User.create({
-            //     email, otp, otpExpiry
-            // });
-
             user = new User({
                 username: "Guest",
                 email,

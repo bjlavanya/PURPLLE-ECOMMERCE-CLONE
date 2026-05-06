@@ -29,7 +29,12 @@ function AdminDashboard() {
   const [barData, setBarData] = useState([])
   const [topProducts, setTopProducts] = useState([]);
 
-  const COLORS = ["#FFC20A", "#17BECF", "#4caf50"];
+  const COLORS = [
+  "#f59e0b", 
+  "#3b82f6",
+  "#a855f7", 
+  "#22c55e"  
+];
 
   useEffect(() => {
     document.title = "Purplle Admin"
@@ -117,6 +122,7 @@ function AdminDashboard() {
     const statusCount = {
       Pending: 0,
       Processing: 0,
+      Shipped: 0,
       Delivered: 0
     };
 
@@ -130,6 +136,10 @@ function AdminDashboard() {
         statusCount.Processing += 1;
       }
 
+      else if (order.orderStatus === "Order Shipped") {
+        statusCount.Shipped += 1;
+      }
+
       else if (order.orderStatus === "Order Delivered") {
         statusCount.Delivered += 1;
       }
@@ -139,37 +149,13 @@ function AdminDashboard() {
     const data = [
       { name: "Pending", value: statusCount.Pending },
       { name: "Processing", value: statusCount.Processing },
+      { name: "Shipped", value: statusCount.Shipped },
       { name: "Delivered", value: statusCount.Delivered }
     ];
 
     setStatusData(data);
 
   }, [orders]);
-
-  // useEffect(() => {
-  //   const monthlyOrders = {};
-
-  //   orders.forEach(order => {
-  //     const month = new Date(order.orderDate).toLocaleString(
-  //       "default",
-  //       { month: "short" }
-  //     );
-
-  //     if (!monthlyOrders[month]) {
-  //       monthlyOrders[month] = 0;
-  //     }
-
-  //     monthlyOrders[month] += 1;
-  //   });
-
-  //   const formattedData = Object.keys(monthlyOrders).map(month => ({
-  //     month,
-  //     orders: monthlyOrders[month]
-  //   }));
-
-  //   setBarData(formattedData);
-
-  // }, [orders]);
 
   useEffect(() => {
     axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")

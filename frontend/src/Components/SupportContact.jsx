@@ -4,8 +4,10 @@ import Topbar from './Topbar';
 import Navbar from './Navbar';
 import { useState } from 'react';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 function SupportContact() {
+    const navigate = useNavigate()
     const [fullName, setFullName] = useState("")
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
@@ -50,6 +52,10 @@ function SupportContact() {
         }
     }
 
+    const back = () => {
+        navigate(-1)
+    }
+
     return (
         <>
             <Topbar />
@@ -58,7 +64,7 @@ function SupportContact() {
                 <div className="user-myaddress-details">
                     <div className="my-orders edit-user">
                         <h2 className="my-orders-heading">
-                            <button><FaArrowLeft className="arrow-left" style={{ cursor: 'pointer' }} /></button>
+                            <button><FaArrowLeft onClick={back} className="arrow-left" style={{ cursor: 'pointer' }} /></button>
                             Support - Contact Form
                         </h2>
 
