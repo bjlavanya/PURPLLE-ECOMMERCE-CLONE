@@ -1,13 +1,26 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios'
+import { Link } from "react-router-dom";
 
 function ProductAds4() {
-    return(
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        axios.get("https://purplle-ecommerce-clone-backend.onrender.com/products")
+            .then(res => setProducts(res.data))
+            .catch(err => console.log(err))
+    }, [])
+    return (
         <>
             <section className="productadsFirst">
-                <img src="images/productad23.webp" style={{cursor:'pointer'}} alt="" />
-                <img src="images/productad24.webp" alt="" />
-                <img src="images/productad25.webp" alt="" />
-                <img src="images/productad26.webp" alt="" />
+                {products && products.filter((product) => product.category === 'Product Ads2').map((product) => (
+                    <Link key={product._id} to={`/singleProductPage/${product._id}`} onClick={() => window.scrollTo(0, 0)}>
+                        <img src={product.productImage} alt={product.productName} />
+                    </Link>
+
+                ))}
             </section>
         </>
     );

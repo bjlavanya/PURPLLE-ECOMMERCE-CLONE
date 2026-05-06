@@ -117,44 +117,7 @@ function Footer() {
                     </div>
                 </form>
 
-                {/* <div className="link-infos" style={{ paddingTop: '50px' }}>
-                    <div className="link-heading"><a href="#" >Discover:</a></div>
-                    <div className="link-details">
-                        <a href="" className="product-links">Nail Art /</a>  <a href="" className="product-links">Eye Makeup /</a>  <a href="" className="product-links">Bridal Makeup /</a>  <a href="" className="product-links">How To Do makeup /</a>  <a href="" className="product-links">pimples /</a>  <a href="" className="product-links">Stretchmark removal /</a>  <a href="" className="product-links">best eye creams /</a>  <a href="" className="product-links">hairstyles /</a> <a href="" className="product-links"> bets facewashes for men /</a>  <a href="" className="product-links">burgundy hair colors</a> <a href="" className="product-links">Best perfumes for men /</a> <a href="" className="product-links">Skincare tips</a>
-                    </div>
-                </div>
-                <div className="link-infos" style={{ paddingTop: '20px' }}>
-                    <div className="link-heading"><a href="#" >SHOP MAKEUP:</a></div>
-                    <div className="link-details">
-                        <a href="" className="product-links">Lakme /</a>  <a href="" className="product-links">Maybelline /</a>  <a href="" className="product-links">colorbar /</a>  <a href="" className="product-links">L'oreal /</a>  <a href="" className="product-links">revlon /</a>  <a href="" className="product-links">avon /</a>  <a href="" className="product-links">elle18 </a>  
-                    </div>
-                </div>
-                <div className="link-infos" style={{ paddingTop: '20px' }}>
-                    <div className="link-heading"><a href="#" >SKIN CARE:</a></div>
-                    <div className="link-details">
-                        <a href="" className="product-links">Bio Oil /</a>  <a href="" className="product-links">Olay /</a>  <a href="" className="product-links">Neutrogena /</a>  <a href="" className="product-links">Lotus Herbals /</a>  <a href="" className="product-links">VLCC /</a>  <a href="" className="product-links">Kaya /</a>  <a href="" className="product-links">Vichy /</a>  <a href="" className="product-links">Nivea /</a> <a href="" className="product-links"> Gillette /</a>  <a href="" className="product-links">Park Avenue</a>
-                    </div>
-                </div>
-                <div className="link-infos" style={{ paddingTop: '20px' }}>
-                    <div className="link-heading"><a href="#" >HAIR PRODUCTS:</a></div>
-                    <div className="link-details">
-                        <a href="" className="product-links">L'oreal professional /</a>  <a href="" className="product-links">schwarzkopf /</a>  <a href="" className="product-links">matrix biolage /</a>  <a href="" className="product-links">livon hair gain /</a>  <a href="" className="product-links">biotique /</a>  <a href="" className="product-links">roots </a>  
-                    </div>
-                </div>
-                <div className="link-infos" style={{ paddingTop: '20px' }}>
-                    <div className="link-heading">
-                        <a href="#" >FRAGRANCE:</a>
-                    </div>
-                    <div className="link-details">
-                        <a href="" className="product-links">davidoff /</a>  <a href="" className="product-links">hugo boss /</a>  <a href="" className="product-links">calvin klein /</a>  <a href="" className="product-links">elizabeth arden /</a>  <a href="" className="product-links">jaguar /</a>  <a href="" className="product-links">victoria's secret </a>  
-                    </div>
-                </div>
-                <div className="link-infos" style={{ paddingTop: '20px' }}>
-                    <div className="link-heading"><a href="#" >ELECTRONICS:</a></div>
-                    <div className="link-details">
-                        <a href="" className="product-links">Philips /</a>  <a href="" className="product-links">wahl /</a>  <a href="" className="product-links">braun /</a>  <a href="" className="product-links">remington </a>  
-                    </div>
-                </div> */}
+                
             </section>
             <br /><br /><br />
 
@@ -164,7 +127,7 @@ function Footer() {
                         <h3>Purplle</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <Link to='/aboutUs'>About Us</Link><a href="https://purplle.turbohire.co/careerpage/3ed17e54-f66f-4ade-90b9-ef064dc6fbd6">Careers</a>
+                        <Link to='/aboutUs' onClick={() => window.scrollTo(0, 0)}>About Us</Link><a href="https://purplle.turbohire.co/careerpage/3ed17e54-f66f-4ade-90b9-ef064dc6fbd6">Careers</a>
                     </div>
                 </div>
                 <div className="footer-details">
@@ -172,9 +135,9 @@ function Footer() {
                         <h3>Quick Links</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <Link to='/offer'>Offers</Link>
-                        <Link to='/new'>New Featured Products</Link>
-                        <Link to='/eliteoffers'>Elite Offers</Link>
+                        <Link to='/offer' onClick={() => window.scrollTo(0, 0)}>Offers</Link>
+                        <Link to='/new' onClick={() => window.scrollTo(0, 0)}>New Featured Products</Link>
+                        <Link to='/eliteoffers' onClick={() => window.scrollTo(0, 0)}>Elite Offers</Link>
                     </div>
                 </div>
                 <div className="footer-details">
@@ -182,7 +145,7 @@ function Footer() {
                         <h3>Need Help ?</h3>
                     </div>
                     <div className="footer-details footer-links">
-                        <Link to='/supportContactForm'>Contact Us</Link>
+                        <Link to='/supportContactForm' onClick={() => window.scrollTo(0, 0)}>Contact Us</Link>
                     </div>
                 </div>
             </footer>
