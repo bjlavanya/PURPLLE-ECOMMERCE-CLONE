@@ -23,19 +23,19 @@ function EliteOffers() {
             </main>
             <section className="elitetopdeals">
 
-                <Link to="/shopCategories/dermaco">
+                <Link to="/shopCategories/dermaco"  onClick={() => window.scrollTo(0, 0)}>
                     <img src="images/elitedeals1.webp" alt="" className="elitedeals" />
                 </Link>
 
-                <Link to="/shopCategories/minimalist">
+                <Link to="/shopCategories/minimalist" onClick={() => window.scrollTo(0, 0)}>
                     <img src="images/elitedeals2.webp" alt="" className="elitedeals" />
                 </Link>
 
-                <Link to="/shopCategories/aqualogica">
+                <Link to="/shopCategories/aqualogica" onClick={() => window.scrollTo(0, 0)}>
                     <img src="images/aquabox.webp" alt="" className="elitedeals" />
                 </Link>
 
-                <Link to="/shopCategories/mamaearth">
+                <Link to="/shopCategories/mamaearth" onClick={() => window.scrollTo(0, 0)}>
                     <img src="images/elitedeals4.webp" alt="" className="elitedeals" />
                 </Link>
             

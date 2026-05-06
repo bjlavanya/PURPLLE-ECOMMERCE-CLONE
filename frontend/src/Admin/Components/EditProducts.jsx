@@ -204,9 +204,7 @@ function EditProducts() {
                                     <option value = "aqualogica">aqualogica</option>
                                     <option value = "mamaearth">mamaearth</option>
                                     <option value = "facescanada">faces canada</option>
-                                    <option value = "aya">Aya</option>
-                                    <option value = "elle18">Elle18</option>
-                                    <option value = "pears">Pears</option>
+                                    <option value = "topbrands">Top brands</option>
                                 </select>
                             </div>
 

@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { magazineBlogs } from "./AllProducts";
 import Topbar from "./Topbar";
 import Navbar from "./Navbar";
 import PurplleNotices from "./PurplleNotices";

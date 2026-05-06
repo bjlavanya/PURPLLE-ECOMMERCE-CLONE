@@ -60,7 +60,7 @@ function ShopCategories() {
 
                 <div className="search-product-list ">
                     {products.map((product) => (
-                        <Link to={`/singleProductPage/${product._id}`} className="product-list" key={product._id} >
+                        <Link to={`/singleProductPage/${product._id}`} className="product-list" key={product._id} onClick={() => window.scrollTo(0, 0)}>
                             <div className="product-image">
                                 <img src={product.productImage} alt={product.productName} />
                             </div>

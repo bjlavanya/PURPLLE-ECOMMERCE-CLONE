@@ -18,14 +18,14 @@ function ProductAds2() {
         <>
             <section className="productadsSecond">
                 {products && products.filter((product) => product.category === 'Product Ads2').map((product) => (
-                    <Link key={product._id}>
+                    <Link key={product._id} onClick={() => window.scrollTo(0, 0)}>
                         <img src={product.productImage} alt={product.productName} />
                     </Link>
 
                 ))}
             </section>
         </>
-        
+
     );
 }
 

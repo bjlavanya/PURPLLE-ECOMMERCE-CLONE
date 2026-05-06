@@ -466,53 +466,9 @@ export const topBrands = [
         id: 4,
         image: "/images/topbrands4.webp",
     },
-    {
-        id: 5,
-        image: "/images/topbrands5.webp",
-    },
-    {
-        id: 6,
-        image: "/images/topbrands6.webp",
-    },
-    {
-        id: 7,
-        image: "/images/topbrands7.webp",
-    },
-    {
-        id: 8,
-        image: "/images/topbrands8.webp",
-    },
+   
     
 ];
 
-export const magazineBlogs = [
-    {
-        id: 1,
-        image: "/images/magazine-blogs1.webp",
-    },
-    {
-        id: 2,
-        image: "/images/magazine-blogs2.webp",
-    },
-    {
-        id: 3,
-        image: "/images/magazine-blogs3.webp",
-    },
-    {
-        id: 4,
-        image: "/images/magazine-blogs4.webp",
-    },
-    {
-        id: 5,
-        image: "/images/magazine-blogs5.webp",
-    },
-    {
-        id: 6,
-        image: "/images/magazine-blogs6.webp",
-    },
-    {
-        id: 7,
-        image: "/images/magazine-blogs7.webp",
-    },
-];
+
 

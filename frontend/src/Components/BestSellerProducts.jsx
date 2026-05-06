@@ -54,7 +54,7 @@ function BestSellerProducts() {
         <Slider {...settings}>
           {products && products.filter((product) => product.category === 'Best Sellers').map((product) => (
             <div className="sponsored" key={product._id}>
-              <Link to={`/singleProductPage/${product._id}`}>
+              <Link to={`/singleProductPage/${product._id}`} onClick={() => window.scrollTo(0, 0)}>
                 <img src={product.productImage} alt={product.productName} />
               </Link>
 
