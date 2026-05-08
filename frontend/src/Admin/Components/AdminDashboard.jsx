@@ -18,6 +18,7 @@ import {
   Bar, AreaChart,
   Area,
 } from "recharts";
+import { useNavigate } from 'react-router-dom';
 
 function AdminDashboard() {
 
@@ -29,12 +30,20 @@ function AdminDashboard() {
   const [barData, setBarData] = useState([])
   const [topProducts, setTopProducts] = useState([]);
 
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem("admin")) {
+      navigate("/admin")
+    }
+  }, [])
+
   const COLORS = [
-  "#f59e0b", 
-  "#3b82f6",
-  "#a855f7", 
-  "#22c55e"  
-];
+    "#f59e0b",
+    "#3b82f6",
+    "#a855f7",
+    "#22c55e"
+  ];
 
   useEffect(() => {
     document.title = "Purplle Admin"
@@ -431,7 +440,7 @@ function AdminDashboard() {
               <ResponsiveContainer width="100%" height={360}>
                 <BarChart data={topProducts}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="productName" interval={0} tick={<CustomizedAxisTick/>} />
+                  <XAxis dataKey="productName" interval={0} tick={<CustomizedAxisTick />} />
                   <YAxis />
                   <Tooltip />
                   <Legend />

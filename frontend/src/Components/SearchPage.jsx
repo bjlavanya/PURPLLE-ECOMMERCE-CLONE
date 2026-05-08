@@ -2,7 +2,7 @@ import Topbar from "./Topbar";
 import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import PurplleNotices from "./PurplleNotices";
 import Footer from "./Footer";
 
@@ -20,6 +20,27 @@ function SearchPage() {
         }
 
     }, [urlParams]);
+
+    const navigate = useNavigate()
+
+    
+
+    const addToCart = (product) => {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let userId = localStorage.getItem("userId")
+        const existing = cart.find(
+            item => item.productId === product._id && item.userId === userId
+        );
+        if (existing) {
+            navigate("/addToCart");
+        }
+        else {
+            cart.push({ userId: userId, productId: product._id, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        navigate("/addToCart");
+    }
+
     return (
         <>
             <Topbar />
@@ -49,9 +70,9 @@ function SearchPage() {
                                     <span className="discount">{product.discount}% off</span>
                                 </div>
 
-                                <button className="add-cart">
-                                    Add to Cart
-                                </button>
+                                <Link className="cart-btn" onClick={() => addToCart(product)} to="/addToCart" >
+                                    <h3>Add to Cart</h3>
+                                </Link>
                             </div>
                         </Link>
                     ))}

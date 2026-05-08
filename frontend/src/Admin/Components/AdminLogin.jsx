@@ -19,6 +19,7 @@ function AdminLogin() {
         try {
            if(email === 'purplle.admin@gmail.com' && password === "purplle-admin") {
             alert("Purplle-Admin Login Successfully")
+            localStorage.setItem("admin", email);
             navigate('/admin/dashboard')
            }
            else {

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { BsDatabaseFillAdd } from "react-icons/bs";
 import { GrTableAdd } from "react-icons/gr";
@@ -7,6 +7,13 @@ import { FaUsers } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 
 function AdminSidebars() {
+    const navigate = useNavigate()
+    const admin = localStorage.getItem("admin");
+    const handleLogout = () => {
+        localStorage.removeItem("admin")
+        alert('Logout Successfully')
+        navigate('/admin')
+    }
     return (
         <>
             <div className="admin-layout">
@@ -48,10 +55,10 @@ function AdminSidebars() {
                                 manage contacts
                             </Link>
 
-                            <Link to='/admin/dashboard' className="admin-manage-users admin-tasks">
+                            <div onClick={handleLogout} className="admin-manage-users admin-tasks">
                                 <MdLogout className="admin-icons" />
                                 logout
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,7 +66,7 @@ function AdminSidebars() {
                 <div className="admin-navbar">
                     <div className="admin-navbar-content">
                         <h4>Hello, Admin</h4>
-                        <MdLogout className="admin-icons" />
+                        <div onClick={handleLogout}><MdLogout className="admin-icons" /></div>
                     </div>
                 </div>
             </div>

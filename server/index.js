@@ -89,16 +89,10 @@ const razorpay = new Razorpay({
 // ADDING PRODUCT DETAILS FROM FORM TO BACKEND
 app.post('/imageUpload', upload.single('image'), async (req, res) => {
     try {
-        // const productImage = req.file.filename
 
         const productImage = req.file.path;
-
         const { productName, productDescription, newPrice, oldPrice, discount, productQuantity, highlights, category } = req.body
-
         const productDetails = new Products({ productImage, productName, productDescription, newPrice, oldPrice, discount, productQuantity, highlights, category })
-        // const image = await Products({ productImage })
-        // await image.save()
-
         await productDetails.save()
 
         res.send({ "msg": "Product Added to db" })

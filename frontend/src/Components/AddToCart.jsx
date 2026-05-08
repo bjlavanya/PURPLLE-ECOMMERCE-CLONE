@@ -48,13 +48,6 @@ function AddToCart() {
         }
     })
 
-    //showing payment modal
-    // useEffect(() => {
-    //     if (location.state?.openPayment) {
-    //         setShowPaymentModal(true);
-    //     }
-    // }, [location.state]);
-
     useEffect(() => {
         if (userId) {
             axios.get(
@@ -76,15 +69,6 @@ function AddToCart() {
         }
     }, [userId, location.state]);
 
-
-
-    // useEffect(() => {
-    //     if (userId) {
-    //         axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/manageUsers/${userId}`)
-    //             .then(res => setUser(res.data))
-    //             .catch(err => console.log(err))
-    //     }
-    // }, [userId])
 
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -118,7 +102,7 @@ function AddToCart() {
     }
 
     const continueShopping = () => {
-        navigate('/')
+        navigate(-1)
     }
 
     //Adding user quantity to cart - local storage
@@ -259,24 +243,7 @@ function AddToCart() {
         }
     }
 
-    // const proceedToPay = () => {
-    //     const userId = localStorage.getItem("userId")
 
-    //     if (!userId) {
-    //         if (!address?.pincode) {
-    //             setLoginFromCheckout(true)
-    //         }
-    //         setShowModal(true)
-    //         return
-    //     }
-
-    //     if (!address?.pincode) {
-    //         navigate('/userprofile/myAddressForm')
-    //         return
-    //     }
-
-    //     setShowPaymentModal(true)
-    // }
 
     const proceedToPay = () => {
         const userId = localStorage.getItem("userId");

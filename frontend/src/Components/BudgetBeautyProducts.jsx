@@ -82,6 +82,7 @@ function BudgetBeautyProducts() {
                 <h4>₹{product.newPrice} <strike>₹{product.oldPrice}</strike> <span>{product.discount}% off</span></h4>
               </div>
 
+
               <Link className="cart-btn" onClick={() => addToCart(product)} to="/addToCart" >
                 <h3>Add to Cart</h3>
               </Link>
