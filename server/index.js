@@ -660,19 +660,35 @@ app.post("/contact", async (req, res) => {
 
 //cancel order
 
-app.put("/cancelOrder/id", async (req, res) => {
+app.put("/cancelOrder/:id", async (req, res) => {
     try {
-        const user = await Users.findById(req.params.id)
-        const orders = await Orders.find({ userEmail: user.email })
+        const user = await Users.findById(req.params.id);
 
-        if(orders.orderStatus === 'Order Processing') {
-            alert("Your order is already shipped. You cannot cancel the order.")
+        const order = await Orders.findOne({
+            userEmail: user.email
+        });
+
+        if (order.orderStatus === "Order Processing") {
+            return res.status(400).json({
+                message: "Your order is already shipped. You cannot cancel it."
+            });
         }
+
+        order.orderStatus = "Cancelled";
+        await order.save();
+
+        res.status(200).json({
+            message: "Order cancelled successfully",
+            order
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Server error"
+        });
     }
-    catch (err) {
-        console.log(err)
-    }
-})
+});
 
 //Server running
 app.listen(PORT, () => {
