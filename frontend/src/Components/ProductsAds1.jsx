@@ -24,8 +24,8 @@ function ProductAds1() {
             </main>
 
             <main className="prodcutslides">
-                <Link to='/shopCategories/facescanada' className="home">
-                    <img src="images/productslides.webp" alt="Home1" />
+                <Link to='/shopCategories/facescanada' className="home" >
+                    <img src="images/productslides.webp" alt="Home1" style={{width:'84%'}}/>
                 </Link>
             </main>
 

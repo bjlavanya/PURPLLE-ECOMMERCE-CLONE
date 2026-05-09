@@ -658,6 +658,22 @@ app.post("/contact", async (req, res) => {
   }
 })
 
+//cancel order
+
+app.post("/cancelOrder/id", async (req, res) => {
+    try {
+        const user = await Users.findById(req.params.id)
+        const orders = await Orders.find({ userEmail: user.email })
+
+        if(orders.orderStatus === 'Order Processing') {
+            alert("Your order is already shipped. You cannot cancel the order.")
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
+
 //Server running
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`)
