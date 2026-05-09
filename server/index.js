@@ -660,7 +660,7 @@ app.post("/contact", async (req, res) => {
 
 //cancel order
 
-app.post("/cancelOrder/id", async (req, res) => {
+app.put("/cancelOrder/id", async (req, res) => {
     try {
         const user = await Users.findById(req.params.id)
         const orders = await Orders.find({ userEmail: user.email })
