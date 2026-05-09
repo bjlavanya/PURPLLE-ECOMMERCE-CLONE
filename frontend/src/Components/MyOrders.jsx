@@ -31,8 +31,6 @@ function MyOrders() {
     }
   }, [userId])
 
-
-
   const viewProducts = (products) => {
     setSelectedProducts(products)
     setShowModal(true)
@@ -45,15 +43,6 @@ function MyOrders() {
   const back = () => {
     navigate(-1)
   }
-
-  const cancelOrder = () => {
-    if (userId) {
-      axios.put(`https://purplle-ecommerce-clone-backend.onrender.com/cancelOrder/${userId}`)
-        .then(res => setUser(res.data))
-        .catch(err => console.log(err))
-    }
-  }
-
   return (
     <>
       <Topbar />
@@ -119,7 +108,7 @@ function MyOrders() {
                                   <p>Prodcuts ({order.products.length} items)</p>
                                 </div>
                                 <div className="view-details-product">
-                                  <button type='submit' style={{ color: 'red', padding: '10px', border: '1px solid red', borderRadius: '20px', minWidth: '50px' }}onClick={cancelOrder}>Cancel Order</button>
+                                  <p style={{color:'red', padding:'10px', border:'1px solid red', borderRadius:'20px', minWidth:'50px'}}>Cancel Order</p>
                                 </div>
                               </div>
 
