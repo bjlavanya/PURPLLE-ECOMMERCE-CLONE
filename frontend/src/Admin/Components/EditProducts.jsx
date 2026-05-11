@@ -21,7 +21,7 @@ function EditProducts() {
     const {id} = useParams()
 
     useEffect(() => {
-        axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/imageUpload/${id}`)
+        axios.get(`https://purplle-ecommerce-clone-backend.onrender.com/updateProduct/${id}`)
         .then((res) => {
             const data = res.data
 

@@ -216,7 +216,7 @@ app.get('/products/category/:category', async (req, res) => {
     }
 })
 
-app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
+app.put('/updateProduct/:id', upload.single("image"), async (req, res) => {
     try {
 
         const { id } = req.params
