@@ -216,7 +216,7 @@ app.get('/products/category/:category', async (req, res) => {
     }
 })
 
-app.put('/updateProduct/:id', upload.single("image"), async (req, res) => {
+app.put('/imageUpload/:id', upload.single("image"), async (req, res) => {
     try {
 
         const { id } = req.params
@@ -253,21 +253,21 @@ app.put('/updateProduct/:id', upload.single("image"), async (req, res) => {
 
 //Getting the image --http://localhost:3001/img/69ae5bd33e6fcea5a4b7a916
 
-// app.get("/imageUpload/:id", async (req, res) => {
-//     const { id } = req.params
-//     try {
-//         const product = await Products.findById(id)
-//         if (!product) res.send({ "msg": "Product not uploaded" })
+app.get("/imageUpload/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const product = await Products.findById(id)
+        if (!product) res.send({ "msg": "Product not uploaded" })
 
-//         res.json(product)
+        res.json(product)
 
-//         // const imagePath = path.join(__dirname, "UploadsImage", image.productImage)
-//         // res.sendFile(imagePath)
-//     }
-//     catch (err) {
-//         console.log(err)
-//     }
-// })
+        // const imagePath = path.join(__dirname, "UploadsImage", image.productImage)
+        // res.sendFile(imagePath)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})
 
 app.get('/products', (req, res) => {
     Products.find()
