@@ -26,7 +26,7 @@ function AddProducts() {
         formdata.append("highlights", highlights)
         formdata.append("category", category)
 
-        fetch('https://purplle-ecommerce-clone-backend.onrender.com/imageUpload', {
+        fetch('https://purplle-ecommerce-clone-backend.onrender.com/addProducts', {
             method: "POST",
             body: formdata
         })

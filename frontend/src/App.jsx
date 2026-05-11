@@ -17,7 +17,6 @@ import EditProfile from './Components/EditProfile';
 import MyAddressForm from './Components/MyAddressForm';
 import MyAddressView from './Components/MyAddressView';
 import EditMyAddress from './Components/EditMyAddress';
-import UserOrders from './Components/UserOrders';
 import SupportContact from './Components/SupportContact';
 import ShopCategories from './Components/ShopCategories';
 import AboutUs from './Components/AboutUs';

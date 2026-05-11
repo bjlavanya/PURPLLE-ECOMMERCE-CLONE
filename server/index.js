@@ -87,7 +87,7 @@ const razorpay = new Razorpay({
 
 
 // ADDING PRODUCT DETAILS FROM FORM TO BACKEND
-app.post('/imageUpload', upload.single('image'), async (req, res) => {
+app.post('/addProducts', upload.single('image'), async (req, res) => {
     try {
 
         const productImage = req.file.path;

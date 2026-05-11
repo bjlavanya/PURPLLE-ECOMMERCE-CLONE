@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 import Topbar from './Topbar';
 import Navbar from './Navbar';
+import { toast } from 'react-toastify';
 
 function EditMyAddress() {
     const navigate = useNavigate()
@@ -55,7 +56,7 @@ function EditMyAddress() {
                 location: user.address.location
             });
 
-            alert("Address Updated Successfully");
+            toast.success("Address Updated Successfully");
 
             //navigate('/addTocart', {state: {openPayment : true}})
             navigate(-1);

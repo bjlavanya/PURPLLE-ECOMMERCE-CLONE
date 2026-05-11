@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useNavigate, Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { TbEdit } from "react-icons/tb";
+import { toast } from 'react-toastify';
 
 function MyAddressView() {
     const navigate = useNavigate()

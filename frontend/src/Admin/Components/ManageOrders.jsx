@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminSidebars from './AdminSidebars'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function ManageOrders() {
   const [orders, setOrders] = useState([])
@@ -38,7 +39,7 @@ function ManageOrders() {
 
   const deleteOrders = async (id) => {
     axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteOrders/${id}`)
-    alert("Orders Deleted")
+    toast-success("Orders Deleted")
     window.location.reload();
   }
 
@@ -69,7 +70,7 @@ function ManageOrders() {
 
               <tbody>
                 {
-                  orders.map((order, index) => {
+                  orders.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate)).map((order, index) => {
                     const date = new Date(order.orderDate)
                     const formattedOrderDate = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
                     return <tr key={order._id}>

@@ -14,6 +14,7 @@ import { BiSolidPackage } from "react-icons/bi";
 import { MdOutlinePayment } from "react-icons/md";
 import { BsCashStack } from "react-icons/bs";
 import { CiBank } from "react-icons/ci";
+import { toast } from 'react-toastify';
 
 function AddToCart() {
     const [showModal, setShowModal] = useState(false);
@@ -167,7 +168,7 @@ function AddToCart() {
                 userId: userId
             })
 
-            alert("Order placed successfully")
+            toast.success("Order Placed Successfully")
             navigate('/myOrders')
         }
 
@@ -224,7 +225,7 @@ function AddToCart() {
                                 userId: userId
                             })
 
-                            alert('Payment Successfull and Invoice send to mail')
+                            toast.success('Payment Successfull and Invoice send to mail')
                             navigate('/myOrders')
                         }
                     }
@@ -467,6 +468,7 @@ function AddToCart() {
                         </div>
 
                         <div className="hr-line" style={{ background: '#cec9c9' }}></div>
+                        <p className="note">Note: Order cancellation cannot be performed once the order has been placed.</p>
                         <div className="hr-line" style={{ background: '#cec9c9' }}></div>
 
                         <div className="checkout-details">

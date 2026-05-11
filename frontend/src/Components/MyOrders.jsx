@@ -107,9 +107,13 @@ function MyOrders() {
                                 <div className="product-header">
                                   <p>Prodcuts ({order.products.length} items)</p>
                                 </div>
+
                                 <div className="view-details-product">
-                                  <p style={{color:'red', padding:'10px', border:'1px solid red', borderRadius:'20px', minWidth:'50px'}}>Cancel Order</p>
+                                  <p className="view-all" onClick={() => viewProducts(order.products)}>View Details</p>
                                 </div>
+                                {/* <div className="view-details-product">
+                                  <p style={{color:'red', padding:'10px', border:'1px solid red', borderRadius:'20px', minWidth:'50px'}}>Cancel Order</p>
+                                </div> */}
                               </div>
 
                               <div className="product-delivery-details">

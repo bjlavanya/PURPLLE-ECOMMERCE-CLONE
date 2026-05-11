@@ -8,6 +8,7 @@ import { CiFaceSmile } from "react-icons/ci";
 import { PiPackageLight } from "react-icons/pi";
 import { IoIosLogIn } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
+import { toast } from 'react-toastify';
 
 function MyAddressForm() {
     const navigate = useNavigate()
@@ -74,7 +75,7 @@ function MyAddressForm() {
             )
 
             console.log(response.data)
-            alert("Address added successfully")
+            toast.success("Address added successfully")
             navigate('/addToCart', { replace: true, state: { openPayment: true } })
 
             setPincode("")

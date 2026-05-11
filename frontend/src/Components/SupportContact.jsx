@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function SupportContact() {
     const navigate = useNavigate()
@@ -37,7 +38,7 @@ function SupportContact() {
                 }
             );
 
-            alert('Message Sent Successfully');
+            toast.success('Message Sent Successfully');
 
             setFullName("");
             setEmail("");

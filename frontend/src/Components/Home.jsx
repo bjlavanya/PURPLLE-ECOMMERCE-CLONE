@@ -12,7 +12,6 @@ import BudgetBeautyProducts from './BudgetBeautyProducts'
 import ProductAds3 from './ProductAds3'
 import EssentialProducts from './EssentialProducts'
 import ProductSlide from './ProductSlide'
-import GetFreeGifts from './GetFreeGifts'
 import ProductAds4 from './ProductAds4'
 import TopBrands from './TopBrands'
 import EliteProGoldenAds from './EliteProGoldenAds'
@@ -35,7 +34,7 @@ function Home() {
             <ProductAds3 />
             <EssentialProducts />
             <ProductSlide />
-            {/* <GetFreeGifts /> */}
+           
             <ProductAds4 />
             <TopBrands />
             <EliteProGoldenAds />

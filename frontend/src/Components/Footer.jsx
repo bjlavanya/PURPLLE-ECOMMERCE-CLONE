@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from 'react';
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function Footer() {
     const [fullName, setFullName] = useState("")
@@ -32,7 +33,7 @@ function Footer() {
                 }
             );
 
-            alert('Message Sent Successfully');
+            toast-success('Message Sent Successfully');
 
             setFullName("");
             setEmail("");

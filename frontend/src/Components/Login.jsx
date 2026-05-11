@@ -4,7 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
 import { useLocation } from 'react-router-dom';
 import OtpForm from './OtpForm';
-
+import { toast } from 'react-toastify';
 
 function Login({ closeModal, loginFromCheckout  }) {
   const location = useLocation();
@@ -27,7 +27,7 @@ function Login({ closeModal, loginFromCheckout  }) {
 
         } catch (err) {
             console.log("Send OTP Error:", err.response?.data || err.message);
-            alert("Failed to send OTP.");
+            toast.error("Failed to send OTP.");
         }
     }
 

@@ -4,6 +4,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 function EditProfile() {
   const navigate = useNavigate()
@@ -39,7 +40,7 @@ function EditProfile() {
         phonenumber: user.phonenumber
       });
 
-      alert("Profile Updated");
+      toast.sucess("Profile Updated");
       navigate("/userProfile");
 
     } catch (err) {

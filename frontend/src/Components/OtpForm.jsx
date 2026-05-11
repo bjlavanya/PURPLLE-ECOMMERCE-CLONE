@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheckout }) {
     const [otp, setOtp] = useState(new Array(length).fill(""));
@@ -97,7 +98,7 @@ function OtpForm({ length = 6, email, setShowOtpForm, closeModal, loginFromCheck
             localStorage.setItem("cart", JSON.stringify(cart));
 
             console.log("Response:", response.data);
-            alert("Login Successfully")
+            toast.success("Login Successfully")
 
             if (loginFromCheckout) {
 

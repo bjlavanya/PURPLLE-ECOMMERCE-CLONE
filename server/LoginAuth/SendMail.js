@@ -6,7 +6,7 @@ const sendMail = async (email, otp) => {
   try {
     const msg = {
       to: `${email}`,
-      from: process.env.EMAIL_USER, // verified sender
+      from: process.env.EMAIL_USER,
       subject: 'OTP Verification Code for Purplle Login/Signup',
       html: `
         <h3>Dear Customer</h3>

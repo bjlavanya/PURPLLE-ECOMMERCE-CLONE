@@ -2440,6 +2440,13 @@ edit-user-profile,
     z-index: 2002;
 }
 
+.checkout-section .note {
+    font-style: italic;
+    color: red;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 .checkout-section .checkout-content {
     background: white;
     padding: 30px;
@@ -3040,6 +3047,8 @@ select {
     color: #9c00ad !important;
     font-size: 1.4rem;
 }
+
+/* category */
 
 .splurge-category {
     margin-left: 120px;
