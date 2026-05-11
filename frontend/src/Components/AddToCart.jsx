@@ -103,7 +103,7 @@ function AddToCart() {
     }
 
     const continueShopping = () => {
-        navigate(-1)
+        navigate('/')
     }
 
     //Adding user quantity to cart - local storage
