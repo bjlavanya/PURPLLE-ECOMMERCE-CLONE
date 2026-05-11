@@ -191,7 +191,7 @@ app.delete('/deleteContacts/:id', async (req, res) => {
     try {
         const { id } = req.params
 
-        const deleteContacts = await Users.findByIdAndDelete(id)
+        const deleteContacts = await Contacts.findByIdAndDelete(id)
         res.status(200).json(deleteUser)
     }
     catch (err) {
