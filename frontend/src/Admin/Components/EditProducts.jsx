@@ -55,7 +55,7 @@ function EditProducts() {
         formdata.append("highlights", highlights)
         formdata.append("category", category)
 
-        fetch(`https://purplle-ecommerce-clone-backend.onrender.com/imageUpload/${id}`, {
+        fetch(`https://purplle-ecommerce-clone-backend.onrender.com/updateProduct/${id}`, {
             method: "put",
             body: formdata
         })
