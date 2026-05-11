@@ -15,15 +15,9 @@ function ManageContacts() {
   }, [])
 
   const deleteContact = async (id) => {
-     try {
-      await axios.delete(
-        `https://purplle-ecommerce-clone-backend.onrender.com/deleteContacts/${id}`
-      )
-      alert("Contact details Deleted")
-      window.location.reload()
-    } catch (err) {
-      console.log(err)
-    }
+    axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteContacts/${id}`)
+    alert("Queries Deleted")
+    window.location.reload();
   }
 
   return (
