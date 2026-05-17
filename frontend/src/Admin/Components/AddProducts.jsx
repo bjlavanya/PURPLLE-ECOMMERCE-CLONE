@@ -1,5 +1,7 @@
 import AdminSidebars from './AdminSidebars';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+
 function AddProducts() {
     const [image, setImage] = useState()
     const [name, setName] = useState()
@@ -33,7 +35,7 @@ function AddProducts() {
         .then((res) => res.json())
         .then((data) => {
             console.log(data.msg)
-            alert("Product added")
+            toast.success("Product added")
 
             setImage(null)
             setName("")

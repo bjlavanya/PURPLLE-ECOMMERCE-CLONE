@@ -3,6 +3,7 @@ import AdminSidebars from './AdminSidebars'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function ManageUsers() {
 
@@ -16,7 +17,7 @@ function ManageUsers() {
 
   const deleteUser = async (id) => {
     axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteUsers/${id}`)
-    alert("User Deleted")
+    toast.success("User Deleted")
     window.location.reload();
   }
 

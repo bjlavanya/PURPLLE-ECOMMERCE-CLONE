@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AdminDashboard from './AdminDashboard'
+import { toast } from 'react-toastify';
 
 function AdminLogin() {
 
@@ -18,12 +19,12 @@ function AdminLogin() {
 
         try {
            if(email === 'purplle.admin@gmail.com' && password === "purplle-admin") {
-            alert("Purplle-Admin Login Successfully")
+            toast.success("Purplle-Admin Login Successfully")
             localStorage.setItem("admin", email);
             navigate('/admin/dashboard')
            }
            else {
-            alert("Login Failed")
+            toast.error("Login Failed")
            }
         } catch (err) {
             console.log("Error:", err);

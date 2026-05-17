@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import AdminSidebars from './AdminSidebars';
 import { useState } from 'react';
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 function EditStatus() {
 
@@ -21,12 +22,12 @@ function EditStatus() {
             });
 
             console.log(orderStatus)
-            alert("Status Updated and mail sent");
+            toast.success("Status Updated and mail sent");
             navigate("/admin/manageOrders");
 
         } catch (err) {
             console.error(err);
-            alert("Failed to update status");
+            toast.error("Failed to update status");
         }
     }
 

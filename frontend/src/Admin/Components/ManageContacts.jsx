@@ -3,6 +3,7 @@ import AdminSidebars from './AdminSidebars'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function ManageContacts() {
 
@@ -16,7 +17,7 @@ function ManageContacts() {
 
   const deleteContact = async (id) => {
     axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteContacts/${id}`)
-    alert("Queries Deleted")
+    toast.success("Queries Deleted")
     window.location.reload();
   }
 

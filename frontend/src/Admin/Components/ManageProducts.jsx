@@ -3,6 +3,7 @@ import AdminSidebars from './AdminSidebars'
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import { toast } from 'react-toastify';
 
 function ManageProducts() {
   const inputRef = useRef(null);
@@ -21,7 +22,7 @@ function ManageProducts() {
 
   const deleteProduct = async (id) => {
     await axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteProducts/${id}`)
-    alert("Product Deleted")
+    toast.success("Product Deleted")
     window.location.reload()
   }
 

@@ -39,7 +39,7 @@ function ManageOrders() {
 
   const deleteOrders = async (id) => {
     axios.delete(`https://purplle-ecommerce-clone-backend.onrender.com/deleteOrders/${id}`)
-    toast-success("Orders Deleted")
+    toast.success("Orders Deleted")
     window.location.reload();
   }
 
